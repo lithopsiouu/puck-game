@@ -1,0 +1,124 @@
+[gd_scene load_steps=11 format=3 uid="uid://wmqpwl0ls2ld"]
+
+[ext_resource type="Texture2D" uid="uid://cseaeqhnbemqj" path="res://didi4_a.png" id="1_fdqpq"]
+[ext_resource type="Script" path="res://puck_controller.gd" id="1_o8dxa"]
+[ext_resource type="Texture2D" uid="uid://dql1t3jv4rkxf" path="res://didi4_b_r.png" id="3_5unb7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1voe"]
+atlas = ExtResource("1_fdqpq")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pa44e"]
+size = Vector2(64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34bsi"]
+atlas = ExtResource("1_fdqpq")
+region = Rect2(320, 128, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lebvo"]
+radius = 29.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8pkb"]
+atlas = ExtResource("1_fdqpq")
+region = Rect2(704, 272, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ppua"]
+radius = 26.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxhtv"]
+atlas = ExtResource("3_5unb7")
+region = Rect2(672, 208, 16, 16)
+
+[node name="Scene" type="Node2D"]
+texture_filter = 1
+
+[node name="Obstacle" type="RigidBody2D" parent="."]
+position = Vector2(-544, -288)
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacle"]
+texture_repeat = 2
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_w1voe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
+shape = SubResource("RectangleShape2D_pa44e")
+
+[node name="Obstacle2" type="RigidBody2D" parent="."]
+position = Vector2(-480, -288)
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacle2"]
+texture_repeat = 2
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_w1voe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle2"]
+shape = SubResource("RectangleShape2D_pa44e")
+
+[node name="Obstacle3" type="RigidBody2D" parent="."]
+position = Vector2(-352, -288)
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacle3"]
+texture_repeat = 2
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_w1voe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle3"]
+shape = SubResource("RectangleShape2D_pa44e")
+
+[node name="Obstacle4" type="RigidBody2D" parent="."]
+position = Vector2(160, -96)
+freeze = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Obstacle4"]
+texture_repeat = 2
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_w1voe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle4"]
+shape = SubResource("RectangleShape2D_pa44e")
+
+[node name="Puck" type="Node2D" parent="."]
+texture_filter = 1
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Puck"]
+input_pickable = true
+gravity_scale = 0.0
+linear_damp = 0.6
+script = ExtResource("1_o8dxa")
+
+[node name="Sprite2D" type="Sprite2D" parent="Puck/RigidBody2D"]
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_34bsi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puck/RigidBody2D"]
+shape = SubResource("CircleShape2D_lebvo")
+
+[node name="Camera2D" type="Camera2D" parent="Puck/RigidBody2D"]
+position_smoothing_enabled = true
+
+[node name="PhysPuck" type="Node2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -128)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="PhysPuck"]
+gravity_scale = 0.0
+linear_damp = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="PhysPuck/RigidBody2D"]
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_c8pkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysPuck/RigidBody2D"]
+shape = SubResource("CircleShape2D_2ppua")
+
+[node name="Cursor" type="Sprite2D" parent="."]
+position = Vector2(-736, 96)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_oxhtv")
+
+[connection signal="input_event" from="Puck/RigidBody2D" to="Puck/RigidBody2D" method="_on_input_event"]
+[connection signal="mouse_entered" from="Puck/RigidBody2D" to="Puck/RigidBody2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Puck/RigidBody2D" to="Puck/RigidBody2D" method="_on_mouse_exited"]
