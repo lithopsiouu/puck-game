@@ -5,49 +5,70 @@ created by connie anderson
 february 2025
 """
 
-const velocityScale = 4
+const velocityScale = 5
+const maxSpeed = 800
+const invertDrag = false
 
 var mouseOnPuck = false
 
+var grabbingPuck = false
 var mouseGrabPos = null
 var mouseReleasePos = null
 var mouseDragDist = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
+	pass
 
 func _physics_process(delta: float) -> void:
+	#print(str(_mouse_dist_from_puck().normalized()))
+	#print("position: " + str(get_global_position()) + "mouse pos: " + str(get_global_mouse_position()))
+	#print("local mouse pos: " + str(get_local_mouse_position()) + "global mouse pos: " + str(get_global_mouse_position()))
+	#print(str(linear_velocity.length()))
+	
 	if Input.is_action_just_pressed("PuckGrab"):
 		_set_mouse_grab_pos()
-		# print("Puck grabbed, pos: " + str(mouseGrabPos))
-		# pass
+		grabbingPuck = true
+		#print("Puck grabbed, pos: " + str(mouseGrabPos))
 	elif Input.is_action_just_released("PuckGrab"):
 		_set_mouse_release_pos()
-		_add_puck_velocity(_get_dist_btwn_grabs())
-		# print("Puck released, pos: " + str(mouseReleasePos))
+		grabbingPuck = false
+		_add_puck_velocity(get_dist_btwn_grabs())
+		#print("Puck released, pos: " + str(mouseReleasePos))
+	elif grabbingPuck == true:
+		pass
 
-#Sets mouseGrabPos to the position the mouse is globally at.
+#currently unused
+func _mouse_dist_from_puck():
+	var puckDistToMouse = get_global_position() - get_global_mouse_position()
+	return puckDistToMouse
+
+#Sets mouseGrabPos to the position the mouse is locally at.
 func _set_mouse_grab_pos():
-	mouseGrabPos = get_global_mouse_position()
+	mouseGrabPos = get_local_mouse_position()
 
-#Sets mouseReleasePos to the position the mouse is globally at.
+#Sets mouseReleasePos to the position the mouse is locally at.
 func _set_mouse_release_pos():
-	mouseReleasePos = get_global_mouse_position()
+	mouseReleasePos = get_local_mouse_position()
 
-#Subtracts the grab position from the release position
-func _get_dist_btwn_grabs() -> Vector2:
-	var distance = (mouseGrabPos - mouseReleasePos)
-	# print("drag distance: " + str(distance))
+func get_mouse_grab_pos():
+	return mouseGrabPos
+
+func get_mouse_pos_relative_to_puckbody():
+	return get_local_mouse_position()
+
+#Subtracts the grab position from the release position, or vice versa if invertDrag is true
+func get_dist_btwn_grabs() -> Vector2:
+	var distance
+	if !invertDrag:
+		distance = (mouseGrabPos - mouseReleasePos)
+	else:
+		distance = (mouseReleasePos - mouseGrabPos)
+	#print("drag distance: " + str(distance.length()))
 	return distance
 
 #Multiplies the direction by velocityScale and applies it to the object's linear_velocity
-func _add_puck_velocity(direction):
-	var scaledDirection = direction * velocityScale
-	linear_velocity.x += scaledDirection.x
-	linear_velocity.y += scaledDirection.y
+func _add_puck_velocity(distance):
+	var scaledDirection = distance * velocityScale
+	linear_velocity.x += clamp(scaledDirection.x, maxSpeed * -1, maxSpeed)
+	linear_velocity.y += clamp(scaledDirection.y, maxSpeed * -1, maxSpeed)

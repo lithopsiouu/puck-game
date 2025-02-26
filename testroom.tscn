@@ -1,36 +1,45 @@
-[gd_scene load_steps=11 format=3 uid="uid://wmqpwl0ls2ld"]
+[gd_scene load_steps=14 format=3 uid="uid://wmqpwl0ls2ld"]
 
 [ext_resource type="Texture2D" uid="uid://cseaeqhnbemqj" path="res://didi4_a.png" id="1_fdqpq"]
 [ext_resource type="Script" path="res://puck_controller.gd" id="1_o8dxa"]
-[ext_resource type="Texture2D" uid="uid://dql1t3jv4rkxf" path="res://didi4_b_r.png" id="3_5unb7"]
+[ext_resource type="Script" path="res://cursorMaker.gd" id="1_yyuw8"]
+[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://didi4_b.png" id="3_jua6u"]
+[ext_resource type="Script" path="res://arrow.gd" id="4_73ljx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w1voe"]
 atlas = ExtResource("1_fdqpq")
 region = Rect2(0, 80, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pa44e"]
-size = Vector2(64, 64)
+size = Vector2(64, 320)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nt6t6"]
+friction = 0.18
+bounce = 0.55
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34bsi"]
-atlas = ExtResource("1_fdqpq")
+atlas = ExtResource("3_jua6u")
 region = Rect2(320, 128, 16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lebvo"]
 radius = 29.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_l07bo"]
+atlas = ExtResource("3_jua6u")
+region = Rect2(384, 176, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8pkb"]
-atlas = ExtResource("1_fdqpq")
+atlas = ExtResource("3_jua6u")
 region = Rect2(704, 272, 16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ppua"]
 radius = 26.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oxhtv"]
-atlas = ExtResource("3_5unb7")
-region = Rect2(672, 208, 16, 16)
-
 [node name="Scene" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_yyuw8")
+
+[node name="CursorHolder" type="Node2D" parent="."]
 
 [node name="Obstacle" type="RigidBody2D" parent="."]
 position = Vector2(-544, -288)
@@ -38,10 +47,12 @@ freeze = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Obstacle"]
 texture_repeat = 2
-scale = Vector2(4, 4)
+position = Vector2(0, 128)
+scale = Vector2(4, 20)
 texture = SubResource("AtlasTexture_w1voe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
+position = Vector2(0, 128)
 shape = SubResource("RectangleShape2D_pa44e")
 
 [node name="Obstacle2" type="RigidBody2D" parent="."]
@@ -50,7 +61,7 @@ freeze = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Obstacle2"]
 texture_repeat = 2
-scale = Vector2(4, 4)
+scale = Vector2(4, 20)
 texture = SubResource("AtlasTexture_w1voe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle2"]
@@ -62,7 +73,7 @@ freeze = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Obstacle3"]
 texture_repeat = 2
-scale = Vector2(4, 4)
+scale = Vector2(4, 20)
 texture = SubResource("AtlasTexture_w1voe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle3"]
@@ -74,7 +85,7 @@ freeze = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Obstacle4"]
 texture_repeat = 2
-scale = Vector2(4, 4)
+scale = Vector2(4, 20)
 texture = SubResource("AtlasTexture_w1voe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle4"]
@@ -83,42 +94,47 @@ shape = SubResource("RectangleShape2D_pa44e")
 [node name="Puck" type="Node2D" parent="."]
 texture_filter = 1
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Puck"]
+[node name="PuckBody" type="RigidBody2D" parent="Puck"]
+process_mode = 3
+physics_interpolation_mode = 1
 input_pickable = true
+mass = 1.2
+physics_material_override = SubResource("PhysicsMaterial_nt6t6")
 gravity_scale = 0.0
-linear_damp = 0.6
+lock_rotation = true
+linear_damp = 0.7
 script = ExtResource("1_o8dxa")
 
-[node name="Sprite2D" type="Sprite2D" parent="Puck/RigidBody2D"]
+[node name="PuckSprite" type="Sprite2D" parent="Puck/PuckBody"]
 scale = Vector2(4, 4)
 texture = SubResource("AtlasTexture_34bsi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Puck/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Puck/PuckBody"]
 shape = SubResource("CircleShape2D_lebvo")
 
-[node name="Camera2D" type="Camera2D" parent="Puck/RigidBody2D"]
+[node name="MainCamera" type="Camera2D" parent="Puck/PuckBody"]
+process_callback = 0
 position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+
+[node name="Arrow" type="Sprite2D" parent="Puck/PuckBody"]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_l07bo")
+offset = Vector2(0, -30)
+script = ExtResource("4_73ljx")
 
 [node name="PhysPuck" type="Node2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -128)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="PhysPuck"]
+[node name="PuckBody" type="RigidBody2D" parent="PhysPuck"]
 gravity_scale = 0.0
 linear_damp = 1.0
 
-[node name="Sprite2D" type="Sprite2D" parent="PhysPuck/RigidBody2D"]
+[node name="PuckSprite" type="Sprite2D" parent="PhysPuck/PuckBody"]
 scale = Vector2(4, 4)
 texture = SubResource("AtlasTexture_c8pkb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysPuck/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysPuck/PuckBody"]
 shape = SubResource("CircleShape2D_2ppua")
-
-[node name="Cursor" type="Sprite2D" parent="."]
-position = Vector2(-736, 96)
-scale = Vector2(4, 4)
-texture = SubResource("AtlasTexture_oxhtv")
-
-[connection signal="input_event" from="Puck/RigidBody2D" to="Puck/RigidBody2D" method="_on_input_event"]
-[connection signal="mouse_entered" from="Puck/RigidBody2D" to="Puck/RigidBody2D" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Puck/RigidBody2D" to="Puck/RigidBody2D" method="_on_mouse_exited"]
