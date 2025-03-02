@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwq6gmw80mybm"]
+
+[ext_resource type="Script" path="res://UI/coin/coin_ui.gd" id="1_i2tsr"]
+[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="1_rhn67"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifnh3"]
+atlas = ExtResource("1_rhn67")
+region = Rect2(448, 272, 16, 16)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h8wxw"]
+font_size = 34
+font_color = Color(0.862745, 0.996078, 0.811765, 1)
+
+[node name="CoinUI" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -176.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 80.0
+grow_horizontal = 0
+script = ExtResource("1_i2tsr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_right = 112.0
+offset_bottom = 16.0
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_ifnh3")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_right = 0.6
+offset_left = -80.0
+offset_bottom = 64.0
+text = "0"
+label_settings = SubResource("LabelSettings_h8wxw")
+horizontal_alignment = 2
+vertical_alignment = 1

@@ -1,11 +1,10 @@
 extends Node2D
 
 var cursor = preload("res://cursor.tscn")
-var container = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	container = get_node("CursorHolder")
+	makeNewCursor(Vector2(9999, 9999))
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -18,10 +17,25 @@ func _unhandled_input(event: InputEvent) -> void:
 func makeNewCursor(pos):
 	var instance = cursor.instantiate()
 	instance.position = pos
-	container.add_child(instance)
+	add_child(instance)
 	#print(str(instance.name))
 
+#invalid access error on modulate
+func makeNewCursorColored(pos, alpha):
+	var instance = cursor.instantiate()
+	instance.position = pos
+	instance.modualte.a = alpha
+	add_child(instance)
+
+func changeCursorPos(position):
+	var instance = get_child(0)
+	instance.transform = position
+
+func changeCursorColor(color):
+	var instance = get_child(0)
+	instance.modulate.a = color
+
 func clearCursors():
-	for i in container.get_children():
+	for i in get_children():
 		i.queue_free()
 		

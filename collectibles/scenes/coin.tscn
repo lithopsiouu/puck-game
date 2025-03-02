@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw58sdkek0ria"]
+
+[ext_resource type="Script" path="res://collectibles/scripts/coin.gd" id="1_4607w"]
+[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="2_ns1qc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_df6nj"]
+atlas = ExtResource("2_ns1qc")
+region = Rect2(448, 240, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dt0qa"]
+radius = 7.0
+
+[node name="Coin" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_4607w")
+
+[node name="CoinSprite" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_df6nj")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 16
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_dt0qa")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

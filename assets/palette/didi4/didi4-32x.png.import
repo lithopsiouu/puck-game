@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq1qxmnhrikwk"
-path="res://.godot/imported/didi4_b.png-a54b18cbba7f6d84e80bd4972f1b9d19.ctex"
+uid="uid://eejprjm8whs6"
+path="res://.godot/imported/didi4-32x.png-9531c13a860bc95f78fef8fc9f182fea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://didi4_b.png"
-dest_files=["res://.godot/imported/didi4_b.png-a54b18cbba7f6d84e80bd4972f1b9d19.ctex"]
+source_file="res://assets/palette/didi4/didi4-32x.png"
+dest_files=["res://.godot/imported/didi4-32x.png-9531c13a860bc95f78fef8fc9f182fea.ctex"]
 
 [params]
 

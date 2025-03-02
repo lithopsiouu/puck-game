@@ -1,12 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://cpjh11ob3kik8"]
 
-[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://didi4_b.png" id="1_7vwi4"]
+[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="1_7vwi4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oxhtv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7f8d"]
 atlas = ExtResource("1_7vwi4")
 region = Rect2(416, 128, 16, 16)
 
-[node name="Cursor" type="Sprite2D"]
+[node name="Cursor" type="Node2D"]
 texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
-texture = SubResource("AtlasTexture_oxhtv")
+texture = SubResource("AtlasTexture_k7f8d")

@@ -15,10 +15,25 @@ run/main_scene="res://testroom.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameController="*res://scripts/game_controller.gd"
+EventController="*res://scripts/event_controller.gd"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[file_customization]
+
+folder_colors={
+"res://UI/": "green",
+"res://addons/": "orange",
+"res://assets/": "gray",
+"res://collectibles/": "teal",
+"res://scripts/": "blue"
+}
 
 [input]
 
@@ -41,6 +56,12 @@ Cancel={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="WorldPhys"
+2d_physics/layer_5="Player"
+2d_physics/layer_6="Coin"
 
 [physics]
 
