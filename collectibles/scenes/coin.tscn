@@ -1,7 +1,41 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw58sdkek0ria"]
+[gd_scene load_steps=11 format=3 uid="uid://cw58sdkek0ria"]
 
 [ext_resource type="Script" path="res://collectibles/scripts/coin.gd" id="1_4607w"]
 [ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="2_ns1qc"]
+
+[sub_resource type="Curve" id="Curve_nnvb4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.806931, 0), -2.91618, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tj23i"]
+curve = SubResource("Curve_nnvb4")
+
+[sub_resource type="Curve" id="Curve_4uuaa"]
+_data = [Vector2(0, 0.637363), 0.0, 5.40468, 0, 0, Vector2(0.113861, 0.934066), 0.542613, 0.542613, 0, 0, Vector2(0.990099, 0.010989), -2.60824, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1qssp"]
+curve = SubResource("Curve_4uuaa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s1sog"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+angle_min = -14.0
+angle_max = 14.0
+spread = 180.0
+initial_velocity_min = 250.0
+initial_velocity_max = 550.0
+gravity = Vector3(0, 0, 0)
+damping_min = 0.3
+damping_max = 1.0
+scale_min = 0.3
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_1qssp")
+alpha_curve = SubResource("CurveTexture_tj23i")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ub0l8"]
+atlas = ExtResource("2_ns1qc")
+region = Rect2(0, 448, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_df6nj"]
 atlas = ExtResource("2_ns1qc")
@@ -13,6 +47,14 @@ radius = 7.0
 [node name="Coin" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_4607w")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_s1sog")
+texture = SubResource("AtlasTexture_ub0l8")
+one_shot = true
+speed_scale = 3.0
+trail_sections = 2
 
 [node name="CoinSprite" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)

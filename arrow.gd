@@ -26,14 +26,14 @@ func prepareArrow(initPos) -> void:
 		scale.y = 0.0
 	else:
 		scale.y = 1.0
-	print("arrow prepared")
+	#print("arrow prepared")
 
 func resetArrow() -> void:
 	modulate.a = 0
 	if scaleArrow:
 		scale.y = 0.0
 	
-	print("arrow reset")
+	#print("arrow reset")
 
 func updateArrow(mouseGrabPos) -> void:
 	#print("updating")

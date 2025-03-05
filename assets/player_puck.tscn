@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://kldg6jp7vsw1"]
+[gd_scene load_steps=9 format=3 uid="uid://kldg6jp7vsw1"]
 
 [ext_resource type="Script" path="res://puck_controller.gd" id="1_37wa6"]
 [ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="2_oq76g"]
 [ext_resource type="Script" path="res://arrow.gd" id="3_y662i"]
+[ext_resource type="PackedScene" uid="uid://bwq6gmw80mybm" path="res://UI/coin/coin_ui.tscn" id="4_8lbme"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nt6t6"]
 friction = 0.18
@@ -54,5 +55,12 @@ scale = Vector2(3, 3)
 texture = SubResource("AtlasTexture_l07bo")
 offset = Vector2(0, -25)
 script = ExtResource("3_y662i")
+
+[node name="CoinUI" parent="PuckBody" instance=ExtResource("4_8lbme")]
+offset_left = -53.0
+offset_top = 32.0
+offset_right = 107.0
+offset_bottom = 96.0
+scale = Vector2(0.68, 0.68)
 
 [connection signal="body_entered" from="PuckBody" to="PuckBody" method="_on_body_entered"]
