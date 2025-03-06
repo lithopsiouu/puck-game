@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://kldg6jp7vsw1"]
 
-[ext_resource type="Script" path="res://puck_controller.gd" id="1_37wa6"]
+[ext_resource type="Script" path="res://scripts/puck_controller.gd" id="1_37wa6"]
 [ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="2_oq76g"]
-[ext_resource type="Script" path="res://arrow.gd" id="3_y662i"]
+[ext_resource type="Script" path="res://scripts/arrow.gd" id="3_y662i"]
 [ext_resource type="PackedScene" uid="uid://bwq6gmw80mybm" path="res://UI/coin/coin_ui.tscn" id="4_8lbme"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nt6t6"]
@@ -11,7 +11,7 @@ bounce = 0.55
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_34bsi"]
 atlas = ExtResource("2_oq76g")
-region = Rect2(320, 128, 16, 16)
+region = Rect2(321, 129, 14, 14)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lebvo"]
 radius = 29.0

@@ -1,0 +1,130 @@
+[gd_scene load_steps=17 format=3 uid="uid://clcgpntvvlo75"]
+
+[ext_resource type="Script" path="res://collectibles/scripts/shy_coin.gd" id="1_yw6ao"]
+[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="2_6ln2i"]
+[ext_resource type="AnimationLibrary" uid="uid://tliujxpvavy4" path="res://collectibles/animations/coin/shy_coin_anims.res" id="3_6cfqq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jxyor"]
+friction = 0.0
+bounce = 0.85
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2vler"]
+radius = 28.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6n4h"]
+atlas = ExtResource("2_6ln2i")
+region = Rect2(448, 272, 16, 16)
+
+[sub_resource type="Curve" id="Curve_27glo"]
+_data = [Vector2(0, 0), 0.0, 12.9487, 0, 0, Vector2(0.207921, 0.989011), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_tj23i"]
+curve = SubResource("Curve_27glo")
+
+[sub_resource type="Curve" id="Curve_wkkqe"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tpuy6"]
+curve = SubResource("Curve_wkkqe")
+
+[sub_resource type="Curve" id="Curve_4uuaa"]
+_data = [Vector2(0, 0.912088), 0.0, 0.507378, 0, 1, Vector2(0.173267, 1), 0.0, 0.0, 0, 0, Vector2(0.990099, 0.010989), -0.0876229, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1qssp"]
+curve = SubResource("Curve_4uuaa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s1sog"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 60.0
+emission_ring_inner_radius = 0.0
+angle_min = -14.0
+angle_max = 14.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+angular_velocity_min = -10.0
+angular_velocity_max = 9.99998
+gravity = Vector3(0, 0, 0)
+radial_accel_curve = SubResource("CurveTexture_tpuy6")
+damping_min = 0.3
+damping_max = 1.0
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_1qssp")
+alpha_curve = SubResource("CurveTexture_tj23i")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ub0l8"]
+atlas = ExtResource("2_6ln2i")
+region = Rect2(464, 320, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dt0qa"]
+radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uxtsc"]
+radius = 300.0
+
+[node name="ShyCoin" type="Node2D"]
+texture_filter = 1
+
+[node name="ShyCoinBody" type="RigidBody2D" parent="."]
+collision_layer = 32
+collision_mask = 17
+physics_material_override = SubResource("PhysicsMaterial_jxyor")
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 0.3
+script = ExtResource("1_yw6ao")
+
+[node name="ColliderShape" type="CollisionShape2D" parent="ShyCoinBody"]
+shape = SubResource("CircleShape2D_2vler")
+
+[node name="CoinSprite" type="Sprite2D" parent="ShyCoinBody"]
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_i6n4h")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ShyCoinBody/CoinSprite"]
+z_index = -1
+scale = Vector2(0.25, 0.25)
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_s1sog")
+texture = SubResource("AtlasTexture_ub0l8")
+lifetime = 4.0
+speed_scale = 3.0
+randomness = 0.09
+trail_sections = 2
+
+[node name="CollectRadius" type="Area2D" parent="ShyCoinBody"]
+collision_layer = 32
+collision_mask = 16
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShyCoinBody/CollectRadius"]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_dt0qa")
+
+[node name="RunRadius" type="Area2D" parent="ShyCoinBody"]
+collision_layer = 32
+collision_mask = 16
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShyCoinBody/RunRadius"]
+shape = SubResource("CircleShape2D_uxtsc")
+debug_color = Color(0.592, 0.534, 0.341, 0.244)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShyCoinBody"]
+root_node = NodePath("../..")
+libraries = {
+"": ExtResource("3_6cfqq")
+}
+
+[connection signal="body_entered" from="ShyCoinBody/CollectRadius" to="ShyCoinBody" method="_on_collect_radius_body_entered"]
+[connection signal="body_entered" from="ShyCoinBody/RunRadius" to="ShyCoinBody" method="_on_run_radius_body_entered"]
+[connection signal="body_exited" from="ShyCoinBody/RunRadius" to="ShyCoinBody" method="_on_run_radius_body_exited"]
