@@ -55,7 +55,7 @@ func perform_state_actions() -> void:
 		_states.RECOVER:
 			animPlayer.play("recovering", 1.3)
 			linear_damp = 1.2
-			await get_tree().create_timer(3).timeout
+			await get_tree().create_timer(1.7).timeout
 			linear_damp = 0.3
 			if runWhenReady:
 				state = _states.IDLE
@@ -76,11 +76,11 @@ func _on_run_radius_body_entered(body: Node2D) -> void:
 	if body is PlayerPuck:
 		playerInRunRadius = true
 		playerBody = body
-		print("initial check:")
+		#print("initial check:")
 		try_start_moving(body)
 
 func try_start_moving(body: Node2D):
-	print(str(cast_ray_to_player(body) is PlayerPuck))
+	#print(str(cast_ray_to_player(body) is PlayerPuck))
 	if cast_ray_to_player(body) is PlayerPuck:
 		canSeePlayer = true
 		handle_state_transitions(1)
