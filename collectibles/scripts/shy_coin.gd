@@ -1,7 +1,7 @@
-extends RigidBody2D
-class_name ShyCoin
+class_name ShyCoin extends RigidBody2D
 
 @export var coinValue : int = 5
+@export var dead : bool = false
 @onready var animPlayer : AnimationPlayer = $AnimationPlayer
 
 var lastPlayerBodyPos : Vector2 = Vector2.ZERO
@@ -9,6 +9,7 @@ var playerBody : RigidBody2D = null
 var playerInRunRadius : bool = false
 var runWhenReady : bool = false
 var canSeePlayer : bool = false
+var canCollect : bool = true
 
 const tickUpdateTime : int = 20
 var ticks : int = 0
@@ -27,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	if playerInRunRadius and ticks > tickUpdateTime:
 		ticks = 0
 		lastPlayerBodyPos = playerBody.global_position
-		if !canSeePlayer:
+		if !canSeePlayer and !dead:
 			try_start_moving(playerBody)
 		if state == _states.RECOVER:
 			runWhenReady = true
@@ -106,6 +107,11 @@ func get_vector_away_from_player() -> Vector2:
 	return awayDir
 
 func _on_collect_radius_body_entered(body: Node2D) -> void:
-	if body is PlayerPuck:
+	if body is PlayerPuck and canCollect:
+		collision_layer = 8
+		linear_damp = 5
+		animPlayer.play("collect", 0.5)
 		GameController.coin_collected(coinValue)
-		self.queue_free()
+
+func set_canCollect(newCanCollect: bool):
+	canCollect = newCanCollect

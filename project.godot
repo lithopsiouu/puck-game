@@ -73,6 +73,7 @@ Cancel={
 2d_physics/layer_1="WorldPhys"
 2d_physics/layer_5="Player"
 2d_physics/layer_6="Coin"
+2d_physics/layer_8="No Player"
 
 [physics]
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cw58sdkek0ria"]
+[gd_scene load_steps=12 format=3 uid="uid://cw58sdkek0ria"]
 
 [ext_resource type="Script" path="res://collectibles/scripts/coin.gd" id="1_4607w"]
 [ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="2_ns1qc"]
+[ext_resource type="AnimationLibrary" uid="uid://cw2eqnfet4mvl" path="res://collectibles/animations/coin/coin_anims.res" id="3_gh0f5"]
 
 [sub_resource type="Curve" id="Curve_nnvb4"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.806931, 0), -2.91618, 0.0, 0, 0]
@@ -18,24 +19,34 @@ point_count = 3
 curve = SubResource("Curve_4uuaa")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s1sog"]
+lifetime_randomness = 0.19
 particle_flag_disable_z = true
 particle_flag_damping_as_friction = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 10.0
+emission_ring_inner_radius = 0.0
 angle_min = -14.0
 angle_max = 14.0
 spread = 180.0
 initial_velocity_min = 250.0
-initial_velocity_max = 550.0
+initial_velocity_max = 600.0
 gravity = Vector3(0, 0, 0)
-damping_min = 0.3
-damping_max = 1.0
-scale_min = 0.3
-scale_max = 0.5
+radial_accel_min = -20.0
+radial_accel_max = 20.0
+tangential_accel_min = 16.22
+tangential_accel_max = 16.22
+damping_min = 0.4
+damping_max = 0.8
+scale_min = 1.4
+scale_max = 2.0
 scale_curve = SubResource("CurveTexture_1qssp")
 alpha_curve = SubResource("CurveTexture_tj23i")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ub0l8"]
 atlas = ExtResource("2_ns1qc")
-region = Rect2(0, 448, 16, 16)
+region = Rect2(449, 241, 14, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_df6nj"]
 atlas = ExtResource("2_ns1qc")
@@ -45,138 +56,18 @@ filter_clip = true
 [sub_resource type="CircleShape2D" id="CircleShape2D_dt0qa"]
 radius = 7.0
 
-[sub_resource type="Animation" id="Animation_veyvq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CoinSprite:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CoinSprite:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GPUParticles2D:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CoinSprite:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4, 4)]
-}
-
-[sub_resource type="Animation" id="Animation_vjeab"]
-resource_name = "collect"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CoinSprite:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.566667),
-"transitions": PackedFloat32Array(1, 1, 0.5),
-"update": 0,
-"values": [0.0, 0.0, 6.28319]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CoinSprite:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.4),
-"transitions": PackedFloat32Array(1, 1, 0.615572),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GPUParticles2D:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CoinSprite:scale")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.566667),
-"transitions": PackedFloat32Array(2, 0.210224, 1),
-"update": 0,
-"values": [Vector2(4, 4), Vector2(4.95, 4.95), Vector2(1.4434, 1.4434)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hi2tt"]
-_data = {
-"RESET": SubResource("Animation_veyvq"),
-"collect": SubResource("Animation_vjeab")
-}
-
 [node name="Coin" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_4607w")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
+amount = 6
 process_material = SubResource("ParticleProcessMaterial_s1sog")
 texture = SubResource("AtlasTexture_ub0l8")
+lifetime = 0.3
 one_shot = true
-speed_scale = 3.0
+explosiveness = 0.76
 trail_sections = 2
 
 [node name="CoinSprite" type="Sprite2D" parent="."]
@@ -195,7 +86,7 @@ shape = SubResource("CircleShape2D_dt0qa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_hi2tt")
+"": ExtResource("3_gh0f5")
 }
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

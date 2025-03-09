@@ -10,6 +10,8 @@ const maxSpeed = 800
 const invertDrag = false
 
 @onready var arrow = $Arrow
+@onready var dustParticle = preload("res://particles/dust.tscn")
+@onready var particleHolder = $worldParticles
 
 var mouseOnPuck = false
 
@@ -49,14 +51,24 @@ func _physics_process(delta: float) -> void:
 		arrow.updateArrow(get_mouse_pos_relative_to_puckbody())
 	
 	var collision := move_and_collide(linear_velocity*delta)
-	if collision:
-		if linear_velocity.length() > 600.0 and collision.get_collider().get_class() == "TileMapLayer":
+	if collision and collision.get_collider().get_class() == "TileMapLayer":
+		if linear_velocity.length() > 300.0:
+			makeNewParticle(global_position)
+		if linear_velocity.length() > 600.0:
 			if collision.get_collider().get("name") == "Breakable":
 				if lastColliderRID == null:
 					lastColliderRID = collision.get_collider_rid()
 					GameController.wall_hurt(collision.get_collider_rid(), global_position)
 					await get_tree().create_timer(0.1).timeout
 					lastColliderRID = null
+
+func makeNewParticle(newPos : Vector2):
+	var instance = dustParticle.instantiate()
+	get_tree().root.add_child(instance)
+	instance.position = newPos
+	instance.emitting = true
+	await get_tree().create_timer(1).timeout
+	instance.queue_free()
 
 #currently unused
 func _mouse_dist_from_puck():

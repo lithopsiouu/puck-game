@@ -24,7 +24,16 @@ func _ready() -> void:
 
 func on_event_wall_hurt(tileRID: RID, playerPos: Vector2):
 	var cellPos = get_coords_for_body_rid(tileRID)
+	var cellPosGlobal = map_to_local(cellPos)
 	do_wall_damage(tileRID, cellPos, playerPos)
+	var nearCells = get_surrounding_cells(cellPos)
+	if !nearCells.is_empty():
+		#print(str(nearCells))
+		for cell in nearCells:
+			if get_is_tile_breakable(cell):
+				var nearCellPosGlobal = map_to_local(cell)
+				
+		#do_wall_damage(tileRID, cellPos, playerPos)
 
 #takes cellPos to get atlas coords and tileRID to compare to the hurtWalls array
 func do_wall_damage(tileRID: RID, cellPos: Vector2, playerPos: Vector2):
@@ -79,6 +88,13 @@ func get_tile_name_from_atlas(cellPos : Vector2i):
 		return str(data.get_custom_data("tileName"))
 	else:
 		return null
+
+func get_is_tile_breakable(cellPos : Vector2i) -> bool:
+	var data = get_cell_tile_data(cellPos)
+	if data:
+		return data.get_custom_data("breakable")
+	else:
+		return false
 
 func get_subdict_key_from_tilename(tileName : String, subDictName : String):
 	return atlasNames[tileName][subDictName]
