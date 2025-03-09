@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 			if collision.get_collider().get("name") == "Breakable":
 				if lastColliderRID == null:
 					lastColliderRID = collision.get_collider_rid()
-					GameController.wall_hurt(collision.get_collider_rid())
+					GameController.wall_hurt(collision.get_collider_rid(), global_position)
 					await get_tree().create_timer(0.1).timeout
 					lastColliderRID = null
 
