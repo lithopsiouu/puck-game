@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4y6vbhn3rhw2"]
+
+[ext_resource type="Theme" uid="uid://cdkboomx4ymhk" path="res://UI/UI_theme.tres" id="1_5i8tx"]
+[ext_resource type="Script" path="res://UI/dialogue/dialogue_ui.gd" id="2_8en2m"]
+[ext_resource type="Texture2D" uid="uid://cseaeqhnbemqj" path="res://assets/palette/didi4/didi4_a.png" id="2_56rss"]
+[ext_resource type="Script" path="res://addons/ez_dialogue/ez_dialogue_node.gd" id="4_etuje"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4pkg"]
+atlas = ExtResource("2_56rss")
+region = Rect2(1, 449, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr057"]
+atlas = ExtResource("2_56rss")
+region = Rect2(49, 449, 14, 14)
+
+[node name="DialogueUI" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -240.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme = ExtResource("1_5i8tx")
+script = ExtResource("2_8en2m")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_d4pkg")
+
+[node name="textBox" type="TextureRect" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -325.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_pr057")
+
+[node name="Label" type="Label" parent="TextureRect/textBox"]
+layout_mode = 2
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 925.0
+offset_bottom = 205.0
+text = "test text
+test text"
+
+[node name="choiceBox" type="TextureRect" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 960.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_pr057")
+
+[node name="ButtonHolder" type="VBoxContainer" parent="TextureRect/choiceBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_right = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="EzDialogue" type="Node" parent="."]
+script = ExtResource("4_etuje")
+
+[connection signal="custom_signal_received" from="EzDialogue" to="." method="_on_ez_dialogue_custom_signal_received"]
+[connection signal="dialogue_generated" from="EzDialogue" to="." method="_on_ez_dialogue_dialogue_generated"]

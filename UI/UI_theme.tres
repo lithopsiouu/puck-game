@@ -1,0 +1,48 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cdkboomx4ymhk"]
+
+[ext_resource type="Texture2D" uid="uid://dql1t3jv4rkxf" path="res://assets/palette/didi4/didi4_b_r.png" id="1_7x3mt"]
+[ext_resource type="FontFile" uid="uid://bofphgn35gvtt" path="res://assets/font/upheavtt.ttf" id="3_4u4ev"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_m87ub"]
+color = Color(0.862745, 0.996078, 0.811765, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 8
+vertical = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsjcd"]
+atlas = ExtResource("1_7x3mt")
+region = Rect2(17, 449, 14, 14)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7a31x"]
+texture = SubResource("AtlasTexture_qsjcd")
+modulate_color = Color(0.894219, 0.815489, 0.842259, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l5rwc"]
+texture = SubResource("AtlasTexture_qsjcd")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pevp7"]
+texture = SubResource("AtlasTexture_qsjcd")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+modulate_color = Color(0.741176, 0.717647, 0.843137, 1)
+
+[resource]
+default_font = ExtResource("3_4u4ev")
+default_font_size = 50
+Button/colors/font_color = Color(0.862745, 0.996078, 0.811765, 1)
+Button/colors/font_focus_color = Color(0.862745, 0.996078, 0.811765, 1)
+Button/colors/font_hover_color = Color(0.862745, 0.996078, 0.811765, 1)
+Button/colors/font_pressed_color = Color(0.862745, 0.996078, 0.811765, 1)
+Button/styles/focus = SubResource("StyleBoxLine_m87ub")
+Button/styles/hover = SubResource("StyleBoxTexture_7a31x")
+Button/styles/normal = SubResource("StyleBoxTexture_l5rwc")
+Button/styles/pressed = SubResource("StyleBoxTexture_pevp7")
+Label/colors/font_color = Color(0.862745, 0.996078, 0.811765, 1)
+Label/fonts/font = ExtResource("3_4u4ev")

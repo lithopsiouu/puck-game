@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://jhkr5oev4k0y"]
+
+[ext_resource type="Theme" uid="uid://cdkboomx4ymhk" path="res://UI/UI_theme.tres" id="1_jku2b"]
+[ext_resource type="Script" path="res://choice_button.gd" id="2_l5hkg"]
+
+[node name="ChoiceButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_jku2b")
+text = "sampleText"
+script = ExtResource("2_l5hkg")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

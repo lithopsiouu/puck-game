@@ -28,6 +28,7 @@ EventController="*res://scripts/master/event_controller.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=3
 window/size/initial_position_type=4
 window/stretch/mode="viewport"
 
@@ -35,6 +36,10 @@ window/stretch/mode="viewport"
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/ez_dialogue/plugin.cfg")
 
 [file_customization]
 
@@ -44,6 +49,12 @@ folder_colors={
 "res://assets/": "gray",
 "res://collectibles/": "teal",
 "res://scripts/": "blue"
+}
+
+[importer_defaults]
+
+font_data_dynamic={
+"antialiasing": 0
 }
 
 [input]

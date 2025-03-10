@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwq6gmw80mybm"]
+[gd_scene load_steps=6 format=3 uid="uid://bwq6gmw80mybm"]
 
 [ext_resource type="Script" path="res://UI/coin/coin_ui.gd" id="1_i2tsr"]
 [ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="1_rhn67"]
+[ext_resource type="Theme" uid="uid://cdkboomx4ymhk" path="res://UI/UI_theme.tres" id="1_xt6jf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ifnh3"]
 atlas = ExtResource("1_rhn67")
@@ -23,6 +24,7 @@ offset_right = -16.0
 offset_bottom = 80.0
 grow_horizontal = 0
 mouse_filter = 2
+theme = ExtResource("1_xt6jf")
 script = ExtResource("1_i2tsr")
 
 [node name="TextureRect" type="TextureRect" parent="."]

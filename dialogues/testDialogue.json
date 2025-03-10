@@ -1,0 +1,32 @@
+[
+	{
+		"commands_raw": "welcome to the test world\n---\nexplore and have fun\n\n?> no ugly -> choice 0\n?> sure -> end",
+		"gnode_name": "start",
+		"id": 0,
+		"name": "start",
+		"position": [
+			0,
+			0
+		]
+	},
+	{
+		"commands_raw": "oh :( \n?> ok bye -> end",
+		"gnode_name": "choice 0",
+		"id": 1,
+		"name": "choice 0",
+		"position": [
+			420,
+			160
+		]
+	},
+	{
+		"commands_raw": "signal(end)",
+		"gnode_name": "end",
+		"id": 3,
+		"name": "end",
+		"position": [
+			560,
+			220
+		]
+	}
+]

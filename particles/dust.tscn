@@ -41,7 +41,8 @@ radial_accel_max = 1.95
 tangential_accel_min = -12.5
 tangential_accel_max = -12.5
 damping_max = 30.0
-scale_max = 2.0
+scale_min = 2.0
+scale_max = 3.0
 scale_curve = SubResource("CurveTexture_k7ty4")
 alpha_curve = SubResource("CurveTexture_i0qnl")
 
@@ -52,7 +53,7 @@ region = Rect2(33, 97, 14, 14)
 [node name="Dust" type="GPUParticles2D"]
 texture_filter = 1
 emitting = false
-amount = 5
+amount = 3
 process_material = SubResource("ParticleProcessMaterial_31kuw")
 texture = SubResource("AtlasTexture_l56ua")
 lifetime = 0.5

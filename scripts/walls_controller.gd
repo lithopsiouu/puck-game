@@ -1,11 +1,12 @@
 extends TileMapLayer
 
 @onready var tileset = "res://assets/palette/didi4/greenWorld.tres"
-@onready var smashParticle = preload("res://particles/smash_particles.tscn")
+@onready var smashParticlePrim = preload("res://particles/smash_particles.tscn")
+@onready var smashParticleTert = preload("res://particles/smash_particles_tertiary.tscn")
 
 var hurtWalls = {}
 const atlasNames = {#          colors: 3 = primary, 2 = secondary, 1 = tertiary, 0 = background
-	"Rock": {"atlas": Vector2i(7, 7), "health": 0, "tileShiftDir": 0, "color": 3},
+	"Rock": {"atlas": Vector2i(7, 7), "health": 0, "tileShiftDir": 0, "color": 1},
 	
 	"Brick": {"atlas": Vector2i(4, 6), "health": 2, "tileShiftDir": -1, "color": 1}, #full brick tile
 	"Brick1": {"atlas": Vector2i(3, 6), "health": 1, "tileShiftDir": -1, "color": 1}, #flowery brick tile
@@ -38,7 +39,8 @@ func on_event_wall_hurt(tileRID: RID, playerPos: Vector2):
 #takes cellPos to get atlas coords and tileRID to compare to the hurtWalls array
 func do_wall_damage(tileRID: RID, cellPos: Vector2, playerPos: Vector2):
 	var targetTileAtlasCoords = get_cell_atlas_coords(cellPos)
-	makeNewParticle(cellPos, playerPos, true)
+	var particleColor = get_subdict_key_from_tilename(get_tile_name_from_atlas(cellPos),"color")
+	makeNewParticle(cellPos, playerPos, true, particleColor)
 	if hurtWalls.has(tileRID): #if tile already has health
 		hurtWalls[tileRID] -= 1
 		if hurtWalls[tileRID] > 0: #change health if tile health is greater than zero
@@ -69,8 +71,11 @@ func shift_cell_atlas_x(cellPos, changeDir: int, atlasCoords : Vector2i):
 func removeCell(cellPos: Vector2):
 	erase_cell(cellPos)
 
-func makeNewParticle(cellPos, playerPos, followPlayerDir : bool):
-	var instance = smashParticle.instantiate()
+func makeNewParticle(cellPos, playerPos, followPlayerDir : bool, color : int):
+	var instance
+	match color:
+		3: instance = smashParticlePrim.instantiate()
+		1: instance = smashParticleTert.instantiate()
 	instance.position = map_to_local(cellPos)
 	if followPlayerDir:
 		#multiply cellPos by 4 because that's what the tilemap is scaled by
