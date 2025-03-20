@@ -10,6 +10,7 @@ var playerInRunRadius : bool = false
 var runWhenReady : bool = false
 var canSeePlayer : bool = false
 var canCollect : bool = true
+var collected : bool = false
 
 const tickUpdateTime : int = 20
 var ticks : int = 0
@@ -24,14 +25,15 @@ func _ready() -> void:
 	animPlayer.set_blend_time("moving", "recovering", 1)
 
 func _physics_process(delta: float) -> void:
-	ticks += 1
-	if playerInRunRadius and ticks > tickUpdateTime:
-		ticks = 0
-		lastPlayerBodyPos = playerBody.global_position
-		if !canSeePlayer and !dead:
-			try_start_moving(playerBody)
-		if state == _states.RECOVER:
-			runWhenReady = true
+	if collected:
+		ticks += 1
+		if playerInRunRadius and ticks > tickUpdateTime:
+			ticks = 0
+			lastPlayerBodyPos = playerBody.global_position
+			if !canSeePlayer and !dead:
+				try_start_moving(playerBody)
+			if state == _states.RECOVER:
+				runWhenReady = true
 
 func handle_state_transitions(newState):
 	var newStateEnum : int = newState
@@ -108,10 +110,11 @@ func get_vector_away_from_player() -> Vector2:
 
 func _on_collect_radius_body_entered(body: Node2D) -> void:
 	if body is PlayerPuck and canCollect:
+		collected = true
 		collision_layer = 8
 		linear_damp = 5
-		animPlayer.play("collect", 0.5)
 		GameController.coin_collected(coinValue)
+		animPlayer.play("collect", 0.5)
 
 func set_canCollect(newCanCollect: bool):
 	canCollect = newCanCollect

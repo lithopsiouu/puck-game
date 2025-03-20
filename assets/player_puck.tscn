@@ -46,7 +46,7 @@ texture = SubResource("AtlasTexture_34bsi")
 shape = SubResource("CircleShape2D_lebvo")
 
 [node name="MainCamera" type="Camera2D" parent="PuckBody"]
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(0.9, 0.9)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0

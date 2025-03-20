@@ -125,6 +125,7 @@ position = Vector2(960, -600)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DialogueUI" parent="CanvasLayer" instance=ExtResource("9_1dtxa")]
+visible = false
 dialogue_json = ExtResource("11_06n06")
 
 [node name="CoinUI" parent="CanvasLayer" instance=ExtResource("9_fhtsm")]
