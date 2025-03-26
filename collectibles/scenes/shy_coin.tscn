@@ -69,7 +69,7 @@ region = Rect2(449, 241, 14, 14)
 radius = 11.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxtsc"]
-radius = 300.0
+radius = 400.0
 
 [node name="ShyCoin" type="Node2D"]
 texture_filter = 1

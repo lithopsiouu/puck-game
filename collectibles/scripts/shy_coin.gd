@@ -12,9 +12,6 @@ var canSeePlayer : bool = false
 var canCollect : bool = true
 var collected : bool = false
 
-const tickUpdateTime : int = 20
-var ticks : int = 0
-
 #     state:  0     1       2
 enum _states {IDLE, MOVING, RECOVER}
 var state = _states.IDLE
@@ -25,10 +22,8 @@ func _ready() -> void:
 	animPlayer.set_blend_time("moving", "recovering", 1)
 
 func _physics_process(delta: float) -> void:
-	if collected:
-		ticks += 1
-		if playerInRunRadius and ticks > tickUpdateTime:
-			ticks = 0
+	if !collected:
+		if playerInRunRadius:
 			lastPlayerBodyPos = playerBody.global_position
 			if !canSeePlayer and !dead:
 				try_start_moving(playerBody)

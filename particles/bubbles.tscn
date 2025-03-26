@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbpskumj5j5a1"]
+
+[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="1_wby8a"]
+
+[sub_resource type="Curve" id="Curve_idhh3"]
+_data = [Vector2(0, 0), 0.0, 4.08907, 0, 0, Vector2(0.965346, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -86.5709, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yi24t"]
+curve = SubResource("Curve_idhh3")
+
+[sub_resource type="Curve" id="Curve_viy4c"]
+min_value = -100.0
+max_value = 100.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.11073, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jphm6"]
+curve = SubResource("Curve_viy4c")
+
+[sub_resource type="Curve" id="Curve_37cgv"]
+max_value = 100.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 14.2857), 35.3147, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tt3oe"]
+curve = SubResource("Curve_37cgv")
+
+[sub_resource type="Curve" id="Curve_h74s5"]
+_data = [Vector2(0, 0), 0.0, 5.32747, 0, 0, Vector2(1, 0.846154), 2.11408, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r2ywa"]
+curve = SubResource("Curve_h74s5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0p1pk"]
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+emission_shape_scale = Vector3(2, 2, 1)
+angle_min = -59.4
+angle_max = 59.4
+angle_curve = SubResource("CurveTexture_jphm6")
+direction = Vector3(0, -25, 0)
+initial_velocity_min = 360.82
+initial_velocity_max = 474.22
+radial_velocity_min = 9.99998
+radial_velocity_max = 41.24
+gravity = Vector3(0, -500, 0)
+linear_accel_min = -43.3
+linear_accel_max = 32.99
+radial_accel_min = -17.52
+radial_accel_max = 50.52
+tangential_accel_min = -42.27
+tangential_accel_max = 42.27
+damping_min = 0.1
+damping_max = 12.0
+damping_curve = SubResource("CurveTexture_tt3oe")
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_r2ywa")
+alpha_curve = SubResource("CurveTexture_yi24t")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm86b"]
+atlas = ExtResource("1_wby8a")
+region = Rect2(385, 321, 14, 14)
+
+[node name="Bubbles" type="GPUParticles2D"]
+texture_filter = 1
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_0p1pk")
+texture = SubResource("AtlasTexture_fm86b")
+one_shot = true
+explosiveness = 0.05
+randomness = 0.2

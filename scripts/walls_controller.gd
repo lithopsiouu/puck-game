@@ -3,10 +3,15 @@ extends TileMapLayer
 @onready var tileset = "res://assets/palette/didi4/greenWorld.tres"
 @onready var smashParticlePrim = preload("res://particles/smash_particles.tscn")
 @onready var smashParticleTert = preload("res://particles/smash_particles_tertiary.tscn")
+@onready var bubbleParticle = preload("res://particles/bubbles.tscn")
+@onready var toiletParticle = preload("res://particles/toilet.tscn")
 
 var hurtWalls = {}
 const atlasNames = {#          colors: 3 = primary, 2 = secondary, 1 = tertiary, 0 = background
+	#               special particles: 4 = TOILET, 
 	"Rock": {"atlas": Vector2i(7, 7), "health": 0, "tileShiftDir": 0, "color": 1},
+	
+	"Toilet": {"atlas": Vector2i(7, 16), "health": 0, "tileShiftDir": 0, "color": 4},
 	
 	"Brick": {"atlas": Vector2i(4, 6), "health": 2, "tileShiftDir": -1, "color": 1}, #full brick tile
 	"Brick1": {"atlas": Vector2i(3, 6), "health": 1, "tileShiftDir": -1, "color": 1}, #flowery brick tile
@@ -40,7 +45,10 @@ func on_event_wall_hurt(tileRID: RID, playerPos: Vector2):
 func do_wall_damage(tileRID: RID, cellPos: Vector2, playerPos: Vector2):
 	var targetTileAtlasCoords = get_cell_atlas_coords(cellPos)
 	var particleColor = get_subdict_key_from_tilename(get_tile_name_from_atlas(cellPos),"color")
-	makeNewParticle(cellPos, playerPos, true, particleColor)
+	if particleColor != 4:
+		makeNewParticle(cellPos, playerPos, true, particleColor)
+	else:
+		makeNewParticle(cellPos, playerPos, false, particleColor)
 	if hurtWalls.has(tileRID): #if tile already has health
 		hurtWalls[tileRID] -= 1
 		if hurtWalls[tileRID] > 0: #change health if tile health is greater than zero
@@ -76,6 +84,8 @@ func makeNewParticle(cellPos, playerPos, followPlayerDir : bool, color : int):
 	match color:
 		3: instance = smashParticlePrim.instantiate()
 		1: instance = smashParticleTert.instantiate()
+		4: 
+			instance = toiletParticle.instantiate()
 	instance.position = map_to_local(cellPos)
 	if followPlayerDir:
 		#multiply cellPos by 4 because that's what the tilemap is scaled by

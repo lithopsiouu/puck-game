@@ -11,12 +11,13 @@ const camZoomSpeed = 2
 const defaultCamScale = Vector2(0.9, 0.9)
 const defaultCamPosSmoothing = 6
 const camVelScale = 5000.0
+const cam_shake_enabled = false
+var cam_zoom_speed_enabled = true
 const minVelToChangeCamScale = 110.0
 const invertDrag = false
 
 @onready var arrow = $Arrow
 @onready var dustParticle = preload("res://particles/dust.tscn")
-@onready var particleHolder = $worldParticles
 @onready var cam : Camera2D = $MainCamera
 
 var mouseOnPuck = false
@@ -33,7 +34,7 @@ var lastColliderRID = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	EventController.connect("player_under_cam_snap", on_cam_snap)
 
 func _unhandled_input(event: InputEvent) -> void:
 	#if Input.is_key_pressed(KEY_W):
@@ -59,24 +60,24 @@ func _physics_process(delta: float) -> void:
 	if grabbingPuck == true:
 		arrow.updateArrow(get_mouse_pos_relative_to_puckbody())
 	
-	_cam_scale_from_velocity(delta)
+	if cam_zoom_speed_enabled: _cam_scale_from_velocity(delta)
 	
 	var collision := move_and_collide(linear_velocity*delta)
 	if collision and collision.get_collider().get_class() == "TileMapLayer":
 		if linear_velocity.length() > 600.0:
 			if collision.get_collider().get("name") == "Breakable":
-				_shake_cam(8, 10)
-				print("BIG camshake")
+				_shake_cam(4, 12)
+				#print("BIG camshake")
 				if lastColliderRID == null:
 					lastColliderRID = collision.get_collider_rid()
 					GameController.wall_hurt(collision.get_collider_rid(), global_position)
 					await get_tree().create_timer(0.1).timeout
 					lastColliderRID = null
 			else:
-				_shake_cam(1, 8)
+				_shake_cam(1, 10)
 				print("medium camshake")
 		elif linear_velocity.length() > 250.0:
-			_shake_cam(1, 6)
+			#_shake_cam(2, 8)
 			print("small camshake")
 			makeNewParticle(global_position)
 
@@ -98,21 +99,21 @@ func _cam_scale_from_velocity(delta: float):
 		cam.zoom = cam.zoom.lerp(defaultCamScale, delta/ camZoomSpeed)
 	#print(str(cam.zoom))
 
-func _shake_cam(multiple : float, smoothing : float):
-	if !isCamShaking:
-		isCamShaking = true
-		cam.position_smoothing_speed = smoothing
-		#large shake
-		cam.position = Vector2((2.5 * multiple)*randf_range(-1.1, 1.1), (3 * multiple)*randf_range(-1.1, 1.1))
-		await get_tree().create_timer(0.02).timeout
-		cam.position = Vector2((2 * multiple)*randf_range(-1.1, 1.1), (2 * multiple)*randf_range(-1.1, 1.1))
-		await get_tree().create_timer(0.08).timeout
-		cam.position = Vector2((1 * multiple)*randf_range(-1.1, 1.1), (1 * multiple)*randf_range(-1.1, 1.1))
-		await get_tree().create_timer(0.1).timeout
-		cam.position_smoothing_speed = defaultCamPosSmoothing
-		cam.position = Vector2.ZERO
-		isCamShaking = false
-	else: print("cam is already shaking!")
+func _shake_cam(multiple : float, speed : float):
+	if cam_shake_enabled:
+		if !isCamShaking:
+			isCamShaking = true
+			cam.position_smoothing_speed = speed
+			cam.position = Vector2((2.5 * multiple)*randf_range(-1.1, 1.1), (3 * multiple)*randf_range(-1.1, 1.1))
+			await get_tree().create_timer(0.02).timeout
+			cam.position = Vector2((2 * multiple)*randf_range(-1.1, 1.1), (2 * multiple)*randf_range(-1.1, 1.1))
+			await get_tree().create_timer(0.08).timeout
+			cam.position = Vector2((1 * multiple)*randf_range(-1.1, 1.1), (1 * multiple)*randf_range(-1.1, 1.1))
+			await get_tree().create_timer(0.1).timeout
+			cam.position_smoothing_speed = defaultCamPosSmoothing
+			cam.position = Vector2.ZERO
+			isCamShaking = false
+		else: pass#print("cam is already shaking!")
 
 #currently unused
 func _mouse_dist_from_puck():
@@ -159,3 +160,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func collect_coin(coin: Node2D) -> void:
 	coin.queue_free()
+
+func on_cam_snap(value: bool) -> void:
+	if value: cam_zoom_speed_enabled = false
+	else: cam_zoom_speed_enabled = true

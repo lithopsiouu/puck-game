@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://crdpxw2jw1ih2"]
+
+[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="1_ob8y7"]
+[ext_resource type="PackedScene" uid="uid://cbpskumj5j5a1" path="res://particles/bubbles.tscn" id="2_yfs56"]
+
+[sub_resource type="Curve" id="Curve_vj8l0"]
+_data = [Vector2(0, 1), 0.309737, 1.1335, 0, 0, Vector2(1, 0), -1.61859, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m6ksi"]
+curve = SubResource("Curve_vj8l0")
+
+[sub_resource type="Curve" id="Curve_svrvj"]
+min_value = -100.0
+max_value = 100.0
+_data = [Vector2(0, 34.0659), 0.0, -133.187, 0, 0, Vector2(1, 0), 2.84589, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g25r5"]
+curve = SubResource("Curve_svrvj")
+
+[sub_resource type="Gradient" id="Gradient_w0s3j"]
+offsets = PackedFloat32Array(0, 0.298851, 1)
+colors = PackedColorArray(0.905882, 0.211765, 0.243137, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1gk6x"]
+gradient = SubResource("Gradient_w0s3j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d1lv0"]
+particle_flag_disable_z = true
+angle_min = -4.99999
+angle_max = 5.00001
+angle_curve = SubResource("CurveTexture_g25r5")
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_1gk6x")
+alpha_curve = SubResource("CurveTexture_m6ksi")
+sub_emitter_mode = 1
+sub_emitter_frequency = 10.34
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ut3ud"]
+atlas = ExtResource("1_ob8y7")
+region = Rect2(113, 257, 14, 14)
+
+[node name="Toilet" type="GPUParticles2D"]
+texture_filter = 1
+emitting = false
+amount = 1
+sub_emitter = NodePath("Bubbles")
+process_material = SubResource("ParticleProcessMaterial_d1lv0")
+texture = SubResource("AtlasTexture_ut3ud")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 45
+
+[node name="Bubbles" parent="." instance=ExtResource("2_yfs56")]
+lifetime = 0.7
+explosiveness = 1.0
