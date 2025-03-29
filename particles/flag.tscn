@@ -1,0 +1,120 @@
+[gd_scene load_steps=18 format=3 uid="uid://bqpblrp6j3bby"]
+
+[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="1_jkobn"]
+
+[sub_resource type="Curve" id="Curve_vj8l0"]
+_data = [Vector2(0, 1), 0.309737, 1.1335, 0, 0, Vector2(1, 0), -1.61859, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m6ksi"]
+curve = SubResource("Curve_vj8l0")
+
+[sub_resource type="Curve" id="Curve_svrvj"]
+min_value = -100.0
+max_value = 100.0
+_data = [Vector2(0, 1.09891), 0.0, -348.823, 0, 0, Vector2(1, -100), 7.27796, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_g25r5"]
+curve = SubResource("Curve_svrvj")
+
+[sub_resource type="Gradient" id="Gradient_w0s3j"]
+offsets = PackedFloat32Array(0, 0.298851, 1)
+colors = PackedColorArray(0.160784, 0.87451, 0.301961, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1gk6x"]
+gradient = SubResource("Gradient_w0s3j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d1lv0"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+angle_min = -4.99999
+angle_max = 5.00001
+angle_curve = SubResource("CurveTexture_g25r5")
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 536.08
+initial_velocity_max = 536.08
+gravity = Vector3(0, 0, 0)
+damping_min = 1.031
+damping_max = 1.031
+scale_min = 4.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_1gk6x")
+alpha_curve = SubResource("CurveTexture_m6ksi")
+sub_emitter_mode = 1
+sub_emitter_frequency = 45.87
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ut3ud"]
+atlas = ExtResource("1_jkobn")
+region = Rect2(161, 321, 14, 14)
+
+[sub_resource type="Curve" id="Curve_r0q2l"]
+_data = [Vector2(0, 0), 0.0, 10.2665, 0, 0, Vector2(0.490099, 1), -3.20635, -3.20635, 0, 0, Vector2(1, 0), -0.0569174, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_l5y83"]
+curve = SubResource("Curve_r0q2l")
+
+[sub_resource type="Curve" id="Curve_c1kx2"]
+min_value = -5.0
+max_value = 5.0
+_data = [Vector2(0, 0.10989), 0.0, 23.5297, 0, 0, Vector2(1, -0.054945), 6.72661, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3a1on"]
+curve = SubResource("Curve_c1kx2")
+
+[sub_resource type="Curve" id="Curve_86b1d"]
+_data = [Vector2(0, 0.802198), 0.0, 1.54026, 0, 0, Vector2(1, 0.175824), -1.33187, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5gfc2"]
+curve = SubResource("Curve_86b1d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vpynf"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+emission_shape = 1
+emission_sphere_radius = 20.0
+angle_min = -90.0
+angle_max = 90.0
+angle_curve = SubResource("CurveTexture_3a1on")
+direction = Vector3(10, 0, 0)
+spread = 180.0
+initial_velocity_min = 103.09
+initial_velocity_max = 329.88
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+damping_min = 0.6
+damping_max = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_5gfc2")
+alpha_curve = SubResource("CurveTexture_l5y83")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1l08"]
+atlas = ExtResource("1_jkobn")
+region = Rect2(417, 321, 14, 14)
+
+[node name="Flag" type="GPUParticles2D"]
+texture_filter = 1
+emitting = false
+amount = 1
+sub_emitter = NodePath("Sparkle")
+process_material = SubResource("ParticleProcessMaterial_d1lv0")
+texture = SubResource("AtlasTexture_ut3ud")
+one_shot = true
+speed_scale = 1.25
+explosiveness = 1.0
+fixed_fps = 60
+
+[node name="Sparkle" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_vpynf")
+texture = SubResource("AtlasTexture_u1l08")
+one_shot = true
+explosiveness = 0.94
+randomness = 0.18

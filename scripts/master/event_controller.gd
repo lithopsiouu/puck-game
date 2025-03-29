@@ -1,8 +1,16 @@
 extends Node
 
-signal test_signal
-
 signal coin_collected(value: int)
+
+signal gem_smashed()
+
+signal send_gamemode(mode: int)
+
+signal send_timer(time: int)
+
+signal game_win()
+
+signal send_total_gems(gems: int)
 
 signal wall_hurt(targetTile: RID, puckPos)
 

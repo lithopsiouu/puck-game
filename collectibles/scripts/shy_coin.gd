@@ -21,7 +21,7 @@ func _ready() -> void:
 	animPlayer.set_blend_time("recovering", "idle", 0.2)
 	animPlayer.set_blend_time("moving", "recovering", 1)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !collected:
 		if playerInRunRadius:
 			lastPlayerBodyPos = playerBody.global_position
@@ -91,7 +91,7 @@ func cast_ray_to_player(body: Node2D):
 	var result = space_state.intersect_ray(query)
 	return result.collider
 
-func _on_run_radius_body_exited(body: Node2D) -> void:
+func _on_run_radius_body_exited() -> void:
 	canSeePlayer = false
 	playerInRunRadius = false
 	runWhenReady = false

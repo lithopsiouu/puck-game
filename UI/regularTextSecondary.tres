@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://mbxjjpk05qt4"]
+
+[ext_resource type="FontFile" uid="uid://f75puuy2qjvv" path="res://assets/font/8-bit Arcade In.ttf" id="1_koyna"]
+
+[resource]
+font = ExtResource("1_koyna")
+font_size = 44
+font_color = Color(0.466667, 0.686275, 0.407843, 1)

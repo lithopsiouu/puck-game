@@ -24,6 +24,10 @@ boot_splash/minimum_display_time=5
 GameController="*res://scripts/master/game_controller.gd"
 EventController="*res://scripts/master/event_controller.gd"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=1280

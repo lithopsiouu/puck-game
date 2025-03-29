@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dk2gow8vh6144"]
+
+[ext_resource type="FontFile" uid="uid://f75puuy2qjvv" path="res://assets/font/8-bit Arcade In.ttf" id="1_bcnns"]
+
+[resource]
+font = ExtResource("1_bcnns")
+font_size = 84

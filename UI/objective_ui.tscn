@@ -1,0 +1,248 @@
+[gd_scene load_steps=13 format=3 uid="uid://c8m21najiu1kp"]
+
+[ext_resource type="Script" path="res://UI/objective_ui.gd" id="1_7kyu3"]
+[ext_resource type="Theme" uid="uid://cdkboomx4ymhk" path="res://UI/UI_theme.tres" id="2_ti4xk"]
+[ext_resource type="FontFile" uid="uid://f75puuy2qjvv" path="res://assets/font/8-bit Arcade In.ttf" id="3_r8lvl"]
+[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="4_l3q7d"]
+[ext_resource type="LabelSettings" uid="uid://dk2gow8vh6144" path="res://UI/mainTextWhite.tres" id="5_pfyu5"]
+[ext_resource type="LabelSettings" uid="uid://cqg0cx22qlb26" path="res://UI/largeTextWhite.tres" id="6_mlwgl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8yl38"]
+font = ExtResource("3_r8lvl")
+font_size = 44
+font_color = Color(0.862745, 0.996078, 0.811765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14svi"]
+bg_color = Color(0.227451, 0.396078, 0.352941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8p4mo"]
+bg_color = Color(0.466667, 0.686275, 0.407843, 1)
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.466667, 0.686275, 0.407843, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bikk5"]
+atlas = ExtResource("4_l3q7d")
+region = Rect2(369, 289, 14, 14)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cofb"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.862745, 0.996078, 0.811765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8nti"]
+bg_color = Color(0.227451, 0.396078, 0.352941, 0.745098)
+
+[node name="ObjectiveUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_right = 10.0
+scale = Vector2(0.9, 0.9)
+mouse_filter = 2
+script = ExtResource("1_7kyu3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 275.0
+offset_bottom = 54.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_ti4xk")
+text = "OBJECTIVE:"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("2_ti4xk")
+
+[node name="ExitObjective" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_top = 60.0
+offset_right = 310.0
+offset_bottom = 160.0
+mouse_filter = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ExitObjective"]
+layout_mode = 1
+offset_right = 270.0
+offset_bottom = 100.0
+
+[node name="ObjectiveName" type="Label" parent="ExitObjective/VBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_ti4xk")
+text = "destroy the flag"
+label_settings = SubResource("LabelSettings_8yl38")
+
+[node name="GemObjective" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_top = 60.0
+offset_right = 310.0
+offset_bottom = 160.0
+mouse_filter = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GemObjective"]
+layout_mode = 1
+offset_right = 270.0
+offset_bottom = 100.0
+mouse_filter = 2
+
+[node name="ObjectiveName" type="Label" parent="GemObjective/VBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_ti4xk")
+text = "Destroy Gems"
+label_settings = SubResource("LabelSettings_8yl38")
+
+[node name="Panel" type="Panel" parent="GemObjective"]
+layout_mode = 1
+offset_top = 40.0
+offset_right = 300.0
+offset_bottom = 124.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_14svi")
+
+[node name="GemsBorder" type="Panel" parent="GemObjective/Panel"]
+layout_mode = 1
+offset_right = 300.0
+offset_bottom = 84.0
+pivot_offset = Vector2(150, 42)
+theme_override_styles/panel = SubResource("StyleBoxFlat_8p4mo")
+
+[node name="TextureRect" type="TextureRect" parent="GemObjective/Panel"]
+texture_filter = 1
+layout_mode = 2
+offset_left = 5.55556
+offset_top = 6.0
+offset_right = 77.5556
+offset_bottom = 78.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_bikk5")
+
+[node name="GemsLabel" type="Label" parent="GemObjective/Panel"]
+modulate = Color(0.862745, 0.996078, 0.811765, 1)
+texture_filter = 1
+layout_mode = 2
+offset_left = 83.0
+offset_top = -29.0
+offset_right = 289.0
+offset_bottom = 84.0
+theme = ExtResource("2_ti4xk")
+text = "99/99"
+label_settings = ExtResource("5_pfyu5")
+
+[node name="TimeObjective" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_top = 60.0
+offset_right = 310.0
+offset_bottom = 160.0
+mouse_filter = 2
+
+[node name="Timer" type="Timer" parent="TimeObjective"]
+process_callback = 0
+wait_time = 10.0
+one_shot = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TimeObjective"]
+layout_mode = 1
+offset_right = 270.0
+offset_bottom = 100.0
+
+[node name="ObjectiveName" type="Label" parent="TimeObjective/VBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_ti4xk")
+text = "destroy the flag on time"
+label_settings = SubResource("LabelSettings_8yl38")
+
+[node name="TimerBorder" type="Panel" parent="TimeObjective"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0358423
+anchor_top = 7.4
+anchor_right = -0.0358423
+anchor_bottom = 7.40333
+offset_left = 17.1111
+offset_top = -106.0
+offset_right = 417.111
+offset_bottom = -16.3334
+grow_vertical = 0
+pivot_offset = Vector2(200, 45)
+theme_override_styles/panel = SubResource("StyleBoxFlat_6cofb")
+
+[node name="Panel" type="Panel" parent="TimeObjective"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0358423
+anchor_top = 7.40333
+anchor_right = -0.0358423
+anchor_bottom = 7.40333
+offset_left = 17.1111
+offset_top = -106.333
+offset_right = 417.111
+offset_bottom = -16.3334
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_r8nti")
+
+[node name="TimerMins" type="Label" parent="TimeObjective/Panel"]
+modulate = Color(0.862745, 0.996078, 0.811765, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.501169
+anchor_bottom = 0.501169
+offset_left = 5.11111
+offset_top = -64.3889
+offset_right = 138.111
+offset_bottom = 48.6111
+grow_vertical = 2
+theme = ExtResource("2_ti4xk")
+text = "| 00"
+label_settings = ExtResource("6_mlwgl")
+
+[node name="TimerSecs" type="Label" parent="TimeObjective/Panel"]
+modulate = Color(0.862745, 0.996078, 0.811765, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 132.889
+offset_top = -64.2778
+offset_right = 236.889
+offset_bottom = 48.7222
+grow_vertical = 2
+theme = ExtResource("2_ti4xk")
+text = ":00"
+label_settings = ExtResource("6_mlwgl")
+
+[node name="TimerMilisecs" type="Label" parent="TimeObjective/Panel"]
+modulate = Color(0.862745, 0.996078, 0.811765, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 232.889
+offset_top = -64.2778
+offset_right = 336.889
+offset_bottom = 48.7222
+grow_vertical = 2
+theme = ExtResource("2_ti4xk")
+text = ".000"
+label_settings = ExtResource("6_mlwgl")

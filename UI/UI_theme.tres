@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cdkboomx4ymhk"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cdkboomx4ymhk"]
 
 [ext_resource type="Texture2D" uid="uid://dql1t3jv4rkxf" path="res://assets/palette/didi4/didi4_b_r.png" id="1_7x3mt"]
 [ext_resource type="FontFile" uid="uid://bofphgn35gvtt" path="res://assets/font/upheavtt.ttf" id="3_4u4ev"]
@@ -33,6 +33,10 @@ texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 modulate_color = Color(0.741176, 0.717647, 0.843137, 1)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_g6n88"]
+color = Color(0.466667, 0.686275, 0.407843, 1)
+thickness = 10
+
 [resource]
 default_font = ExtResource("3_4u4ev")
 default_font_size = 50
@@ -44,5 +48,6 @@ Button/styles/focus = SubResource("StyleBoxLine_m87ub")
 Button/styles/hover = SubResource("StyleBoxTexture_7a31x")
 Button/styles/normal = SubResource("StyleBoxTexture_l5rwc")
 Button/styles/pressed = SubResource("StyleBoxTexture_pevp7")
+HSeparator/styles/separator = SubResource("StyleBoxLine_g6n88")
 Label/colors/font_color = Color(0.862745, 0.996078, 0.811765, 1)
 Label/fonts/font = ExtResource("3_4u4ev")

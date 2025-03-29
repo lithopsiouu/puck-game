@@ -22,6 +22,7 @@ const invertDrag = false
 
 var mouseOnPuck = false
 
+var ignoreCamSnap = false
 var grabbingPuck = false
 var mouseGrabPos = null
 var mouseReleasePos = null
@@ -35,6 +36,7 @@ var lastColliderRID = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	EventController.connect("player_under_cam_snap", on_cam_snap)
+	EventController.connect("game_win", on_game_win)
 
 func _unhandled_input(event: InputEvent) -> void:
 	#if Input.is_key_pressed(KEY_W):
@@ -80,7 +82,6 @@ func _physics_process(delta: float) -> void:
 			#_shake_cam(2, 8)
 			print("small camshake")
 			makeNewParticle(global_position)
-
 
 func makeNewParticle(newPos : Vector2):
 	var instance = dustParticle.instantiate()
@@ -164,3 +165,10 @@ func collect_coin(coin: Node2D) -> void:
 func on_cam_snap(value: bool) -> void:
 	if value: cam_zoom_speed_enabled = false
 	else: cam_zoom_speed_enabled = true
+
+func on_game_win() -> void:
+	ignoreCamSnap = true
+	cam_zoom_speed_enabled = false
+	var tween = get_tree().create_tween()
+	tween.tween_property(cam, "zoom", Vector2(0.6, 0.6), 0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(cam, "zoom", Vector2(2, 2), 0.9).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)

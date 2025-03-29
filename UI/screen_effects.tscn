@@ -1,0 +1,200 @@
+[gd_scene load_steps=10 format=3 uid="uid://didk0ke4finlm"]
+
+[ext_resource type="Script" path="res://UI/screen_effects.gd" id="1_g2i5e"]
+[ext_resource type="LabelSettings" uid="uid://cqg0cx22qlb26" path="res://UI/largeTextWhite.tres" id="2_ffq5s"]
+[ext_resource type="FontFile" uid="uid://f75puuy2qjvv" path="res://assets/font/8-bit Arcade In.ttf" id="3_6sxpj"]
+[ext_resource type="LabelSettings" uid="uid://dyqjsjd742t3b" path="res://UI/regularText.tres" id="4_xnmka"]
+[ext_resource type="LabelSettings" uid="uid://dk2gow8vh6144" path="res://UI/mainTextWhite.tres" id="5_210ca"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80irm"]
+bg_color = Color(0.912289, 0.912289, 0.912289, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a0myw"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jcgtb"]
+font = ExtResource("3_6sxpj")
+font_size = 104
+outline_size = 15
+outline_color = Color(0.227451, 0.396078, 0.352941, 1)
+shadow_size = 0
+shadow_color = Color(0.227451, 0.396078, 0.352941, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpof5"]
+bg_color = Color(0.129412, 0.0431373, 0.180392, 1)
+border_width_left = 8
+border_width_top = 5
+border_width_right = 8
+border_width_bottom = 5
+border_color = Color(0.466667, 0.686275, 0.407843, 1)
+
+[node name="ScreenEffects" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_g2i5e")
+
+[node name="White" type="Panel" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_80irm")
+
+[node name="Black" type="Panel" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a0myw")
+
+[node name="WinScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 240.0
+offset_top = 40.0
+offset_right = -240.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="WinScreen"]
+modulate = Color(0.227451, 0.396078, 0.352941, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = 40.0
+offset_right = 129.0
+offset_bottom = 120.0
+grow_horizontal = 2
+text = "you win"
+label_settings = ExtResource("2_ffq5s")
+horizontal_alignment = 1
+
+[node name="Points" type="Label" parent="WinScreen"]
+modulate = Color(0.466667, 0.686275, 0.407843, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -100.0
+offset_right = 129.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "777"
+label_settings = SubResource("LabelSettings_jcgtb")
+horizontal_alignment = 1
+
+[node name="PointLabel" type="Label" parent="WinScreen"]
+modulate = Color(0.129412, 0.0431373, 0.180392, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -35.0
+offset_right = 129.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "points"
+label_settings = ExtResource("4_xnmka")
+horizontal_alignment = 1
+
+[node name="TimeBox" type="Panel" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = 40.0
+offset_right = 185.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qpof5")
+
+[node name="timelabel" type="Label" parent="WinScreen/TimeBox"]
+modulate = Color(0.466667, 0.686275, 0.407843, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = 12.0
+offset_right = 129.0
+offset_bottom = 92.0
+grow_horizontal = 2
+text = "It took you"
+label_settings = ExtResource("4_xnmka")
+horizontal_alignment = 1
+
+[node name="time" type="Label" parent="WinScreen/TimeBox"]
+modulate = Color(0.862745, 0.996078, 0.811765, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -113.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "77:77.777"
+label_settings = ExtResource("5_210ca")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LoseScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 240.0
+offset_top = 40.0
+offset_right = -240.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="LoseScreen"]
+modulate = Color(0.227451, 0.396078, 0.352941, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = 40.0
+offset_right = 129.0
+offset_bottom = 120.0
+grow_horizontal = 2
+text = "you lose"
+label_settings = ExtResource("2_ffq5s")

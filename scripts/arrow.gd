@@ -45,15 +45,5 @@ func updateArrow(mouseGrabPos) -> void:
 	if scaleArrow:
 		scale.y = get_puck_grab_power() / 190.0 + 1
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-		
-		#print(str(get_puck_grab_power()))
-		#print(rotation)
-		#print("\ninitial grab: " + str(puckGrabInitPos) + "\ncurrent grab: " + str(puckGrabCurrentPos) + 
-		#"\ndot: " + str((puckGrabInitPos - puckGrabCurrentPos).normalized()) + "\nrotation: " + str((puckGrabInitPos - puckGrabCurrentPos).angle()))
-		#print(str(atan2((puckGrabCurrentPos - puckGrabInitPos).normalized().y, (puckGrabCurrentPos - puckGrabInitPos).normalized().x)))
-
 func get_puck_grab_power():
 	return (puckGrabInitPos - puckGrabCurrentPos).length()

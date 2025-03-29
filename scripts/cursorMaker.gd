@@ -27,9 +27,9 @@ func makeNewCursorColored(pos, alpha):
 	instance.modualte.a = alpha
 	add_child(instance)
 
-func changeCursorPos(position):
+func changeCursorPos(newPosition):
 	var instance = get_child(0)
-	instance.transform = position
+	instance.transform = newPosition
 
 func changeCursorColor(color):
 	var instance = get_child(0)
