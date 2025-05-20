@@ -1,0 +1,443 @@
+[gd_scene load_steps=22 format=4 uid="uid://ey8hj06t236y"]
+
+[ext_resource type="Script" path="res://scripts/master/game_controller.gd" id="1_1rx4t"]
+[ext_resource type="Script" path="res://scenes/cam_snap_area.gd" id="2_vlm67"]
+[ext_resource type="Script" path="res://scripts/master/dialogue_controller.gd" id="3_tk4ro"]
+[ext_resource type="TileSet" uid="uid://c6omecsmeug1r" path="res://assets/palette/didi4/greenWorld.tres" id="4_tnfac"]
+[ext_resource type="Script" path="res://scripts/walls_controller.gd" id="5_vgwae"]
+[ext_resource type="Script" path="res://scripts/cursorMaker.gd" id="6_vp1u7"]
+[ext_resource type="PackedScene" uid="uid://kldg6jp7vsw1" path="res://assets/player_puck.tscn" id="7_qdcu7"]
+[ext_resource type="PackedScene" uid="uid://cw58sdkek0ria" path="res://collectibles/scenes/coin.tscn" id="8_4in6b"]
+[ext_resource type="PackedScene" uid="uid://clcgpntvvlo75" path="res://collectibles/scenes/shy_coin.tscn" id="9_8qsoa"]
+[ext_resource type="PackedScene" uid="uid://b4y6vbhn3rhw2" path="res://UI/dialogue/dialogue_ui.tscn" id="11_mv7cp"]
+[ext_resource type="JSON" path="res://dialogues/loveIntro.json" id="12_hnubd"]
+[ext_resource type="PackedScene" uid="uid://bwq6gmw80mybm" path="res://UI/coin/coin_ui.tscn" id="13_dea6q"]
+[ext_resource type="PackedScene" uid="uid://c8m21najiu1kp" path="res://UI/objective_ui.tscn" id="14_u4igj"]
+[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="15_v6vxm"]
+[ext_resource type="PackedScene" uid="uid://didk0ke4finlm" path="res://UI/screen_effects.tscn" id="16_07ibj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqynu"]
+size = Vector2(760, 360)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8kc21"]
+size = Vector2(880, 624)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85bmv"]
+size = Vector2(1264, 1264)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brkc1"]
+size = Vector2(1088, 560)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejgtg"]
+size = Vector2(592, 560)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j83ua"]
+atlas = ExtResource("15_v6vxm")
+region = Rect2(417, 129, 14, 14)
+
+[node name="World" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_1rx4t")
+winCondition = 1
+time = 70
+
+[node name="Triggers" type="Node2D" parent="."]
+
+[node name="CamFocusArea" type="Area2D" parent="Triggers"]
+position = Vector2(464, -752)
+collision_layer = 128
+collision_mask = 16
+monitorable = false
+script = ExtResource("2_vlm67")
+zoom = Vector2(1.2, 1.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/CamFocusArea"]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_iqynu")
+debug_color = Color(0.776471, 0.384314, 0.568627, 0.254902)
+
+[node name="CamFocusArea6" type="Area2D" parent="Triggers"]
+position = Vector2(4000, -976)
+collision_layer = 128
+collision_mask = 16
+monitorable = false
+script = ExtResource("2_vlm67")
+zoom = Vector2(1.2, 1.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/CamFocusArea6"]
+position = Vector2(-56, -40)
+shape = SubResource("RectangleShape2D_8kc21")
+debug_color = Color(0.776471, 0.384314, 0.568627, 0.254902)
+
+[node name="CamFocusArea5" type="Area2D" parent="Triggers"]
+position = Vector2(5504, -128)
+collision_layer = 128
+collision_mask = 16
+monitorable = false
+script = ExtResource("2_vlm67")
+zoom = Vector2(0.6, 0.6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/CamFocusArea5"]
+position = Vector2(-248, -88)
+shape = SubResource("RectangleShape2D_85bmv")
+debug_color = Color(0.776471, 0.384314, 0.568627, 0.254902)
+
+[node name="CamFocusArea2" type="Area2D" parent="Triggers"]
+position = Vector2(1824, -1360)
+collision_layer = 128
+collision_mask = 16
+monitorable = false
+script = ExtResource("2_vlm67")
+zoom = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/CamFocusArea2"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_brkc1")
+debug_color = Color(0.776471, 0.384314, 0.568627, 0.254902)
+
+[node name="CamFocusArea4" type="Area2D" parent="Triggers"]
+position = Vector2(3632, -2816)
+collision_layer = 128
+collision_mask = 16
+monitorable = false
+script = ExtResource("2_vlm67")
+zoom = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/CamFocusArea4"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_brkc1")
+debug_color = Color(0.776471, 0.384314, 0.568627, 0.254902)
+
+[node name="CamFocusArea3" type="Area2D" parent="Triggers"]
+position = Vector2(-32, -1360)
+collision_layer = 128
+collision_mask = 16
+monitorable = false
+script = ExtResource("2_vlm67")
+zoom = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/CamFocusArea3"]
+position = Vector2(-8, -8)
+shape = SubResource("RectangleShape2D_ejgtg")
+debug_color = Color(0.776471, 0.384314, 0.568627, 0.254902)
+
+[node name="DialogueController" type="Node" parent="."]
+script = ExtResource("3_tk4ro")
+
+[node name="worldParticles" type="Node2D" parent="."]
+
+[node name="Walls" type="TileMapLayer" parent="."]
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAAAAsAAAAEAAYAAAAOAAAAAAAEAAYAAAAPAAAAAAAEAAYAAAAQAAAAAAAEAAYAAAARAAAAAAAEAAYAAAASAAAAAAAEAAYAAAATAAAAAAAEAAYAAAAUAAAAAAAEAAYAAAAUAAEAAAAEAAYAAAAUAAIAAAAEAAYAAAAUAAMAAAAEAAYAAAAUAAQAAAAEAAYAAAAUAAUAAAAEAAYAAAAUAAYAAAAEAAYAAAAUAAcAAAAEAAYAAAAUAAgAAAAEAAYAAAAUAAkAAAAEAAYAAAAUAAoAAAAEAAYAAAAUAAsAAAAEAAYAAAATAAsAAAAEAAYAAAASAAsAAAAEAAYAAAARAAsAAAAEAAYAAAAQAAsAAAAEAAYAAAAPAAsAAAAEAAYAAAAOAAsAAAAEAAYAAAANAAsAAAAEAAYAAAAMAAsAAAAEAAYAAAALAAsAAAAEAAYAAAAKAAsAAAAEAAYAAAAJAAsAAAAEAAYAAAAIAAsAAAAEAAYAAAAHAAsAAAAEAAYAAAAGAAsAAAAEAAYAAAAFAAsAAAAEAAYAAAAEAAsAAAAEAAYAAAADAAsAAAAEAAYAAAACAAsAAAAEAAYAAAABAAsAAAAEAAYAAAD//wsAAAAEAAYAAAD+/wsAAAAEAAYAAAD+/woAAAAEAAYAAAD+/wkAAAAEAAYAAAD+/wgAAAAEAAYAAAD+/wcAAAAEAAYAAAD+/wYAAAAEAAYAAAD+/wUAAAAEAAYAAAD+/wQAAAAEAAYAAAD+/wMAAAAEAAYAAAD+/wIAAAAEAAYAAAD+/wEAAAAEAAYAAAD+/wAAAAAEAAYAAAD//wAAAAAEAAYAAAAAAAAAAAAEAAYAAAABAAAAAAAEAAYAAAACAAAAAAAEAAYAAAADAAAAAAAEAAYAAAAEAAAAAAAEAAYAAAAEAP//AAAAAAUAAAAEAP7/AAAAAAUAAAAEAP3/AAAAAAUAAAAEAPz/AAAAAAUAAAAEAPv/AAAAAAUAAAAEAPr/AAAAAAUAAAAEAPn/AAAAAAUAAAAEAPj/AAAAAAUAAAAEAPf/AAAAAAUAAAAEAPb/AAAAAAUAAAAOAP//AAAAAAUAAAAOAP7/AAAAAAUAAAAOAP3/AAAAAAUAAAAOAPz/AAAAAAUAAAAOAPv/AAAAAAUAAAAOAPr/AAAAAAUAAAAOAPn/AAAAAAUAAAAOAPj/AAAAAAUA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AAAjANj/AAATAAUAAAAkANj/AAATAAUAAAAlANj/AAATAAUAAAAmANj/AAATAAUAAAAnANj/AAATAAUAAAAoANj/AAATAAUAAAApANj/AAATAAUAAAAqANj/AAATAAUAAAArANj/AAATAAUAAAAsANj/AAATAAUAAAAtANj/AAATAAUAAAAuANj/AAATAAUAAAAfANf/AAATAAUAAAAfANb/AAATAAUAAAAfANX/AAATAAUAAAAfANT/AAATAAUAAAAfANP/AAATAAUAAAAfANL/AAATAAUAAAAfANH/AAATAAUAAAAfAND/AAATAAUAAAAfAM//AAATAAUAAAAfAM7/AAATAAUAAAAgAM7/AAATAAUAAAAhAM7/AAATAAUAAAAiAM7/AAATAAUAAAAjAM7/AAATAAUAAAAjAM//AAATAAUAAAAjAND/AAATAAUAAAAjANH/AAATAAUAAAAkANH/AAATAAUAAAAlANH/AAATAAUAAAAmANH/AAATAAUAAAAnANH/AAATAAUAAAAoANH/AAATAAUAAAApANH/AAATAAUAAAAqANH/AAATAAUAAAArANH/AAATAAUAAAAsANH/AAATAAUAAAAtANH/AAATAAUAAAAuANH/AAATAAUAAAAvANH/AAATAAUAAAAwANH/AAATAAUAAAAxANH/AAATAAUAAAAyANH/AAATAAUAAAAzANH/AAATAAUAAAAzAND/AAATAAUAAAAzAM//AAATAAUAAAAzAM7/AAATAAUAAAAzAM3/AAATAAUAAAAzAMz/AAATAAUAAAA0AMz/AAATAAUAAAA1AMz/AAATAAUAAAA2AMz/AAATAAUAAAA3AMz/AAATAAUAAAA4AMz/AAATAAUAAAA5AMz/AAATAAUAAAA6AMz/AAATAAUAAAA7AMz/AAATAAUAAAA8AMz/AAATAAUAAAA9AMz/AAATAAUAAAA+AMz/AAATAAUAAAA/AMz/AAATAAUAAABAAMz/AAATAAUAAABBAMz/AAATAAUAAABCAMz/AAATAAUAAABDAMz/AAATAAUAAABEAMz/AAATAAUAAABFAMz/AAATAAUAAABFAM3/AAATAAUAAABFAM7/AAATAAUAAABFAM//AAATAAUAAABFAND/AAATAAUAAABFANH/AAATAAUAAABFANL/AAATAAUAAABFANP/AAATAAUAAABFANT/AAATAAUAAABFANX/AAATAAUAAABEANX/AAATAAUAAABDANX/AAATAAUAAABCANX/AAATAAUAAABBANX/AAATAAUAAABAANX/AAATAAUAAAA/ANX/AAATAAUAAAA+ANX/AAATAAUAAAA+ANT/AAATAAUAAAA+ANP/AAATAAUAAAA+ANL/AAATAAUAAAA9ANL/AAATAAUAAAA8ANL/AAATAAUAAAA7ANL/AAATAAUAAAA6ANL/AAATAAUAAAA5ANL/AAATAAUAAAA4ANL/AAATAAUAAAA4ANP/AAATAAUAAAA4ANT/AAATAAUAAAA4ANX/AAATAAUAAAA4ANb/AAATAAUAAAA4ANf/AAATAAUAAAA4ANj/AAATAAUAAAA5ANj/AAATAAUAAAA6ANj/AAATAAUAAAA7ANj/AAATAAUAAAA8ANj/AAATAAUAAAA9ANj/AAATAAUAAAA+ANj/AAATAAUAAAA+ANf/AAATAAUAAAA+ANb/AAATAAUAAABGANX/AAATAAUAAABHANX/AAATAAUAAABIANX/AAATAAUAAABJANX/AAATAAUAAABKANX/AAATAAUAAABLANX/AAATAAUAAABMANX/AAATAAUAAABNANX/AAATAAUAAABOANX/AAATAAUAAABPANX/AAATAAUAAABQANX/AAATAAUAAABQANb/AAATAAUAAABQANf/AAATAAUAAABQANj/AAATAAUAAABQANn/AAATAAUAAABQANr/AAATAAUAAABQANv/AAATAAUAAABQANz/AAATAAUAAABQAN3/AAATAAUAAABQAN7/AAATAAUAAABQAN//AAATAAUAAABQAOD/AAATAAUAAABQAOH/AAATAAUAAABQAOL/AAATAAUAAABQAOP/AAATAAUAAABQAOT/AAATAAUAAABQAOX/AAATAAUAAABQAOb/AAATAAUAAABPAOb/AAATAAUAAABOAOb/AAATAAUAAABNAOb/AAATAAUAAABMAOb/AAATAAUAAABLAOb/AAATAAUAAABKAOb/AAATAAUAAABJAOb/AAATAAUAAABIAOb/AAATAAUAAABHAOb/AAATAAUAAABGAOb/AAATAAUAAABFAOb/AAATAAUAAABEAOb/AAATAAUAAABDAOb/AAATAAUAAABCAOb/AAATAAUAAABBAOb/AAATAAUAAAA5AOb/AAATAAUAAAA4AOb/AAATAAUAAAA3AOb/AAATAAUAAAA2AOb/AAATAAUAAAA1AOb/AAATAAUAAAA0AOb/AAATAAUAAAAzAOb/AAATAAUAAAAyAOb/AAATAAUAAAAxAOb/AAATAAUAAAAwAOb/AAATAAUAAAAvAOb/AAATAAUAAAAuAOb/AAATAAUAAAAtAOb/AAATAAUAAAAsAOb/AAATAAUAAAAsAOX/AAATAAUAAAAsAOT/AAATAAUAAAAsAOP/AAATAAUAAAAsAOL/AAATAAUAAAA6ANT/AAAdAA8AAAA8ANT/AAAdAA8AAAA8ANb/AAAdAA8AAAA6ANb/AAAdAA8AAAABAPb/AAAEAAYAAAACAPb/AAAEAAYAAAADAPb/AAAEAAYAAAA6AOT/AAAJAAEAAAA6AOX/AAAJAAEAAAA6AOb/AAAJAAEAAAA6AOf/AAAJAAEAAAA6AOj/AAAJAAEAAAA6AOn/AAAJAAEAAAA6AOr/AAAJAAEAAAA6AOv/AAAJAAEAAAA6AOz/AAAJAAEAAAA6AO3/AAAJAAEAAAA6AO7/AAAJAAEAAABAAOT/AAAJAAEAAABAAOX/AAAJAAEAAABAAOb/AAAJAAEAAABAAOf/AAAJAAEAAABAAOj/AAAJAAEAAABAAOn/AAAJAAEAAABAAOr/AAAJAAEAAABBAOr/AAAJAAEAAABCAOr/AAAJAAEAAABDAOr/AAAJAAEAAABEAOr/AAAJAAEAAABFAOr/AAAJAAEAAABGAOr/AAAJAAEAAABHAOr/AAAJAAEAAABIAOr/AAAJAAEAAABJAOr/AAAJAAEAAABJAOv/AAAJAAEAAABJAOz/AAAJAAEAAABJAO3/AAAJAAEAAABJAO7/AAAJAAEAAABJAO//AAAJAAEAAABJAPD/AAAJAAEAAABJAPH/AAAJAAEAAABJAPL/AAAJAAEAAABJAPP/AAAJAAEAAABJAPT/AAAJAAEAAABIAPT/AAAJAAEAAABHAPT/AAAJAAEAAABGAPT/AAAJAAEAAABFAPT/AAAJAAEAAABEAPT/AAAJAAEAAABDAPT/AAAJAAEAAABCAPT/AAAJAAEAAABBAPT/AAAJAAEAAABAAPT/AAAJAAEAAAA/APT/AAAJAAEAAAA+APT/AAAJAAEAAAA9APT/AAAJAAEAAAA8APT/AAAJAAEAAAA7APT/AAAJAAEAAAA6APT/AAAJAAEAAAA6APP/AAAJAAEAAAA6APL/AAAJAAEAAAA5AO7/AAAJAAEAAAA4AO7/AAAJAAEAAAA3AO7/AAAJAAEAAAA2AO7/AAAJAAEAAAA1AO7/AAAJAAEAAAA0AO7/AAAJAAEAAAAzAO7/AAAJAAEAAAAyAO7/AAAJAAEAAAAxAO7/AAAJAAEAAAAzAPL/AAAJAAEAAAA0APL/AAAJAAEAAAA1APL/AAAJAAEAAAA2APL/AAAJAAEAAAA3APL/AAAJAAEAAAA4APL/AAAJAAEAAAA5APL/AAAJAAEAAAAwAO7/AAAJAAEAAAAvAO7/AAAJAAEAAAAuAO7/AAAJAAEAAAAtAO7/AAAJAAEAAAAsAO7/AAAJAAEAAAArAO7/AAAJAAEAAAArAO//AAAJAAEAAAArAPD/AAAJAAEAAAArAPH/AAAJAAEAAAAsAPL/AAAJAAEAAAArAPL/AAAJAAEAAAAtAPL/AAAJAAEAAAAuAPL/AAAJAAEAAAAvAPL/AAAJAAEAAAAvAPP/AAAJAAEAAAAvAPT/AAAJAAEAAAAvAPX/AAAJAAEAAAAvAPb/AAAJAAEAAAAvAPf/AAAJAAEAAAAvAPj/AAAJAAEAAAAvAPn/AAAJAAEAAAAvAPr/AAAJAAEAAAAvAPv/AAAJAAEAAAAvAPz/AAAJAAEAAAAvAP3/AAAJAAEAAAAzAPP/AAAJAAEAAAAzAPT/AAAJAAEAAAAzAPX/AAAJAAEAAAAzAPb/AAAJAAEAAAAzAPf/AAAJAAEAAAAzAPj/AAAJAAEAAAAzAPn/AAAJAAEAAAAzAPr/AAAJAAEAAAAwAP//AAATAAYAAAAyAAAAAAATAAYAAAA0AAEAAAATAAYAAAAvAP7/AAAJAAEAAAAvAP//AAAJAAEAAAAwAAAAAAAJAAEAAAAxAAAAAAAJAAEAAAAyAAEAAAAJAAEAAAAzAAEAAAAJAAEAAAA0APv/AAAJAAEAAAA1APv/AAAJAAEAAAA2APz/AAAJAAEAAAA3APz/AAAJAAEAAAA5AP3/AAAJAAEAAAA4AP3/AAAJAAEAAAA0AAIAAAAJAAEAAAA1AAIAAAAJAAEAAAA2AAIAAAAJAAEAAAA3AAIAAAAJAAEAAAA4AAIAAAAJAAEAAAA5AAIAAAAJAAEAAAA6AAIAAAAJAAEA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")
+tile_set = ExtResource("4_tnfac")
+
+[node name="Breakable" type="TileMapLayer" parent="."]
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAJAP//AAAZABIAAAAEAPP/AAAZABIAAAAZAPP/AAAYABIAAAAeAOn/AAAXABIAAAD//+n/AAAYABIAAAAfAN7/AAAYABIAAAAhANH/AAAZABIAAABBANP/AAAZABIAAABDANH/AAAZABIAAABBAND/AAAZABIAAAA3AN3/AAAZABIAAAAvAOP/AAAYABIAAABHANr/AAAZABIAAAA9AOX/AAAZABIAAABCAO//AAAXABIAAAAtAPD/AAAZABIAAAAxAPT/AAAZABIAAAA8AP//AAAZABIAAABXAPr/AAAXABIAAAAVAOn/AAAFAAwAAAAfAOT/AAAFAAwAAAAdANv/AAAHAAcAAAAnAN7/AAAHAAcAAAAqANr/AAAHAAcAAAAzAN3/AAAHAAcAAAA1AOT/AAAHAAcAAAA7AOD/AAAHAAcAAABEANr/AAAHAAcAAABBANj/AAAHAAcAAAA6AND/AAAHAAcAAAApANP/AAAHAAcAAAAlANX/AAAHAAcAAAAgANT/AAAHAAcAAAAxANf/AAAHAAcAAAAyANL/AAAHAAcAAAA6ANn/AAAHAAcAAABPAOP/AAAHAAcAAAA/AOj/AAAHAAcAAAA7AOv/AAAHAAcAAABFAOv/AAAHAAcAAABFAPL/AAAHAAcAAAA1AO//AAAHAAcAAAA1AP//AAAHAAcAAABeAAEAAAAEAAgAAABeAAIAAAAEAAgAAABgAAEAAAAEAAgAAABgAAIAAAAFAAcAACBhAAIAAAAEAAgAAFBiAAEAAAACAAgAAABjAAEAAAACAAgAABBjAAIAAAACAAgAADBiAAIAAAACAAgAACBkAAEAAAAEAAgAAABlAAEAAAAEAAgAAABkAAIAAAAFAAcAACBlAAIAAAAFAAcAADBmAAEAAAABAAcAAABmAAIAAAACAAcAAABmAAMAAAABAAcAACBnAAIAAAAEAAcAAFBnAAEAAAAEAAcAAFBnAAMAAAAEAAcAAFBdAAQAAAABAAcAAGBeAAQAAAACAAcAABBeAAUAAAABAAcAAHBdAAUAAAAEAAcAAGBfAAQAAAACAAgAAABgAAQAAAACAAgAAFBgAAUAAAACAAgAADBfAAUAAAACAAgAAGBhAAQAAAAEAAcAAABiAAQAAAAEAAcAAABhAAUAAAABAAcAAGBiAAUAAAACAAcAABA=")
+tile_set = ExtResource("4_tnfac")
+script = ExtResource("5_vgwae")
+
+[node name="CursorHolder" type="Node2D" parent="."]
+script = ExtResource("6_vp1u7")
+
+[node name="PlayerPuck" parent="." instance=ExtResource("7_qdcu7")]
+position = Vector2(585, 330)
+
+[node name="CoinHolder" type="Node2D" parent="."]
+
+[node name="Coin" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1888, -1056)
+
+[node name="Coin2" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1120, -784)
+
+[node name="Coin3" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1280, -784)
+
+[node name="Coin4" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(576, -512)
+
+[node name="Coin5" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(576, -368)
+
+[node name="Coin6" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(576, -224)
+
+[node name="Coin7" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1152, -1344)
+
+[node name="Coin8" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(640, -1344)
+
+[node name="Coin9" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(240, -1344)
+
+[node name="Coin10" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1536, -1536)
+
+[node name="Coin11" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1536, -1504)
+
+[node name="Coin12" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1568, -1504)
+
+[node name="Coin13" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1600, -1504)
+
+[node name="Coin14" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1600, -1536)
+
+[node name="Coin15" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1552, -1472)
+
+[node name="Coin16" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1584, -1472)
+
+[node name="Coin17" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1568, -1440)
+
+[node name="Coin18" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1888, -1744)
+
+[node name="Coin19" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(1888, -1888)
+
+[node name="Coin20" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3232, -2256)
+
+[node name="Coin21" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3232, -2368)
+
+[node name="Coin22" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3232, -2464)
+
+[node name="Coin23" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3248, -2704)
+
+[node name="Coin24" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3264, -2816)
+
+[node name="Coin25" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3344, -2896)
+
+[node name="Coin26" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(2816, -2576)
+
+[node name="Coin27" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(2688, -2576)
+
+[node name="Coin28" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(2544, -2576)
+
+[node name="Coin29" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3696, -2000)
+
+[node name="Coin30" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3696, -1920)
+
+[node name="Coin31" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3696, -1840)
+
+[node name="Coin32" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4656, -1904)
+
+[node name="Coin33" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4656, -1808)
+
+[node name="Coin34" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4624, -1696)
+
+[node name="Coin35" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4480, -1616)
+
+[node name="Coin36" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4320, -1632)
+
+[node name="Coin37" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4192, -1712)
+
+[node name="Coin38" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3696, -1392)
+
+[node name="Coin39" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3696, -1296)
+
+[node name="Coin40" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3696, -1200)
+
+[node name="Coin41" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3696, -1104)
+
+[node name="Coin42" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3360, -928)
+
+[node name="Coin43" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3456, -928)
+
+[node name="Coin44" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(2976, -400)
+
+[node name="Coin45" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(2976, -288)
+
+[node name="Coin46" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(2992, -176)
+
+[node name="Coin47" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3072, -96)
+
+[node name="Coin48" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3344, 16)
+
+[node name="Coin49" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3472, 16)
+
+[node name="Coin50" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3728, -80)
+
+[node name="Coin51" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3824, -144)
+
+[node name="Coin52" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3888, -240)
+
+[node name="Coin53" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(3952, -368)
+
+[node name="Coin54" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4080, -432)
+
+[node name="Coin55" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4288, -448)
+
+[node name="Coin56" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4912, -672)
+
+[node name="Coin57" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4976, -672)
+
+[node name="Coin58" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5040, -672)
+
+[node name="Coin59" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5104, -672)
+
+[node name="Coin60" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4912, -608)
+
+[node name="Coin61" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4976, -608)
+
+[node name="Coin62" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5040, -608)
+
+[node name="Coin63" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5104, -608)
+
+[node name="Coin64" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4912, -544)
+
+[node name="Coin65" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(4976, -544)
+
+[node name="Coin66" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5040, -544)
+
+[node name="Coin67" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5104, -544)
+
+[node name="Coin68" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5392, -672)
+
+[node name="Coin69" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5456, -672)
+
+[node name="Coin70" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5520, -672)
+
+[node name="Coin71" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5584, -672)
+
+[node name="Coin72" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5392, -608)
+
+[node name="Coin73" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5456, -608)
+
+[node name="Coin74" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5520, -608)
+
+[node name="Coin75" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5584, -608)
+
+[node name="Coin76" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5392, -544)
+
+[node name="Coin77" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5456, -544)
+
+[node name="Coin78" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5520, -544)
+
+[node name="Coin79" parent="CoinHolder" instance=ExtResource("8_4in6b")]
+position = Vector2(5584, -544)
+
+[node name="ShyCoin" parent="CoinHolder" instance=ExtResource("9_8qsoa")]
+position = Vector2(448, -1344)
+
+[node name="ShyCoin2" parent="CoinHolder" instance=ExtResource("9_8qsoa")]
+position = Vector2(2288, -2096)
+
+[node name="ShyCoin3" parent="CoinHolder" instance=ExtResource("9_8qsoa")]
+position = Vector2(3040, -1696)
+
+[node name="ShyCoin4" parent="CoinHolder" instance=ExtResource("9_8qsoa")]
+position = Vector2(2112, -2560)
+
+[node name="ShyCoin5" parent="CoinHolder" instance=ExtResource("9_8qsoa")]
+position = Vector2(3072, -2560)
+
+[node name="ShyCoin6" parent="CoinHolder" instance=ExtResource("9_8qsoa")]
+position = Vector2(3952, -2112)
+
+[node name="ShyCoin7" parent="CoinHolder" instance=ExtResource("9_8qsoa")]
+position = Vector2(4160, -992)
+
+[node name="ShyCoin8" parent="CoinHolder" instance=ExtResource("9_8qsoa")]
+position = Vector2(5040, -192)
+
+[node name="ShyCoin9" parent="CoinHolder" instance=ExtResource("9_8qsoa")]
+position = Vector2(5232, -32)
+
+[node name="ShyCoin10" parent="CoinHolder" instance=ExtResource("9_8qsoa")]
+position = Vector2(5424, -176)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueUI" parent="CanvasLayer" instance=ExtResource("11_mv7cp")]
+visible = false
+dialogue_json = ExtResource("12_hnubd")
+
+[node name="CoinUI" parent="CanvasLayer" instance=ExtResource("13_dea6q")]
+
+[node name="ObjectiveUI" parent="CanvasLayer" instance=ExtResource("14_u4igj")]
+
+[node name="crosshair" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(645, 360)
+texture = SubResource("AtlasTexture_j83ua")
+
+[node name="ScreenEffects" parent="CanvasLayer" instance=ExtResource("16_07ibj")]
+
+[connection signal="body_entered" from="Triggers/CamFocusArea" to="Triggers/CamFocusArea" method="_on_body_entered"]
+[connection signal="body_exited" from="Triggers/CamFocusArea" to="Triggers/CamFocusArea" method="_on_body_exited"]
+[connection signal="body_entered" from="Triggers/CamFocusArea6" to="Triggers/CamFocusArea6" method="_on_body_entered"]
+[connection signal="body_exited" from="Triggers/CamFocusArea6" to="Triggers/CamFocusArea6" method="_on_body_exited"]
+[connection signal="body_entered" from="Triggers/CamFocusArea5" to="Triggers/CamFocusArea5" method="_on_body_entered"]
+[connection signal="body_exited" from="Triggers/CamFocusArea5" to="Triggers/CamFocusArea5" method="_on_body_exited"]
+[connection signal="body_entered" from="Triggers/CamFocusArea2" to="Triggers/CamFocusArea2" method="_on_body_entered"]
+[connection signal="body_exited" from="Triggers/CamFocusArea2" to="Triggers/CamFocusArea2" method="_on_body_exited"]
+[connection signal="body_entered" from="Triggers/CamFocusArea4" to="Triggers/CamFocusArea4" method="_on_body_entered"]
+[connection signal="body_exited" from="Triggers/CamFocusArea4" to="Triggers/CamFocusArea4" method="_on_body_exited"]
+[connection signal="body_entered" from="Triggers/CamFocusArea3" to="Triggers/CamFocusArea3" method="_on_body_entered"]
+[connection signal="body_exited" from="Triggers/CamFocusArea3" to="Triggers/CamFocusArea3" method="_on_body_exited"]

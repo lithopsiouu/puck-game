@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://kldg6jp7vsw1" path="res://assets/player_puck.tscn" id="8_foios"]
 [ext_resource type="PackedScene" uid="uid://b4y6vbhn3rhw2" path="res://UI/dialogue/dialogue_ui.tscn" id="9_1dtxa"]
 [ext_resource type="PackedScene" uid="uid://bwq6gmw80mybm" path="res://UI/coin/coin_ui.tscn" id="9_fhtsm"]
-[ext_resource type="JSON" path="res://dialogues/testDialogue.json" id="11_06n06"]
+[ext_resource type="JSON" path="res://dialogues/loveIntro.json" id="12_h5iw7"]
 [ext_resource type="PackedScene" uid="uid://c8m21najiu1kp" path="res://UI/objective_ui.tscn" id="14_dvxii"]
 [ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="14_vak66"]
 [ext_resource type="PackedScene" uid="uid://didk0ke4finlm" path="res://UI/screen_effects.tscn" id="16_x5x30"]
@@ -27,7 +27,7 @@ region = Rect2(417, 129, 14, 14)
 [node name="World" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_nik7g")
-winCondition = 2
+winCondition = 1
 time = 70
 
 [node name="Triggers" type="Node2D" parent="."]
@@ -166,8 +166,7 @@ position = Vector2(960, -600)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DialogueUI" parent="CanvasLayer" instance=ExtResource("9_1dtxa")]
-visible = false
-dialogue_json = ExtResource("11_06n06")
+dialogue_json = ExtResource("12_h5iw7")
 
 [node name="CoinUI" parent="CanvasLayer" instance=ExtResource("9_fhtsm")]
 

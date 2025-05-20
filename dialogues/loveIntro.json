@@ -1,0 +1,52 @@
+[
+	{
+		"commands_raw": "Hi honey!\n---\nHappy 19th birthday!\n---\nThe day was really fun. I\nhope you never forget it.\n\n?> Yeah! -> Tree",
+		"gnode_name": "start",
+		"id": 0,
+		"name": "start",
+		"position": [
+			320,
+			280
+		]
+	},
+	{
+		"commands_raw": "Here's a game to top it all off. \nHave fun!\nyou can come back to this\n\n?> I love you -> branch 1\n?> What is this? -> branch 2\n?> End -> end",
+		"gnode_name": "tree",
+		"id": 1,
+		"name": "Tree",
+		"position": [
+			520,
+			240
+		]
+	},
+	{
+		"commands_raw": "I love you too honey!\n---\nI love doing things for you\nand hope that this is fun\ntoo!\n\n?> return -> Tree",
+		"gnode_name": "branch 1",
+		"id": 2,
+		"name": "branch 1",
+		"position": [
+			500,
+			340
+		]
+	},
+	{
+		"commands_raw": "This game will have you break 19\ngems. I'm sure you know why\nhehe\n?> return -> Tree",
+		"gnode_name": "branch 2",
+		"id": 3,
+		"name": "branch 2",
+		"position": [
+			500,
+			440
+		]
+	},
+	{
+		"commands_raw": "signal(end)",
+		"gnode_name": "end",
+		"id": 4,
+		"name": "end",
+		"position": [
+			700,
+			260
+		]
+	}
+]
