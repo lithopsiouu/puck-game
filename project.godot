@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="everything means nothing"
-run/main_scene="res://scenes/loveWorld.tscn"
+config/name="PUCK WORLD"
+run/main_scene="res://scenes/lvl1.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://assets/lithworks/lithworks_logo_organized_inverted.png"

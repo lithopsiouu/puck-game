@@ -28,6 +28,9 @@ border_color = Color(0.466667, 0.686275, 0.407843, 1)
 atlas = ExtResource("4_l3q7d")
 region = Rect2(369, 289, 14, 14)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8nti"]
+bg_color = Color(0.227451, 0.396078, 0.352941, 0.745098)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cofb"]
 draw_center = false
 border_width_left = 5
@@ -35,9 +38,6 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.862745, 0.996078, 0.811765, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8nti"]
-bg_color = Color(0.227451, 0.396078, 0.352941, 0.745098)
 
 [node name="ObjectiveUI" type="Control"]
 layout_mode = 3
@@ -144,6 +144,71 @@ theme = ExtResource("2_ti4xk")
 text = "99/99"
 label_settings = ExtResource("5_pfyu5")
 
+[node name="Elapsed" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0358423
+anchor_top = 7.40333
+anchor_right = -0.0358423
+anchor_bottom = 7.40333
+offset_left = 6.5
+offset_top = 720.0
+offset_right = 406.5
+offset_bottom = 810.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+theme_override_styles/panel = SubResource("StyleBoxFlat_r8nti")
+
+[node name="TimerMins" type="Label" parent="Elapsed"]
+modulate = Color(0.862745, 0.996078, 0.811765, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.501169
+anchor_bottom = 0.501169
+offset_left = 5.11111
+offset_top = -64.3889
+offset_right = 138.111
+offset_bottom = 48.6111
+grow_vertical = 2
+theme = ExtResource("2_ti4xk")
+text = "| 00"
+label_settings = ExtResource("6_mlwgl")
+
+[node name="TimerSecs" type="Label" parent="Elapsed"]
+modulate = Color(0.862745, 0.996078, 0.811765, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 132.889
+offset_top = -64.2778
+offset_right = 236.889
+offset_bottom = 48.7222
+grow_vertical = 2
+theme = ExtResource("2_ti4xk")
+text = ":00"
+label_settings = ExtResource("6_mlwgl")
+
+[node name="TimerMilisecs" type="Label" parent="Elapsed"]
+modulate = Color(0.862745, 0.996078, 0.811765, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 232.889
+offset_top = -64.2778
+offset_right = 336.889
+offset_bottom = 48.7222
+grow_vertical = 2
+theme = ExtResource("2_ti4xk")
+text = ".000"
+label_settings = ExtResource("6_mlwgl")
+
 [node name="TimeObjective" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -185,7 +250,7 @@ grow_vertical = 0
 pivot_offset = Vector2(200, 45)
 theme_override_styles/panel = SubResource("StyleBoxFlat_6cofb")
 
-[node name="Panel" type="Panel" parent="TimeObjective"]
+[node name="Countdown" type="Panel" parent="TimeObjective"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.0358423
@@ -199,7 +264,7 @@ offset_bottom = -16.3334
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_r8nti")
 
-[node name="TimerMins" type="Label" parent="TimeObjective/Panel"]
+[node name="TimerMins" type="Label" parent="TimeObjective/Countdown"]
 modulate = Color(0.862745, 0.996078, 0.811765, 1)
 texture_filter = 1
 layout_mode = 1
@@ -215,7 +280,7 @@ theme = ExtResource("2_ti4xk")
 text = "| 00"
 label_settings = ExtResource("6_mlwgl")
 
-[node name="TimerSecs" type="Label" parent="TimeObjective/Panel"]
+[node name="TimerSecs" type="Label" parent="TimeObjective/Countdown"]
 modulate = Color(0.862745, 0.996078, 0.811765, 1)
 texture_filter = 1
 layout_mode = 1
@@ -231,7 +296,7 @@ theme = ExtResource("2_ti4xk")
 text = ":00"
 label_settings = ExtResource("6_mlwgl")
 
-[node name="TimerMilisecs" type="Label" parent="TimeObjective/Panel"]
+[node name="TimerMilisecs" type="Label" parent="TimeObjective/Countdown"]
 modulate = Color(0.862745, 0.996078, 0.811765, 1)
 texture_filter = 1
 layout_mode = 1
