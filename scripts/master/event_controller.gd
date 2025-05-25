@@ -8,6 +8,8 @@ signal send_gamemode(mode: int)
 
 signal send_timer(time: int)
 
+signal get_current_time(time: float)
+
 signal game_win()
 
 signal send_total_gems(gems: int)

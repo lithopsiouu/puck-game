@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dxiphe75x7eh8"]
+[gd_scene load_steps=15 format=4 uid="uid://dxiphe75x7eh8"]
 
 [ext_resource type="Script" path="res://scripts/master/game_controller.gd" id="1_eamv8"]
 [ext_resource type="Script" path="res://scripts/master/dialogue_controller.gd" id="3_7v7cx"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/walls_controller.gd" id="5_glb83"]
 [ext_resource type="Script" path="res://scripts/cursorMaker.gd" id="6_fhdua"]
 [ext_resource type="PackedScene" uid="uid://kldg6jp7vsw1" path="res://assets/player_puck.tscn" id="7_1q0d4"]
+[ext_resource type="PackedScene" uid="uid://cw58sdkek0ria" path="res://collectibles/scenes/coin.tscn" id="7_5k1ea"]
 [ext_resource type="PackedScene" uid="uid://b4y6vbhn3rhw2" path="res://UI/dialogue/dialogue_ui.tscn" id="10_0a8f0"]
 [ext_resource type="JSON" path="res://dialogues/loveIntro.json" id="11_gral1"]
 [ext_resource type="PackedScene" uid="uid://bwq6gmw80mybm" path="res://UI/coin/coin_ui.tscn" id="12_afujq"]
@@ -48,6 +49,18 @@ script = ExtResource("6_fhdua")
 position = Vector2(640, 256)
 
 [node name="CoinHolder" type="Node2D" parent="."]
+
+[node name="Coin" parent="CoinHolder" instance=ExtResource("7_5k1ea")]
+position = Vector2(640, 64)
+
+[node name="Coin2" parent="CoinHolder" instance=ExtResource("7_5k1ea")]
+position = Vector2(640, -64)
+
+[node name="Coin3" parent="CoinHolder" instance=ExtResource("7_5k1ea")]
+position = Vector2(640, -192)
+
+[node name="Coin4" parent="CoinHolder" instance=ExtResource("7_5k1ea")]
+position = Vector2(640, -320)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

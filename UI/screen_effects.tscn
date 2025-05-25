@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://didk0ke4finlm"]
+[gd_scene load_steps=12 format=3 uid="uid://didk0ke4finlm"]
 
 [ext_resource type="Script" path="res://UI/screen_effects.gd" id="1_g2i5e"]
 [ext_resource type="LabelSettings" uid="uid://cqg0cx22qlb26" path="res://UI/largeTextWhite.tres" id="2_ffq5s"]
 [ext_resource type="FontFile" uid="uid://f75puuy2qjvv" path="res://assets/font/8-bit Arcade In.ttf" id="3_6sxpj"]
 [ext_resource type="LabelSettings" uid="uid://dyqjsjd742t3b" path="res://UI/regularText.tres" id="4_xnmka"]
 [ext_resource type="LabelSettings" uid="uid://dk2gow8vh6144" path="res://UI/mainTextWhite.tres" id="5_210ca"]
+[ext_resource type="Theme" uid="uid://cdkboomx4ymhk" path="res://UI/UI_theme.tres" id="6_7dwr0"]
+[ext_resource type="Script" path="res://UI/nextLevelButton.gd" id="7_siq2j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80irm"]
 bg_color = Color(0.912289, 0.912289, 0.912289, 1)
@@ -102,7 +104,7 @@ offset_right = 129.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "777"
+text = "0"
 label_settings = SubResource("LabelSettings_jcgtb")
 horizontal_alignment = 1
 
@@ -139,7 +141,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qpof5")
 
-[node name="timelabel" type="Label" parent="WinScreen/TimeBox"]
+[node name="timeElapsedLabel" type="Label" parent="WinScreen/TimeBox"]
+visible = false
 modulate = Color(0.466667, 0.686275, 0.407843, 1)
 layout_mode = 1
 anchors_preset = 5
@@ -154,7 +157,23 @@ text = "It took you"
 label_settings = ExtResource("4_xnmka")
 horizontal_alignment = 1
 
-[node name="time" type="Label" parent="WinScreen/TimeBox"]
+[node name="timeLeftLabel" type="Label" parent="WinScreen/TimeBox"]
+visible = false
+modulate = Color(0.466667, 0.686275, 0.407843, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = 12.0
+offset_right = 129.0
+offset_bottom = 92.0
+grow_horizontal = 2
+text = "time left"
+label_settings = ExtResource("4_xnmka")
+horizontal_alignment = 1
+
+[node name="finalTime" type="Label" parent="WinScreen/TimeBox"]
 modulate = Color(0.862745, 0.996078, 0.811765, 1)
 layout_mode = 1
 anchors_preset = 7
@@ -171,6 +190,22 @@ text = "77:77.777"
 label_settings = ExtResource("5_210ca")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Button" type="Button" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -56.0
+offset_right = 183.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("6_7dwr0")
+text = "next level"
+script = ExtResource("7_siq2j")
 
 [node name="LoseScreen" type="Control" parent="."]
 visible = false
@@ -198,3 +233,5 @@ offset_bottom = 120.0
 grow_horizontal = 2
 text = "you lose"
 label_settings = ExtResource("2_ffq5s")
+
+[connection signal="pressed" from="WinScreen/Button" to="WinScreen/Button" method="_on_pressed"]

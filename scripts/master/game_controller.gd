@@ -8,8 +8,13 @@ var totalGems : int = 0
 
 func _ready() -> void:
 	EventController.emit_signal("send_gamemode", winCondition)
+	EventController.connect("game_win", reset_stuff)
 	if winCondition == 2:
 		EventController.emit_signal("send_timer", time)
+
+func reset_stuff() -> void:
+	totalCoins = 0
+	totalGems = 0
 
 func coin_collected(value: int):
 	totalCoins += value
