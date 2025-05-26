@@ -58,6 +58,7 @@ offset = Vector2(0, -25)
 script = ExtResource("3_y662i")
 
 [node name="CoinUI" parent="PuckBody" instance=ExtResource("4_8lbme")]
+visible = false
 offset_left = -53.0
 offset_top = 32.0
 offset_right = 107.0

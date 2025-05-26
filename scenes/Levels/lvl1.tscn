@@ -1,0 +1,91 @@
+[gd_scene load_steps=16 format=4 uid="uid://dxiphe75x7eh8"]
+
+[ext_resource type="Script" path="res://scripts/master/game_controller.gd" id="1_404ok"]
+[ext_resource type="Theme" uid="uid://cdkboomx4ymhk" path="res://UI/UI_theme.tres" id="2_vec0o"]
+[ext_resource type="Script" path="res://scripts/master/dialogue_controller.gd" id="3_iljd6"]
+[ext_resource type="TileSet" uid="uid://c6omecsmeug1r" path="res://assets/palette/didi4/greenWorld.tres" id="4_mgkff"]
+[ext_resource type="Script" path="res://scripts/walls_controller.gd" id="5_tjmp4"]
+[ext_resource type="Script" path="res://scripts/cursorMaker.gd" id="6_3fbr0"]
+[ext_resource type="PackedScene" uid="uid://kldg6jp7vsw1" path="res://assets/player_puck.tscn" id="7_0n160"]
+[ext_resource type="PackedScene" uid="uid://cw58sdkek0ria" path="res://collectibles/scenes/coin.tscn" id="8_v4u6k"]
+[ext_resource type="PackedScene" uid="uid://b4y6vbhn3rhw2" path="res://UI/dialogue/dialogue_ui.tscn" id="9_jbcl0"]
+[ext_resource type="JSON" path="res://dialogues/loveIntro.json" id="10_fg42d"]
+[ext_resource type="PackedScene" uid="uid://bwq6gmw80mybm" path="res://UI/coin/coin_ui.tscn" id="11_6k1n1"]
+[ext_resource type="PackedScene" uid="uid://c8m21najiu1kp" path="res://UI/objective_ui.tscn" id="12_ycuac"]
+[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="13_angjk"]
+[ext_resource type="PackedScene" uid="uid://didk0ke4finlm" path="res://UI/screen_effects.tscn" id="14_7wd1v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j83ua"]
+atlas = ExtResource("13_angjk")
+region = Rect2(417, 129, 14, 14)
+
+[node name="World" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_404ok")
+winCondition = 2
+time = 70
+
+[node name="Hint" type="Label" parent="."]
+offset_left = 480.0
+offset_top = -400.0
+offset_right = 932.0
+offset_bottom = -340.0
+scale = Vector2(0.663968, 0.663968)
+theme = ExtResource("2_vec0o")
+text = "smash the flag"
+horizontal_alignment = 1
+
+[node name="Triggers" type="Node2D" parent="."]
+
+[node name="DialogueController" type="Node" parent="."]
+script = ExtResource("3_iljd6")
+
+[node name="worldParticles" type="Node2D" parent="."]
+
+[node name="Walls" type="TileMapLayer" parent="."]
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAHAAcAAAASAAMAAAAIAAcAAAASAAMAAAAJAAcAAAASAAMAAAAKAAcAAAASAAMAAAALAAcAAAASAAMAAAAMAAcAAAASAAMAAAAHAAYAAAASAAMAAAAHAAUAAAASAAMAAAAHAAQAAAASAAMAAAAHAAMAAAASAAMAAAAHAAIAAAASAAMAAAAHAAEAAAASAAMAAAAHAAAAAAASAAMAAAAHAP//AAASAAMAAAAHAP7/AAASAAMAAAAHAP3/AAASAAMAAAAGAP3/AAASAAMAAAAFAP3/AAASAAMAAAAEAP3/AAASAAMAAAANAP3/AAASAAMAAAAOAP3/AAASAAMAAAAPAP3/AAASAAMAAAAEAPz/AAASAAMAAAAEAPv/AAASAAMAAAAEAPr/AAASAAMAAAAEAPn/AAASAAMAAAAEAPj/AAASAAMAAAAEAPf/AAASAAMAAAAEAPb/AAASAAMAAAAEAPX/AAASAAMAAAAEAPT/AAASAAMAAAAPAPP/AAASAAMAAAAOAPP/AAASAAMAAAANAPP/AAASAAMAAAAMAPP/AAASAAMAAAALAPP/AAASAAMAAAAKAPP/AAASAAMAAAAJAPP/AAASAAMAAAAIAPP/AAASAAMAAAAHAPP/AAASAAMAAAAGAPP/AAASAAMAAAAFAPP/AAASAAMAAAAEAPP/AAASAAMAAAANAAcAAAASAAMAAAANAAYAAAASAAMAAAANAAUAAAASAAMAAAANAAQAAAASAAMAAAANAAMAAAASAAMAAAANAAIAAAASAAMAAAANAAEAAAASAAMAAAANAAAAAAASAAMAAAANAP//AAASAAMAAAANAP7/AAASAAMAAAAQAP3/AAASAAMAAAAQAPz/AAASAAMAAAAQAPv/AAASAAMAAAAQAPr/AAASAAMAAAAQAPn/AAASAAMAAAAQAPj/AAASAAMAAAAQAPf/AAASAAMAAAAQAPb/AAASAAMAAAAQAPX/AAASAAMAAAAQAPT/AAASAAMAAAAQAPP/AAASAAMAAAALAP7/AAAAAAYAAAAFAPz/AAAAAAYAAAALAAYAAAAAAAYAAAAOAPb/AAAAAAYAAAAKAPf/AAAaAAsAAAA=")
+tile_set = ExtResource("4_mgkff")
+
+[node name="Breakable" type="TileMapLayer" parent="."]
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("AAAKAPj/AAAKABQAAAAIAAAAAAAHAAcAAAAIAAEAAAAHAAcAAAAMAPr/AAAHAAcAAAAFAPT/AAAHAAcAAAA=")
+tile_set = ExtResource("4_mgkff")
+script = ExtResource("5_tjmp4")
+
+[node name="CursorHolder" type="Node2D" parent="."]
+script = ExtResource("6_3fbr0")
+
+[node name="PlayerPuck" parent="." instance=ExtResource("7_0n160")]
+position = Vector2(640, 256)
+
+[node name="CoinHolder" type="Node2D" parent="."]
+
+[node name="Coin" parent="CoinHolder" instance=ExtResource("8_v4u6k")]
+position = Vector2(640, 64)
+
+[node name="Coin2" parent="CoinHolder" instance=ExtResource("8_v4u6k")]
+position = Vector2(640, -64)
+
+[node name="Coin3" parent="CoinHolder" instance=ExtResource("8_v4u6k")]
+position = Vector2(640, -192)
+
+[node name="Coin4" parent="CoinHolder" instance=ExtResource("8_v4u6k")]
+position = Vector2(640, -320)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueUI" parent="CanvasLayer" instance=ExtResource("9_jbcl0")]
+visible = false
+dialogue_json = ExtResource("10_fg42d")
+
+[node name="CoinUI" parent="CanvasLayer" instance=ExtResource("11_6k1n1")]
+
+[node name="ObjectiveUI" parent="CanvasLayer" instance=ExtResource("12_ycuac")]
+
+[node name="crosshair" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(645, 360)
+texture = SubResource("AtlasTexture_j83ua")
+
+[node name="ScreenEffects" parent="CanvasLayer" instance=ExtResource("14_7wd1v")]
