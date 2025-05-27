@@ -1,45 +1,829 @@
-[gd_scene load_steps=2 format=3 uid="uid://b05r3g6gtpwl7"]
+[gd_scene load_steps=23 format=3 uid="uid://b05r3g6gtpwl7"]
 
+[ext_resource type="Script" path="res://UI/main_menu_controller.gd" id="1_bjb01"]
 [ext_resource type="Theme" uid="uid://cdkboomx4ymhk" path="res://UI/UI_theme.tres" id="1_et1l7"]
+[ext_resource type="Texture2D" uid="uid://dqlgvsrh5234q" path="res://assets/UI/disk.tres" id="2_5rvca"]
+[ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="2_sy16x"]
+[ext_resource type="Texture2D" uid="uid://baoyihvynoe8p" path="res://assets/UI/button_hover.tres" id="3_03wd3"]
+[ext_resource type="Texture2D" uid="uid://d4kd64ab2oder" path="res://assets/UI/button_disabled.tres" id="4_lqicc"]
+[ext_resource type="Texture2D" uid="uid://lt57bqx04di0" path="res://assets/UI/button_focused.tres" id="5_rqwy0"]
+[ext_resource type="FontFile" uid="uid://f75puuy2qjvv" path="res://assets/font/8-bit Arcade In.ttf" id="6_01b48"]
+[ext_resource type="Texture2D" uid="uid://bet3jrgjvj1cn" path="res://assets/UI/circle_no_alpha.tres" id="9_mu78k"]
+[ext_resource type="Script" path="res://scenes/transform.gd" id="10_mnfyu"]
+[ext_resource type="FontFile" uid="uid://bofphgn35gvtt" path="res://assets/font/upheavtt.ttf" id="11_5k55i"]
+
+[sub_resource type="Animation" id="Animation_kayy8"]
+resource_name = "disk_enter"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiskImage:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.267944, 0.267944),
+"update": 0,
+"values": [Vector2(560, 1245), Vector2(560, 595)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DiskImage:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.533333, 0.7),
+"transitions": PackedFloat32Array(0.535888, 3.73214, 1),
+"update": 0,
+"values": [-4.71239, 11.3446, 10.9956]
+}
+
+[sub_resource type="Animation" id="Animation_vlobi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiskImage:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(560, 1245)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DiskImage:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-4.71239]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LevelSelect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e2ak8"]
+resource_name = "disk_exit"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DiskImage:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.637282, 0.267944),
+"update": 0,
+"values": [Vector2(560, 595), Vector2(560, 1245)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DiskImage:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.25, 0.535888),
+"update": 0,
+"values": [10.9956, -4.71239]
+}
+
+[sub_resource type="Animation" id="Animation_0mcxo"]
+resource_name = "enter_levelSelect"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelSelect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pifes"]
+resource_name = "levelSelect_exit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LevelSelect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.378929, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6gg2"]
+_data = {
+"RESET": SubResource("Animation_vlobi"),
+"disk_enter": SubResource("Animation_kayy8"),
+"disk_exit": SubResource("Animation_e2ak8"),
+"levelSelect_enter": SubResource("Animation_0mcxo"),
+"levelSelect_exit": SubResource("Animation_pifes")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlpu0"]
+atlas = ExtResource("2_sy16x")
+region = Rect2(576, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhr8g"]
+atlas = ExtResource("2_sy16x")
+region = Rect2(704, 112, 16, 16)
+
+[sub_resource type="Theme" id="Theme_1wqkc"]
+default_font = ExtResource("6_01b48")
+Label/fonts/font = ExtResource("6_01b48")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uojsj"]
+bg_color = Color(0.466667, 0.686275, 0.407843, 1)
+
+[sub_resource type="Theme" id="Theme_rblxm"]
+default_font = ExtResource("11_5k55i")
+default_font_size = 35
+Button/colors/font_color = Color(0.129412, 0.0431373, 0.180392, 1)
+Button/font_sizes/font_size = 31
+Button/fonts/font = ExtResource("11_5k55i")
+Button/icons/icon = ExtResource("2_5rvca")
+Button/styles/normal = SubResource("StyleBoxFlat_uojsj")
 
 [node name="Main" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_bjb01")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k6gg2")
+}
+
+[node name="MainButtons" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpinnyCircle" type="TextureRect" parent="MainButtons"]
+modulate = Color(1, 0.996078, 1, 0.0784314)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -985.0
+offset_top = -985.0
+offset_right = 985.0
+offset_bottom = 985.0
+grow_horizontal = 2
+pivot_offset = Vector2(985, 985)
+texture = ExtResource("9_mu78k")
+script = ExtResource("10_mnfyu")
+rotationSpeed = 0.05
+
+[node name="Label" type="Label" parent="MainButtons"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -383.5
+offset_right = 383.5
+offset_bottom = 118.0
+grow_horizontal = 2
+theme = ExtResource("1_et1l7")
+theme_override_font_sizes/font_size = 130
+text = "puck world"
+
+[node name="PlayButton" type="TextureButton" parent="MainButtons"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
+offset_left = 355.0
+offset_top = -130.0
+offset_right = -909.0
+offset_bottom = -114.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="PlayLabel" type="Label" parent="MainButtons/PlayButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -5.0
+offset_right = 54.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "play"
+horizontal_alignment = 2
+
+[node name="SettingsButton" type="TextureButton" parent="MainButtons"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -325.0
+offset_top = -9.99997
+offset_right = -309.0
+offset_bottom = 6.00003
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="SettingsLabel" type="Label" parent="MainButtons/SettingsButton"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -5.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "settings"
+
+[node name="CreditsButton" type="TextureButton" parent="MainButtons"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -285.0
+offset_top = 190.0
+offset_right = -269.0
+offset_bottom = 206.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="CreditsLabel" type="Label" parent="MainButtons/CreditsButton"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -5.0
+offset_bottom = 6.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "credits"
+
+[node name="ExitButton" type="TextureButton" parent="MainButtons"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 315.0
+offset_top = 110.0
+offset_right = 331.0
+offset_bottom = 126.0
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="ExitLabel" type="Label" parent="MainButtons/ExitButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -5.0
+offset_right = 50.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "quit"
+horizontal_alignment = 2
+
+[node name="DiskImage" type="TextureRect" parent="."]
+modulate = Color(0.227451, 0.396078, 0.352941, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = 525.0
+offset_right = 80.0
+offset_bottom = 685.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -4.71239
+scale = Vector2(8, 8)
+pivot_offset = Vector2(80, 80)
+texture = ExtResource("2_5rvca")
+
+[node name="SettingsButtons" type="Control" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("1_et1l7")
-text = "start"
-
-[node name="Button2" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("1_et1l7")
-text = "options"
-
-[node name="Label" type="Label" parent="."]
+[node name="PlayButton" type="TextureButton" parent="SettingsButtons"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -0.5
-offset_right = 0.5
-offset_bottom = 23.0
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 365.0
+offset_top = -120.0
+offset_right = -899.0
+offset_bottom = -104.0
 grow_horizontal = 2
-theme = ExtResource("1_et1l7")
-theme_override_font_sizes/font_size = 130
-text = "puck world"
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="PlayLabel" type="Label" parent="SettingsButtons/PlayButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -5.0
+offset_right = 54.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "left"
+horizontal_alignment = 2
+
+[node name="PlayButton2" type="TextureButton" parent="SettingsButtons"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 285.0
+offset_top = -40.0
+offset_right = -979.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="PlayLabel" type="Label" parent="SettingsButtons/PlayButton2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -5.0
+offset_right = 54.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "left"
+horizontal_alignment = 2
+
+[node name="PlayButton3" type="TextureButton" parent="SettingsButtons"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 205.0
+offset_top = 40.0
+offset_right = -1059.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="PlayLabel" type="Label" parent="SettingsButtons/PlayButton3"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -5.0
+offset_right = 54.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "left"
+horizontal_alignment = 2
+
+[node name="PlayButton4" type="TextureButton" parent="SettingsButtons"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 125.0
+offset_top = 120.0
+offset_right = -1139.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="PlayLabel" type="Label" parent="SettingsButtons/PlayButton4"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -5.0
+offset_right = 54.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "left"
+horizontal_alignment = 2
+
+[node name="SettingsButton" type="TextureButton" parent="SettingsButtons"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -120.0
+offset_right = -364.0
+offset_bottom = -104.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="SettingsLabel" type="Label" parent="SettingsButtons/SettingsButton"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -5.5
+offset_bottom = 5.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "right
+"
+horizontal_alignment = 1
+
+[node name="SettingsButton2" type="TextureButton" parent="SettingsButtons"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -40.0
+offset_right = -284.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="SettingsLabel" type="Label" parent="SettingsButtons/SettingsButton2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -5.5
+offset_bottom = 5.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "right
+"
+horizontal_alignment = 1
+
+[node name="SettingsButton3" type="TextureButton" parent="SettingsButtons"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = 40.0
+offset_right = -204.0
+offset_bottom = 56.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="SettingsLabel" type="Label" parent="SettingsButtons/SettingsButton3"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -5.5
+offset_bottom = 5.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "right
+"
+horizontal_alignment = 1
+
+[node name="SettingsButton4" type="TextureButton" parent="SettingsButtons"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = 120.0
+offset_right = -124.0
+offset_bottom = 136.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="SettingsLabel" type="Label" parent="SettingsButtons/SettingsButton4"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -5.5
+offset_bottom = 5.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "right
+"
+horizontal_alignment = 1
+
+[node name="ExitButton" type="TextureButton" parent="SettingsButtons"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 540.0
+offset_top = 295.0
+offset_right = -724.0
+offset_bottom = 311.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="ExitLabel" type="Label" parent="SettingsButtons/ExitButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -5.0
+offset_right = 54.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "exit"
+horizontal_alignment = 2
+
+[node name="LevelSelect" type="Control" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpinnyCircle" type="TextureRect" parent="LevelSelect"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -885.0
+offset_top = -720.0
+offset_right = 1085.0
+offset_bottom = 1250.0
+grow_vertical = 0
+pivot_offset = Vector2(985, 985)
+texture = ExtResource("9_mu78k")
+script = ExtResource("10_mnfyu")
+rotationSpeed = 0.01
+
+[node name="ExitButton" type="TextureButton" parent="LevelSelect"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 55.0
+offset_top = 295.0
+offset_right = -1209.0
+offset_bottom = 311.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.5, 3.5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="ExitLabel" type="Label" parent="LevelSelect/ExitButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -5.0
+offset_right = 54.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "exit"
+horizontal_alignment = 2
+
+[node name="QuickPlayButton" type="Button" parent="LevelSelect"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 260.0
+offset_bottom = 80.0
+scale = Vector2(2, 2)
+theme = SubResource("Theme_rblxm")
+text = "quick play"
+expand_icon = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="MainButtons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainButtons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="SettingsButtons/ExitButton" to="." method="_on_settings_exit_button_pressed"]
+[connection signal="pressed" from="LevelSelect/ExitButton" to="." method="_on_level_exit_button_pressed"]
+[connection signal="pressed" from="LevelSelect/QuickPlayButton" to="." method="_on_quick_play_button_pressed"]

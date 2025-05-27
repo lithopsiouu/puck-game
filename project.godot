@@ -11,12 +11,12 @@ config_version=5
 [application]
 
 config/name="PUCK WORLD"
-run/main_scene="res://scenes/Levels/lvl1.tscn"
+run/main_scene="res://scenes/mainMenu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://assets/lithworks/lithworks_logo_organized_inverted.png"
 boot_splash/fullsize=false
-config/icon="res://icon.svg"
+config/icon="res://assets/lithworks/lithworks_logo_organized_inverted.png"
 boot_splash/minimum_display_time=5
 
 [autoload]
