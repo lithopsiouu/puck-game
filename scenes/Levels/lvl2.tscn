@@ -48,7 +48,7 @@ tile_set = ExtResource("3_c56ta")
 
 [node name="Breakable" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)
-tile_map_data = PackedByteArray("AAAMAPj/AAAHAAcAAAAIAPj/AAAHAAcAAAAIAPn/AAAHAAcAAAAIAPr/AAAHAAcAAAAMAPn/AAAHAAcAAAAMAPr/AAAHAAcAAAAIAPv/AAAHAAcAAAAJAPv/AAAHAAcAAAAKAPv/AAAHAAcAAAALAPv/AAAHAAcAAAAMAPv/AAAHAAcAAAAIAPf/AAAHAAcAAAAJAPf/AAAHAAcAAAAKAPf/AAAHAAcAAAALAPf/AAAHAAcAAAAMAPf/AAAHAAcAAAAaAPj/AAAHAAcAAAAaAPn/AAAHAAcAAAAaAPr/AAAHAAcAAAAeAPn/AAAKABQAAAA=")
+tile_map_data = PackedByteArray("AAAMAPj/AAAHAAcAAAAIAPj/AAAHAAcAAAAIAPn/AAAHAAcAAAAIAPr/AAAHAAcAAAAMAPn/AAAHAAcAAAAMAPr/AAAHAAcAAAAIAPv/AAAHAAcAAAAJAPv/AAAHAAcAAAAKAPv/AAAHAAcAAAALAPv/AAAHAAcAAAAMAPv/AAAHAAcAAAAIAPf/AAAHAAcAAAAJAPf/AAAHAAcAAAAKAPf/AAAHAAcAAAALAPf/AAAHAAcAAAAMAPf/AAAHAAcAAAAeAPn/AAAKABQAAAAVAPj/AAAHAAcAAAAVAPn/AAAHAAcAAAAVAPr/AAAHAAcAAAA=")
 tile_set = ExtResource("3_c56ta")
 script = ExtResource("4_0bpom")
 
@@ -73,16 +73,16 @@ position = Vector2(1140, -380)
 position = Vector2(1220, -380)
 
 [node name="Coin4" parent="CoinHolder" instance=ExtResource("7_wm5gj")]
-position = Vector2(1300, -380)
+position = Vector2(1370, -380)
 
 [node name="Coin5" parent="CoinHolder" instance=ExtResource("7_wm5gj")]
-position = Vector2(1380, -380)
+position = Vector2(1450, -380)
 
 [node name="Coin6" parent="CoinHolder" instance=ExtResource("7_wm5gj")]
-position = Vector2(1460, -380)
+position = Vector2(1530, -380)
 
 [node name="Coin7" parent="CoinHolder" instance=ExtResource("7_wm5gj")]
-position = Vector2(1700, -380)
+position = Vector2(1610, -380)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -1,0 +1,19 @@
+[gd_resource type="StyleBoxFlat" format=3 uid="uid://flot35dfkq4c"]
+
+[resource]
+bg_color = Color(0.912289, 0.912289, 0.912289, 1)
+draw_center = false
+border_width_left = 180
+border_width_top = 160
+border_width_right = 180
+border_width_bottom = 160
+border_color = Color(0.8, 0.8, 0.8, 0.0980392)
+border_blend = true
+corner_radius_top_left = 145
+corner_radius_top_right = 145
+corner_radius_bottom_right = 145
+corner_radius_bottom_left = 145
+expand_margin_left = 45.0
+expand_margin_top = 45.0
+expand_margin_right = 45.0
+expand_margin_bottom = 45.0
