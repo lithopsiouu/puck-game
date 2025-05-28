@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://b05r3g6gtpwl7"]
+[gd_scene load_steps=47 format=3 uid="uid://b05r3g6gtpwl7"]
 
 [ext_resource type="Script" path="res://UI/main_menu_controller.gd" id="1_bjb01"]
 [ext_resource type="Theme" uid="uid://cdkboomx4ymhk" path="res://UI/UI_theme.tres" id="1_et1l7"]
@@ -12,9 +12,12 @@
 [ext_resource type="FontFile" uid="uid://bofphgn35gvtt" path="res://assets/font/upheavtt.ttf" id="11_5k55i"]
 [ext_resource type="Texture2D" uid="uid://cefb3wpf2e1lc" path="res://assets/UI/UI_atlas.tres" id="11_x4gm2"]
 [ext_resource type="Texture2D" uid="uid://eejprjm8whs6" path="res://assets/palette/didi4/didi4-32x.png" id="12_15ixj"]
+[ext_resource type="StyleBox" uid="uid://b1mn5hstsv38x" path="res://UI/bottomLeftFocusedBarRounded.tres" id="12_j1g6o"]
 [ext_resource type="StyleBox" uid="uid://6ip0evtrdrcq" path="res://UI/regular_panel.tres" id="12_ojotd"]
+[ext_resource type="StyleBox" uid="uid://drkfjqtx7lf5c" path="res://UI/important_button_hover.tres" id="13_r18y8"]
 [ext_resource type="Theme" uid="uid://hj2ttb4e0deq" path="res://UI/mainMenuImportant.tres" id="13_rfru1"]
 [ext_resource type="StyleBox" uid="uid://ba3gu665fc0ta" path="res://UI/arrow_left_hover.tres" id="14_4e3rr"]
+[ext_resource type="StyleBox" uid="uid://7t1buif0jnye" path="res://UI/important_button_normal.tres" id="14_mwvax"]
 [ext_resource type="StyleBox" uid="uid://bi3a7hdmod12o" path="res://UI/arrow_left_pressed.tres" id="14_q5tws"]
 [ext_resource type="StyleBox" uid="uid://cwn6amh4c6hbh" path="res://UI/horizFocusedBar.tres" id="14_qmwgl"]
 [ext_resource type="StyleBox" uid="uid://mdm0pu3k20ob" path="res://UI/arrow_left.tres" id="15_8q0ju"]
@@ -454,12 +457,12 @@ Label/fonts/font = ExtResource("6_01b48")
 atlas = ExtResource("11_x4gm2")
 region = Rect2(704, 272, 16, 16)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uojsj"]
-bg_color = Color(0.466667, 0.686275, 0.407843, 1)
-border_width_left = 10
-border_color = Color(0.227451, 0.396078, 0.352941, 1)
-corner_radius_top_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ust8h"]
+bg_color = Color(0.227451, 0.396078, 0.352941, 1)
+border_width_left = 6
+border_color = Color(0.466667, 0.686275, 0.407843, 1)
+corner_radius_top_right = 15
+corner_radius_bottom_left = 15
 expand_margin_left = 10.0
 expand_margin_right = 10.0
 anti_aliasing = false
@@ -471,7 +474,10 @@ Button/colors/font_color = Color(0.129412, 0.0431373, 0.180392, 1)
 Button/font_sizes/font_size = 31
 Button/fonts/font = ExtResource("11_5k55i")
 Button/icons/icon = ExtResource("2_5rvca")
-Button/styles/normal = SubResource("StyleBoxFlat_uojsj")
+Button/styles/focus = ExtResource("12_j1g6o")
+Button/styles/hover = ExtResource("13_r18y8")
+Button/styles/normal = ExtResource("14_mwvax")
+Button/styles/pressed = SubResource("StyleBoxFlat_ust8h")
 
 [sub_resource type="LabelSettings" id="LabelSettings_mw5cy"]
 font = ExtResource("6_01b48")

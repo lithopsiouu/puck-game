@@ -1,20 +1,10 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://hj2ttb4e0deq"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://hj2ttb4e0deq"]
 
 [ext_resource type="FontFile" uid="uid://f75puuy2qjvv" path="res://assets/font/8-bit Arcade In.ttf" id="1_54kly"]
-[ext_resource type="StyleBox" uid="uid://6ip0evtrdrcq" path="res://UI/regular_panel.tres" id="2_27obr"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nc4x"]
-bg_color = Color(0.129412, 0.0431373, 0.180392, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.466667, 0.686275, 0.407843, 1)
-corner_radius_bottom_left = 20
-expand_margin_bottom = 8.0
-shadow_color = Color(0.129412, 0.0431373, 0.180392, 1)
-shadow_size = 20
-anti_aliasing = false
+[ext_resource type="StyleBox" uid="uid://cwn6amh4c6hbh" path="res://UI/horizFocusedBar.tres" id="2_lw7l2"]
+[ext_resource type="StyleBox" uid="uid://b6uiwrm3wrmfi" path="res://UI/play_button_hover.tres" id="3_a754b"]
+[ext_resource type="StyleBox" uid="uid://cicrelr3ppyt0" path="res://UI/play_button.tres" id="4_cwjtc"]
+[ext_resource type="StyleBox" uid="uid://cphxu1f1l4x11" path="res://UI/play_button_pressed.tres" id="5_oo1wd"]
 
 [resource]
 default_font = ExtResource("1_54kly")
@@ -25,5 +15,7 @@ Button/colors/font_hover_color = Color(0.658824, 0.686275, 0.407843, 1)
 Button/colors/font_pressed_color = Color(0.862745, 0.996078, 0.811765, 1)
 Button/font_sizes/font_size = 48
 Button/fonts/font = ExtResource("1_54kly")
-Button/styles/normal = SubResource("StyleBoxFlat_3nc4x")
-Button/styles/normal_panel = ExtResource("2_27obr")
+Button/styles/focus = ExtResource("2_lw7l2")
+Button/styles/hover = ExtResource("3_a754b")
+Button/styles/normal = ExtResource("4_cwjtc")
+Button/styles/pressed = ExtResource("5_oo1wd")
