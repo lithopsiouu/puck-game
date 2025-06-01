@@ -37,6 +37,7 @@ func _ready() -> void:
 	EventController.connect("game_win", win_process)
 	EventController.connect("send_total_gems", setup_gems_label)
 	time_at_start = Time.get_unix_time_from_system()
+	_fade_in()
 
 func _physics_process(_delta: float) -> void:
 	#print(timer.time_left)
@@ -63,6 +64,10 @@ func _physics_process(_delta: float) -> void:
 			
 			# confusing, but gives local elapsed time to declared elapsed time
 			elapsedTime = time_elapsed
+
+func _fade_in() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate:a", 0.8, 1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).set_delay(0.2)
 
 # 0 = exit, 1 = gem, 2 = time
 func win_process() -> void:

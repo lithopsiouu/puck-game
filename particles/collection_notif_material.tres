@@ -1,0 +1,40 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=6 format=3 uid="uid://bl2luavq1woyf"]
+
+[ext_resource type="Texture2D" uid="uid://cvcd7gvqaeuy0" path="res://particles/collection_gradient_normal.tres" id="1_aldjb"]
+[ext_resource type="Texture2D" uid="uid://bcr8ius4733ea" path="res://particles/collection_angVel_curve_normal_settings.tres" id="1_e15pc"]
+[ext_resource type="Texture2D" uid="uid://4swjnerms5bk" path="res://particles/collection_scale_curve_normal_settings.tres" id="3_ybvty"]
+
+[sub_resource type="Curve" id="Curve_8mj6v"]
+max_value = 3.0
+_data = [Vector2(0.191571, 0), 1.97099, 1.97099, 0, 0, Vector2(0.911877, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4tvhd"]
+curve = SubResource("Curve_8mj6v")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 60.0
+emission_ring_inner_radius = 55.0
+angular_velocity_min = 0.999984
+angular_velocity_max = 0.999984
+angular_velocity_curve = ExtResource("1_e15pc")
+orbit_velocity_min = -0.0499999
+orbit_velocity_max = 0.0500001
+radial_velocity_min = 170.0
+radial_velocity_max = 170.0
+radial_velocity_curve = SubResource("CurveTexture_4tvhd")
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 15.0
+linear_accel_max = 15.0
+radial_accel_min = -100.0
+radial_accel_max = -80.0
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+scale_curve = ExtResource("3_ybvty")
+color_ramp = ExtResource("1_aldjb")
+sub_emitter_mode = 1
+sub_emitter_frequency = 34.98

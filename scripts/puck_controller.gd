@@ -18,7 +18,10 @@ const invertDrag = false
 
 @onready var arrow = $Arrow
 @onready var dustParticle = preload("res://particles/dust.tscn")
+@onready var plusOneParticle = preload("res://particles/plus_one.tscn")
+@onready var plusOneGemParticle = preload("res://particles/plus_one_gem.tscn")
 @onready var cam : Camera2D = $MainCamera
+@onready var shockwave : Sprite2D = $Shockwave
 
 var mouseOnPuck = false
 
@@ -37,6 +40,8 @@ var lastColliderRID = null
 func _ready() -> void:
 	EventController.connect("player_under_cam_snap", on_cam_snap)
 	EventController.connect("game_win", on_game_win)
+	EventController.connect("coin_collected", coinCollectParticle)
+	EventController.connect("gem_smashed", gemCollectParticle)
 
 func _unhandled_input(event: InputEvent) -> void:
 	#if Input.is_key_pressed(KEY_W):
@@ -89,6 +94,20 @@ func makeNewParticle(newPos : Vector2):
 	instance.position = newPos
 	instance.emitting = true
 	await get_tree().create_timer(1).timeout
+	instance.queue_free()
+
+func coinCollectParticle(value: int = 1):
+	var instance = plusOneParticle.instantiate()
+	add_child(instance)
+	instance.emitting = true
+	await get_tree().create_timer(1.2).timeout
+	instance.queue_free()
+
+func gemCollectParticle():
+	var instance = plusOneGemParticle.instantiate()
+	add_child(instance)
+	instance.emitting = true
+	await get_tree().create_timer(1.2).timeout
 	instance.queue_free()
 
 func _cam_scale_from_velocity(delta: float):
@@ -170,5 +189,12 @@ func on_game_win() -> void:
 	ignoreCamSnap = true
 	cam_zoom_speed_enabled = false
 	var tween = get_tree().create_tween()
-	tween.tween_property(cam, "zoom", Vector2(0.6, 0.6), 0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
-	tween.tween_property(cam, "zoom", Vector2(2, 2), 0.9).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+	var tweenShockwave = get_tree().create_tween()
+	var tweenShockwave2 = get_tree().create_tween()
+	tweenShockwave.set_parallel()
+	tweenShockwave.tween_property(shockwave, "scale", Vector2(1, 1), 1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
+	tweenShockwave.tween_property(shockwave.material, "shader_parameter/strength", 0.02, 0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
+	tweenShockwave2.tween_interval(0.15)
+	tweenShockwave2.tween_property(shockwave.material, "shader_parameter/strength", 0, 0.7)
+	tween.tween_property(cam, "zoom", Vector2(0.6, 0.7), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(cam, "zoom", Vector2(2.4, 2), 0.8).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)

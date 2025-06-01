@@ -1,0 +1,6 @@
+[gd_resource type="GradientTexture1D" load_steps=2 format=3 uid="uid://cvcd7gvqaeuy0"]
+
+[ext_resource type="Gradient" uid="uid://c370oaosf4n4w" path="res://particles/collection_gradient_normal_pattern.tres" id="1_evmxv"]
+
+[resource]
+gradient = ExtResource("1_evmxv")

@@ -5,6 +5,7 @@ extends Control
 @onready var levelSelect = $LevelSelect
 @onready var mainButtons = $MainButtons
 @onready var credits = $Credits
+@onready var distFilter = $MainButtons/Distortion
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -64,3 +65,8 @@ func _on_quick_play_button_pressed() -> void:
 
 func _on_level_select_button_pressed() -> void:
 	uiAnims.play("all_disappear")
+
+
+func _on_test_pressed() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(distFilter.material, "shader_parameter/strength", 0, 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)

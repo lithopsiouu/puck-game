@@ -40,6 +40,7 @@ border_width_bottom = 5
 border_color = Color(0.862745, 0.996078, 0.811765, 1)
 
 [node name="ObjectiveUI" type="Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 10.0

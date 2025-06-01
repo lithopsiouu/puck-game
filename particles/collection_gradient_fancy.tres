@@ -1,0 +1,6 @@
+[gd_resource type="GradientTexture1D" load_steps=2 format=3 uid="uid://dt0pe8j0sums6"]
+
+[ext_resource type="Gradient" uid="uid://dscbr0vwil35y" path="res://particles/collection_gradient_fancy_pattern.tres" id="1_uxome"]
+
+[resource]
+gradient = ExtResource("1_uxome")

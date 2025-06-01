@@ -1,0 +1,58 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=9 format=3 uid="uid://dxa0o5t8iqvuk"]
+
+[sub_resource type="Curve" id="Curve_tynrd"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, -200), 0.0, 0.0, 0, 0, Vector2(0.195402, 2.19781), -317.375, -317.375, 0, 0, Vector2(0.689655, 200), 1638.93, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pwff3"]
+curve = SubResource("Curve_tynrd")
+
+[sub_resource type="Gradient" id="Gradient_mqa7t"]
+offsets = PackedFloat32Array(0, 0.16309, 0.291846, 0.437768, 0.776824)
+colors = PackedColorArray(0.0834804, 0.322035, 0.086126, 1, 0.862745, 0.996078, 0.811765, 1, 0.466667, 0.686275, 0.407843, 1, 0.862745, 0.996078, 0.811765, 1, 0.161774, 0.0773044, 0.339949, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_svf1g"]
+gradient = SubResource("Gradient_mqa7t")
+
+[sub_resource type="Curve" id="Curve_116cu"]
+max_value = 3.0
+_data = [Vector2(0.40613, 0), 0.0, -0.0248967, 0, 0, Vector2(0.888889, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4tvhd"]
+curve = SubResource("Curve_116cu")
+
+[sub_resource type="Curve" id="Curve_lceyc"]
+max_value = 5.0
+_data = [Vector2(0, 1), 0.0, 11.123, 0, 0, Vector2(0.123, 3.7), 0.0, 0.0, 0, 0, Vector2(0.923372, 0.866455), -3.44983, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3x1ou"]
+curve = SubResource("Curve_lceyc")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 60.0
+emission_ring_inner_radius = 55.0
+angular_velocity_min = 0.999984
+angular_velocity_max = 0.999984
+angular_velocity_curve = SubResource("CurveTexture_pwff3")
+orbit_velocity_min = -0.0499999
+orbit_velocity_max = 0.0500001
+radial_velocity_min = 170.0
+radial_velocity_max = 170.0
+radial_velocity_curve = SubResource("CurveTexture_4tvhd")
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 15.0
+linear_accel_max = 15.0
+radial_accel_min = -100.0
+radial_accel_max = -80.0
+tangential_accel_min = -2.23517e-06
+tangential_accel_max = -2.23517e-06
+scale_curve = SubResource("CurveTexture_3x1ou")
+color_ramp = SubResource("GradientTexture1D_svf1g")

@@ -1,0 +1,6 @@
+[gd_resource type="CurveTexture" load_steps=2 format=3 uid="uid://cop85e8g8h7bd"]
+
+[ext_resource type="Curve" uid="uid://l1jlv8ir1wec" path="res://particles/collection_scale_curve_fancy.tres" id="1_56mlr"]
+
+[resource]
+curve = ExtResource("1_56mlr")

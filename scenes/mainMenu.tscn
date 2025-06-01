@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b05r3g6gtpwl7"]
+[gd_scene load_steps=52 format=3 uid="uid://b05r3g6gtpwl7"]
 
 [ext_resource type="Script" path="res://UI/main_menu_controller.gd" id="1_bjb01"]
 [ext_resource type="Theme" uid="uid://cdkboomx4ymhk" path="res://UI/UI_theme.tres" id="1_et1l7"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="2_sy16x"]
 [ext_resource type="Texture2D" uid="uid://baoyihvynoe8p" path="res://assets/UI/button_hover.tres" id="3_03wd3"]
 [ext_resource type="Texture2D" uid="uid://d4kd64ab2oder" path="res://assets/UI/button_disabled.tres" id="4_lqicc"]
+[ext_resource type="Shader" path="res://shaders/distortion.gdshader" id="4_xslb6"]
+[ext_resource type="Texture2D" uid="uid://chaift5nncm46" path="res://assets/mask_soft_round.jpg" id="5_m1weh"]
 [ext_resource type="Texture2D" uid="uid://lt57bqx04di0" path="res://assets/UI/button_focused.tres" id="5_rqwy0"]
 [ext_resource type="FontFile" uid="uid://f75puuy2qjvv" path="res://assets/font/8-bit Arcade In.ttf" id="6_01b48"]
 [ext_resource type="Script" path="res://scenes/transform.gd" id="10_mnfyu"]
@@ -441,6 +443,22 @@ _data = {
 atlas = ExtResource("11_x4gm2")
 region = Rect2(704, 272, 16, 16)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lpefq"]
+shader = ExtResource("4_xslb6")
+shader_parameter/scroll = Vector2(0, 0)
+shader_parameter/strength = 0.1
+shader_parameter/useMask = false
+shader_parameter/mask = ExtResource("5_m1weh")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s5a48"]
+noise_type = 3
+fractal_octaves = 4
+fractal_weighted_strength = 0.2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t6y0p"]
+seamless = true
+noise = SubResource("FastNoiseLite_s5a48")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlpu0"]
 atlas = ExtResource("2_sy16x")
 region = Rect2(576, 48, 16, 16)
@@ -552,7 +570,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SpinnyCircle" type="TextureRect" parent="MainButtons"]
-modulate = Color(1, 0.996078, 1, 0.0784314)
+modulate = Color(0.227451, 0.396078, 0.352941, 1)
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
@@ -567,6 +585,13 @@ pivot_offset = Vector2(985, 985)
 texture = SubResource("AtlasTexture_5ur60")
 script = ExtResource("10_mnfyu")
 rotationSpeed = 0.05
+
+[node name="Distortion" type="Sprite2D" parent="MainButtons"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_lpefq")
+position = Vector2(640, 352)
+scale = Vector2(2.875, 1.875)
+texture = SubResource("NoiseTexture2D_t6y0p")
 
 [node name="Label" type="Label" parent="MainButtons"]
 layout_mode = 1
@@ -615,6 +640,42 @@ theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
 theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
 theme_override_constants/outline_size = 3
 text = "play"
+horizontal_alignment = 2
+
+[node name="test" type="TextureButton" parent="MainButtons"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 112.0
+offset_top = 248.0
+offset_right = -1152.0
+offset_bottom = 264.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+pivot_offset = Vector2(8, 8)
+texture_normal = SubResource("AtlasTexture_tlpu0")
+texture_pressed = SubResource("AtlasTexture_nhr8g")
+texture_hover = ExtResource("3_03wd3")
+texture_disabled = ExtResource("4_lqicc")
+texture_focused = ExtResource("5_rqwy0")
+
+[node name="test" type="Label" parent="MainButtons/test"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -5.0
+offset_right = 54.0
+offset_bottom = 6.0
+grow_vertical = 2
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "test"
 horizontal_alignment = 2
 
 [node name="SettingsButton" type="TextureButton" parent="MainButtons"]
@@ -1335,6 +1396,20 @@ position = Vector2(-26, -8)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("12_15ixj")
 
+[node name="info4" type="Label" parent="Credits/Panel"]
+layout_mode = 1
+offset_left = 499.0
+offset_top = 377.0
+offset_right = 661.0
+offset_bottom = 416.0
+scale = Vector2(2.5, 2.5)
+theme = SubResource("Theme_1wqkc")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_colors/font_outline_color = Color(0.862745, 0.996078, 0.811765, 1)
+theme_override_constants/outline_size = 3
+text = "tileset by
+kenney"
+
 [node name="info2" type="Label" parent="Credits/Panel"]
 layout_mode = 1
 offset_left = 810.0
@@ -1411,6 +1486,7 @@ horizontal_alignment = 1
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="MainButtons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainButtons/test" to="." method="_on_test_pressed"]
 [connection signal="pressed" from="MainButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MainButtons/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MainButtons/ExitButton" to="." method="_on_exit_button_pressed"]

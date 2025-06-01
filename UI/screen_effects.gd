@@ -2,6 +2,7 @@ extends Control
 
 @onready var whitePanel = $White
 var whiteBorderStyle = preload("res://UI/white_border_blend.tres")
+var greenBorderStyle = preload("res://UI/green_big_border_blend.tres")
 @onready var blackPanel = $Black
 @onready var winScrn = $WinScreen
 @onready var loseScrn = $LoseScreen
@@ -17,9 +18,11 @@ func _ready() -> void:
 	EventController.connect("game_win", winProcess)
 	EventController.connect("get_current_time", display_time)
 	EventController.connect("send_gamemode", set_timeBox_label)
-	EventController.connect("coin_collected", on_event_coin_collected)
+	EventController.connect("coin_collected", _on_event_coin_collected)
+	EventController.connect("gem_smashed", _on_event_gem_smashed)
 
 func winProcess() -> void:
+	green_border_flash()
 	Engine.time_scale = 0.4# reset this before switching scenes!
 	await fade_in_white(1)
 	Engine.time_scale = 1
@@ -43,9 +46,12 @@ func display_time(time: float) -> void:
 	
 	finalTimeDisplay.text = "%02d:%02d.%03d" % [minutes, seconds, msec]
 
-func on_event_coin_collected(value: int) -> void:
+func _on_event_coin_collected(value: int) -> void:
 	finalPointsDisplay.text = str(value)
 	white_border_flash()
+
+func _on_event_gem_smashed() -> void:
+	green_border_flash()
 
 func fade_in_black(speed: int):
 	blackPanel.visible = true
@@ -87,3 +93,14 @@ func white_border_flash():
 	tween.tween_property(whiteBorderPanel, "modulate:a", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)#.set_delay(1)
 	await tween.finished
 	whiteBorderPanel.queue_free()
+
+func green_border_flash():
+	var tween = get_tree().create_tween()
+	var greenBorderPanel = Panel.new()
+	add_child(greenBorderPanel)
+	greenBorderPanel.add_theme_stylebox_override("panel", greenBorderStyle)
+	greenBorderPanel.mouse_filter = 2
+	greenBorderPanel.set_anchors_preset(PRESET_FULL_RECT, true)
+	tween.tween_property(greenBorderPanel, "modulate:a", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)#.set_delay(1)
+	await tween.finished
+	greenBorderPanel.queue_free()
