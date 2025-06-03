@@ -25,10 +25,10 @@ script = ExtResource("1_404ok")
 time = 70
 
 [node name="Hint" type="Label" parent="."]
-offset_left = 480.0
-offset_top = -400.0
-offset_right = 932.0
-offset_bottom = -340.0
+offset_left = 432.0
+offset_top = -384.0
+offset_right = 884.0
+offset_bottom = -324.0
 scale = Vector2(0.663968, 0.663968)
 theme = ExtResource("2_vec0o")
 text = "smash the flag"
@@ -56,21 +56,21 @@ script = ExtResource("5_tjmp4")
 script = ExtResource("6_3fbr0")
 
 [node name="PlayerPuck" parent="." instance=ExtResource("7_0n160")]
-position = Vector2(640, 256)
+position = Vector2(592, 272)
 
 [node name="CoinHolder" type="Node2D" parent="."]
 
 [node name="Coin" parent="CoinHolder" instance=ExtResource("8_v4u6k")]
-position = Vector2(640, 64)
+position = Vector2(592, 112)
 
 [node name="Coin2" parent="CoinHolder" instance=ExtResource("8_v4u6k")]
-position = Vector2(640, -64)
+position = Vector2(592, -16)
 
 [node name="Coin3" parent="CoinHolder" instance=ExtResource("8_v4u6k")]
-position = Vector2(640, -192)
+position = Vector2(592, -144)
 
 [node name="Coin4" parent="CoinHolder" instance=ExtResource("8_v4u6k")]
-position = Vector2(640, -320)
+position = Vector2(592, -272)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
