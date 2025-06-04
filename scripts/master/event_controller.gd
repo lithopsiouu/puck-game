@@ -14,6 +14,8 @@ signal game_win()
 
 signal send_total_gems(gems: int)
 
+signal send_total_coins(coins: int)
+
 signal wall_hurt(targetTile: RID, puckPos)
 
 signal player_under_cam_snap(value: bool)

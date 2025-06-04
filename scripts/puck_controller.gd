@@ -5,13 +5,21 @@ created by connie anderson
 february 2025
 """
 
+# visually show maximum shot strength with arrow indicator
+
 const speedMult = 2
 const maxSpeed = 800
-const camZoomSpeed = 2
+
+# default = 2
+# smaller numbers reset the camera zoom faster
+const camZoomSpeed = 1
 const defaultCamScale = Vector2(0.9, 0.9)
 const defaultCamPosSmoothing = 6
-const camVelScale = 5000.0
-const cam_shake_enabled = false
+
+# default = 5000
+# smaller numbers zoom the camera out more
+const camVelScale = 4000.0
+const cam_shake_enabled = false # still broken dumbass
 var cam_zoom_speed_enabled = true
 const minVelToChangeCamScale = 110.0
 const invertDrag = false

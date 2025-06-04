@@ -1,12 +1,484 @@
-[gd_scene load_steps=12 format=3 uid="uid://didk0ke4finlm"]
+[gd_scene load_steps=24 format=3 uid="uid://didk0ke4finlm"]
 
 [ext_resource type="Script" path="res://UI/screen_effects.gd" id="1_g2i5e"]
 [ext_resource type="LabelSettings" uid="uid://cqg0cx22qlb26" path="res://UI/largeTextWhite.tres" id="2_ffq5s"]
+[ext_resource type="FontFile" uid="uid://bofphgn35gvtt" path="res://assets/font/upheavtt.ttf" id="2_infun"]
 [ext_resource type="FontFile" uid="uid://f75puuy2qjvv" path="res://assets/font/8-bit Arcade In.ttf" id="3_6sxpj"]
+[ext_resource type="Shader" path="res://shaders/oscillate.gdshader" id="3_rtmdx"]
 [ext_resource type="LabelSettings" uid="uid://dyqjsjd742t3b" path="res://UI/regularText.tres" id="4_xnmka"]
 [ext_resource type="LabelSettings" uid="uid://dk2gow8vh6144" path="res://UI/mainTextWhite.tres" id="5_210ca"]
 [ext_resource type="Theme" uid="uid://cdkboomx4ymhk" path="res://UI/UI_theme.tres" id="6_7dwr0"]
 [ext_resource type="Script" path="res://UI/nextLevelButton.gd" id="7_siq2j"]
+[ext_resource type="Script" path="res://UI/mainMenuButton.gd" id="9_s7ka4"]
+
+[sub_resource type="Animation" id="Animation_8jkj1"]
+resource_name = "win_enter"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WinScreen/Title:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(2.2974, 0.378929),
+"update": 0,
+"values": [Color(0.466667, 0.686275, 0.407843, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WinScreen/Title:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.5, 0.666667),
+"transitions": PackedFloat32Array(2.2974, 0.378929, 2.37841, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WinScreen/Points:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.03333, 1.3),
+"transitions": PackedFloat32Array(0.217638, 0.217638, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WinScreen/Points:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.03333, 1.33333),
+"transitions": PackedFloat32Array(0.233258, 1),
+"update": 0,
+"values": [Vector2(1, 0.2), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WinScreen/PointLabel:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.9, 1.23333),
+"transitions": PackedFloat32Array(0.297302, 1),
+"update": 0,
+"values": [Vector2(1.2, 0.4), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("WinScreen/PointLabel:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.16667),
+"transitions": PackedFloat32Array(0.307786, 0.307786, 1),
+"update": 0,
+"values": [Color(0.129412, 0.0431373, 0.180392, 0), Color(0.129412, 0.0431373, 0.180392, 0), Color(0.129412, 0.0431373, 0.180392, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WinScreen/TimeBox:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.23333, 1.4),
+"transitions": PackedFloat32Array(0.196146, 0.196146, 1),
+"update": 0,
+"values": [Color(0.466667, 0.686275, 0.407843, 0), Color(0.466667, 0.686275, 0.407843, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("WinScreen/TimeBox:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.23333, 1.53333),
+"transitions": PackedFloat32Array(0.203063, 1),
+"update": 0,
+"values": [Vector2(1.4, 0.8), Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("WinScreen/TimeBox:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1.23333, 1.43333, 1.6),
+"transitions": PackedFloat32Array(0.210224, 6.49802, 1),
+"update": 0,
+"values": [-0.167552, 0.10472, 0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("WinScreen/Button:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2.16667, 2.33333, 2.5),
+"transitions": PackedFloat32Array(0.435275, 0.15932, 1),
+"update": 0,
+"values": [Vector2(0.9, 1.2), Vector2(1.3, 0.7), Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("WinScreen/Button:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 2.16667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("WinScreen/Button:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 2.16667, 2.5),
+"transitions": PackedFloat32Array(0.203063, 0.203063, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("WinScreen:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("WinScreen/MaxPanel:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(1.63333, 1.83333),
+"transitions": PackedFloat32Array(0.203063, 1),
+"update": 0,
+"values": [Color(0.227451, 0.396078, 0.352941, 0), Color(1, 1, 1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("WinScreen/MaxPanel:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(1.6, 1.73333, 1.9, 2.03333, 2.3),
+"transitions": PackedFloat32Array(2.2974, 0.307786, 0.420449, 4.28709, 1),
+"update": 0,
+"values": [Vector2(1.8, 0.6), Vector2(0.9, 0.6), Vector2(1.4, 1.6), Vector2(1.4, 1.3), Vector2(1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("WinScreen/MockPoints:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(1.73333, 1.96667, 2.23333),
+"transitions": PackedFloat32Array(0.420448, 4.14106, 1),
+"update": 0,
+"values": [-0.0698132, 0.226893, 0.151631]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("WinScreen/MockPoints:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(1.73333, 1.96667, 2.23333),
+"transitions": PackedFloat32Array(0.153893, 7.46425, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(0.6, 0.6), Vector2(0.7, 0.7)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("WinScreen/MockPoints:modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(1.73333, 1.96667),
+"transitions": PackedFloat32Array(0.176777, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("WinScreen/MainMenu:modulate")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(2.26667, 2.5),
+"transitions": PackedFloat32Array(0.183011, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2e08j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WinScreen/Title:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WinScreen/Title:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WinScreen/Points:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WinScreen/Points:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WinScreen/PointLabel:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("WinScreen/PointLabel:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.129412, 0.0431373, 0.180392, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WinScreen/TimeBox:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("WinScreen/TimeBox:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("WinScreen/TimeBox:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("WinScreen/Button:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("WinScreen/Button:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("WinScreen/Button:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("WinScreen:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("WinScreen/MaxPanel:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("WinScreen/MaxPanel:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("WinScreen/MockPoints:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.151631]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("WinScreen/MockPoints:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.6, 0.6)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("WinScreen/MockPoints:modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("WinScreen/MainMenu:modulate")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8qqra"]
+_data = {
+"RESET": SubResource("Animation_2e08j"),
+"win_enter": SubResource("Animation_8jkj1")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80irm"]
 bg_color = Color(0.912289, 0.912289, 0.912289, 1)
@@ -14,10 +486,58 @@ bg_color = Color(0.912289, 0.912289, 0.912289, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a0myw"]
 bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_jcgtb"]
+[sub_resource type="LabelSettings" id="LabelSettings_tp7b0"]
+font = ExtResource("2_infun")
+font_size = 84
+font_color = Color(0.862745, 0.996078, 0.811765, 1)
+outline_size = 35
+outline_color = Color(0.227451, 0.396078, 0.352941, 1)
+shadow_size = 35
+shadow_color = Color(0.227451, 0.396078, 0.352941, 1)
+shadow_offset = Vector2(0, 14)
+
+[sub_resource type="LabelSettings" id="LabelSettings_b2xtf"]
+font = ExtResource("2_infun")
+font_size = 64
+font_color = Color(0.129412, 0.0431373, 0.180392, 1)
+outline_size = 20
+outline_color = Color(0.466667, 0.686275, 0.407843, 1)
+shadow_size = 20
+shadow_color = Color(0.466667, 0.686275, 0.407843, 1)
+shadow_offset = Vector2(10, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8enk2"]
+bg_color = Color(0.129412, 0.0431373, 0.180392, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.227451, 0.396078, 0.352941, 1)
+corner_radius_top_right = 20
+corner_radius_bottom_left = 20
+anti_aliasing = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0xqlb"]
+shader = ExtResource("3_rtmdx")
+shader_parameter/height = 5.0
+shader_parameter/frequency = 25.0
+shader_parameter/speed = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cc6vk"]
+bg_color = Color(0.227451, 0.396078, 0.352941, 1)
+skew = Vector2(-0.6, 0)
+expand_margin_left = 280.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_xn1aw"]
+font = ExtResource("3_6sxpj")
+font_size = 45
+font_color = Color(0.862745, 0.996078, 0.811765, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iut1r"]
 font = ExtResource("3_6sxpj")
 font_size = 104
-outline_size = 15
+font_color = Color(0.862745, 0.996078, 0.811765, 1)
+outline_size = 20
 outline_color = Color(0.227451, 0.396078, 0.352941, 1)
 shadow_size = 0
 shadow_color = Color(0.227451, 0.396078, 0.352941, 0)
@@ -40,9 +560,13 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_g2i5e")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8qqra")
+}
+
 [node name="White" type="Panel" parent="."]
 visible = false
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,6 +588,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_a0myw")
 
 [node name="WinScreen" type="Control" parent="."]
 visible = false
+modulate = Color(0, 0, 0, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,22 +601,106 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Title" type="Label" parent="WinScreen"]
-modulate = Color(0.227451, 0.396078, 0.352941, 1)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -128.0
-offset_top = 40.0
-offset_right = 129.0
-offset_bottom = 120.0
+offset_left = -345.0
+offset_right = 344.0
+offset_bottom = 80.0
 grow_horizontal = 2
-text = "you win"
-label_settings = ExtResource("2_ffq5s")
+pivot_offset = Vector2(344, 0)
+text = "level complete"
+label_settings = SubResource("LabelSettings_tp7b0")
+horizontal_alignment = 1
+
+[node name="MockPoints" type="Label" parent="WinScreen"]
+visible = false
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -154.0
+offset_right = 568.0
+offset_bottom = -74.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.151631
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(344, 40)
+text = "so close!"
+label_settings = SubResource("LabelSettings_b2xtf")
+horizontal_alignment = 1
+
+[node name="MaxPanel" type="Panel" parent="WinScreen"]
+visible = false
+z_index = 2
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 145.0
+offset_top = -115.0
+offset_right = 300.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(77, 37)
+theme_override_styles/panel = SubResource("StyleBoxFlat_8enk2")
+
+[node name="MaxLabelBG" type="Label" parent="WinScreen/MaxPanel"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_0xqlb")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.5
+offset_top = -27.5
+offset_right = 146.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.92, 1.72)
+theme = ExtResource("6_7dwr0")
+theme_override_colors/font_color = Color(0.227451, 0.396078, 0.352941, 1)
+theme_override_fonts/font = ExtResource("3_6sxpj")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_cc6vk")
+text = "max points"
+horizontal_alignment = 1
+
+[node name="MaxLabel" type="Label" parent="WinScreen/MaxPanel"]
+z_index = 2
+z_as_relative = false
+material = SubResource("ShaderMaterial_0xqlb")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.5
+offset_top = -32.5
+offset_right = 129.5
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.919995, 1.72)
+text = "max points"
+label_settings = SubResource("LabelSettings_xn1aw")
 horizontal_alignment = 1
 
 [node name="Points" type="Label" parent="WinScreen"]
-modulate = Color(0.466667, 0.686275, 0.407843, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -99,13 +708,13 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -128.0
-offset_top = -100.0
+offset_top = -165.0
 offset_right = 129.0
-offset_bottom = -5.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "0"
-label_settings = SubResource("LabelSettings_jcgtb")
+text = "00/00"
+label_settings = SubResource("LabelSettings_iut1r")
 horizontal_alignment = 1
 
 [node name="PointLabel" type="Label" parent="WinScreen"]
@@ -122,7 +731,8 @@ offset_right = 129.0
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "points"
+pivot_offset = Vector2(166, 45)
+text = "points collected"
 label_settings = ExtResource("4_xnmka")
 horizontal_alignment = 1
 
@@ -139,6 +749,7 @@ offset_right = 185.0
 offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(185, 60)
 theme_override_styles/panel = SubResource("StyleBoxFlat_qpof5")
 
 [node name="timeElapsedLabel" type="Label" parent="WinScreen/TimeBox"]
@@ -203,9 +814,24 @@ offset_top = -56.0
 offset_right = 183.0
 grow_horizontal = 0
 grow_vertical = 0
+pivot_offset = Vector2(155, 28)
 theme = ExtResource("6_7dwr0")
 text = "next level"
 script = ExtResource("7_siq2j")
+
+[node name="MainMenu" type="Button" parent="WinScreen"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -56.0
+offset_right = 126.0
+grow_vertical = 0
+pivot_offset = Vector2(155, 28)
+theme = ExtResource("6_7dwr0")
+text = "main menu"
+script = ExtResource("9_s7ka4")
 
 [node name="LoseScreen" type="Control" parent="."]
 visible = false
@@ -235,3 +861,4 @@ text = "you lose"
 label_settings = ExtResource("2_ffq5s")
 
 [connection signal="pressed" from="WinScreen/Button" to="WinScreen/Button" method="_on_pressed"]
+[connection signal="pressed" from="WinScreen/MainMenu" to="WinScreen/MainMenu" method="_on_pressed"]

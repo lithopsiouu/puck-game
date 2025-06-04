@@ -18,10 +18,11 @@
 atlas = ExtResource("13_1hb5i")
 region = Rect2(417, 129, 14, 14)
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("coinHolder")]
 texture_filter = 1
 script = ExtResource("1_l0f2t")
 time = 70
+coinHolder = NodePath("CoinHolder")
 
 [node name="Hint" type="Label" parent="."]
 offset_left = -48.0
