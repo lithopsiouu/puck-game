@@ -90,6 +90,7 @@ func _on_event_gem_smashed() -> void:
 
 func _set_max_coins(value: int) -> void:
 	maxCoinsInLevel = value
+	finalPointsDisplay.text = "00/%02d" % maxCoinsInLevel
 
 func fade_in_black(speed: int):
 	blackPanel.visible = true
