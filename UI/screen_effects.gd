@@ -39,6 +39,7 @@ func winProcess() -> void:
 	await get_tree().create_timer(0.5).timeout
 	winScrn.visible = true
 	_check_if_points_maxxed() # will show maxPanel or mockPoints based on coins collected
+	EventController.emit_signal("save_level_stats")
 	animPlayer.play("win_enter")
 
 func loseProcess() -> void:
@@ -81,8 +82,8 @@ func display_time(time: float) -> void:
 	finalTimeDisplay.text = "%02d:%02d.%03d" % [minutes, seconds, msec]
 
 func _on_event_coin_collected(value: int) -> void:
-	finalPointsDisplay.text = "%02d/%02d" % [value, maxCoinsInLevel]
-	totalCoins = value
+	totalCoins += value
+	finalPointsDisplay.text = "%02d/%02d" % [totalCoins, maxCoinsInLevel]
 	white_border_flash()
 
 func _on_event_gem_smashed() -> void:
@@ -90,7 +91,9 @@ func _on_event_gem_smashed() -> void:
 
 func _set_max_coins(value: int) -> void:
 	maxCoinsInLevel = value
+	print("received max coins: " + str(maxCoinsInLevel))
 	finalPointsDisplay.text = "00/%02d" % maxCoinsInLevel
+	EventController.emit_signal("total_coins_from_screen_effects", value)
 
 func fade_in_black(speed: int):
 	blackPanel.visible = true

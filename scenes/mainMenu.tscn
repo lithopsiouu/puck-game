@@ -1269,7 +1269,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 120.0
 grow_horizontal = 2
-text = "first steps"
+text = "file read error"
 label_settings = SubResource("LabelSettings_mw5cy")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1284,7 +1284,7 @@ offset_right = -340.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_knhjg")
 
-[node name="LevelTitleLabel" type="Label" parent="LevelSelect/LevelSelectPanel/NumericalLevelPanel"]
+[node name="LevelNumberLabel" type="Label" parent="LevelSelect/LevelSelectPanel/NumericalLevelPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1494,4 +1494,6 @@ horizontal_alignment = 1
 [connection signal="pressed" from="LevelSelect/ExitButton" to="." method="_on_level_exit_button_pressed"]
 [connection signal="pressed" from="LevelSelect/QuickPlayButton" to="." method="_on_quick_play_button_pressed"]
 [connection signal="pressed" from="LevelSelect/LevelSelectPanel/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="LevelSelect/LevelSelectPanel/LeftScroll" to="." method="_on_left_level_scroll_pressed"]
+[connection signal="pressed" from="LevelSelect/LevelSelectPanel/RightScroll" to="." method="_on_right_level_scroll_pressed"]
 [connection signal="pressed" from="Credits/Panel/ExitButton" to="." method="_on_credits_exit_button_pressed"]

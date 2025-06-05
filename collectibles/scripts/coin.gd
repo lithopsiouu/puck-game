@@ -10,7 +10,7 @@ func _ready() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is PlayerPuck and canCollect:
 		anim.play("collect")
-		GameController.coin_collected(coinValue)
+		EventController.emit_signal("coin_collected", coinValue)
 
 func toggle_canCollect():
 	canCollect = !canCollect

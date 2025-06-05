@@ -8,6 +8,7 @@ func _ready() -> void:
 	_get_next_level()
 
 func _on_pressed() -> void:
+	EventController.emit_signal("reset_game_shit")
 	get_tree().change_scene_to_file(nextLevelPath)
 
 # Grabs level number and adds one to it and turns the new level number back into a filepath string
