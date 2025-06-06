@@ -1,6 +1,5 @@
 extends Control
 
-
 @onready var uiAnims: AnimationPlayer = $AnimationPlayer
 @onready var settingsButtons = $SettingsButtons
 @onready var levelSelect = $LevelSelect
@@ -14,15 +13,25 @@ extends Control
 var levelPathEmpty: String = "res://scenes/Levels/lvl%s.tscn"
 var levelInt := 1
 var level_data_path = "user://level_info_data.puck"
+var level_score_path = "user://level_scores"
+var configSuffix = ".cfg"
 var levelNames := ["first steps", "a cage of stone", "hedge walk", "first gems"]
+
+@onready var star1 = $LevelSelect/LevelSelectPanel/NumericalLevelPanel/Star1
+@onready var star2 = $LevelSelect/LevelSelectPanel/NumericalLevelPanel/Star2
+@onready var star3 = $LevelSelect/LevelSelectPanel/NumericalLevelPanel/Star3
+
+var starColorComplete = Color(0.863, 0.996, 0.812)
+var starColorIncomplete = Color(0.129, 0.043, 0.18)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_initialize_level_names()
+	_change_level(1)
 
 func _initialize_level_names():
 	if not FileAccess.file_exists(level_data_path):
-		print("names file does not exist. writing now")
+		print("names file created")
 		var levelNamesFile = FileAccess.open(level_data_path, FileAccess.WRITE)
 		for i in range(levelNames.size()):
 			var json_string = JSON.stringify(levelNames[i])
@@ -32,11 +41,26 @@ func _initialize_level_names():
 		print("names file exists")
 
 func _change_level(level: int):
-	level = clampi(level, 1, levelNames.size())
-	print("level changing to: " + str(level))
-	levelTitleLabel.text = _get_level_name(level)
-	levelNumberLabel.text = str(level)
 	levelInt = level
+	levelInt = clampi(levelInt, 1, levelNames.size())
+	print("level changing to: " + str(levelInt))
+	levelTitleLabel.text = _get_level_name(levelInt)
+	levelNumberLabel.text = str(levelInt)
+	var scoresFile = level_score_path + configSuffix
+	var config = ConfigFile.new()
+	config.load(scoresFile)
+	var fasterThanRecord = config.get_value("Level" + str(levelInt), "BetterThanRecord")
+	var maxPointsValue = config.get_value("Level" + str(levelInt), "MaxPoints")
+	var levelComplete = config.get_value("Level" + str(levelInt), "Completed")
+	
+	if fasterThanRecord: star3.self_modulate = starColorComplete
+	else: star3.self_modulate = starColorIncomplete
+	
+	if maxPointsValue: star2.self_modulate = starColorComplete
+	else: star2.self_modulate = starColorIncomplete
+	
+	if levelComplete: star1.self_modulate = starColorComplete
+	else: star1.self_modulate = starColorIncomplete
 
 func _get_level_name(line: int) -> String:
 	var levelNamesFile = FileAccess.open(level_data_path, FileAccess.READ)

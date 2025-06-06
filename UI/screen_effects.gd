@@ -19,6 +19,8 @@ var greenBorderStyle = preload("res://UI/green_big_border_blend.tres")
 var mockingWords : Array = ["so close!", "almost there!", "not quite!", "try again?", "no max 4 u", "oh well...", "anguish.","crashout compilation #42"]
 var insultingWords : Array = ["dimwit", "did you try?", "jaw dropping.", "its not golf rules.", "just ignore it", "idgaf", "ts pmo", "crashout compilation #3"]
 
+var timeAsSeconds := 0.0
+
 var maxCoinsInLevel := 0
 var totalCoins := 0
 
@@ -38,6 +40,7 @@ func winProcess() -> void:
 	Engine.time_scale = 1
 	await get_tree().create_timer(0.5).timeout
 	winScrn.visible = true
+	EventController.emit_signal("send_final_time", timeAsSeconds)
 	_check_if_points_maxxed() # will show maxPanel or mockPoints based on coins collected
 	EventController.emit_signal("save_level_stats")
 	animPlayer.play("win_enter")
@@ -80,6 +83,10 @@ func display_time(time: float) -> void:
 	var minutes = fmod(time, 3600) / 60
 	
 	finalTimeDisplay.text = "%02d:%02d.%03d" % [minutes, seconds, msec]
+	_turn_time_into_seconds(minutes, seconds, msec)
+
+func _turn_time_into_seconds(minutes: int, seconds: int, msec: int):
+	timeAsSeconds = (minutes / 60) + seconds + (msec * 0.001)
 
 func _on_event_coin_collected(value: int) -> void:
 	totalCoins += value

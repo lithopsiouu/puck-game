@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://kldg6jp7vsw1"]
+[gd_scene load_steps=16 format=3 uid="uid://kldg6jp7vsw1"]
 
 [ext_resource type="Script" path="res://scripts/puck_controller.gd" id="1_37wa6"]
 [ext_resource type="Texture2D" uid="uid://bq1qxmnhrikwk" path="res://assets/palette/didi4/didi4_b.png" id="2_oq76g"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bwq6gmw80mybm" path="res://UI/coin/coin_ui.tscn" id="4_8lbme"]
 [ext_resource type="Shader" path="res://shaders/distortion.gdshader" id="5_uktsy"]
 [ext_resource type="Texture2D" uid="uid://caqlaw0dt5s2r" path="res://assets/mask_soft_round_ring.jpg" id="6_kn6ul"]
+[ext_resource type="Texture2D" uid="uid://dql1t3jv4rkxf" path="res://assets/palette/didi4/didi4_b_r.png" id="7_vmh24"]
+[ext_resource type="Texture2D" uid="uid://pxbidx5jf3v6" path="res://assets/UI/IconsFlat-16.png" id="8_l3dt4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nt6t6"]
 friction = 0.18
@@ -27,6 +29,14 @@ shader = ExtResource("5_uktsy")
 shader_parameter/scroll = Vector2(0, 0)
 shader_parameter/strength = 0.0
 shader_parameter/useMask = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rautn"]
+atlas = ExtResource("7_vmh24")
+region = Rect2(528, 352, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_466m6"]
+atlas = ExtResource("8_l3dt4")
+region = Rect2(144, 128, 16, 16)
 
 [node name="PlayerPuck" type="Node2D"]
 texture_filter = 1
@@ -79,4 +89,28 @@ material = SubResource("ShaderMaterial_8vg4s")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_kn6ul")
 
+[node name="Timer" type="Timer" parent="PuckBody"]
+process_mode = 1
+process_callback = 0
+wait_time = 0.5
+one_shot = true
+
+[node name="ResetProgress" type="TextureProgressBar" parent="PuckBody"]
+visible = false
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 56.0
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 0.5
+step = 0.01
+fill_mode = 4
+radial_initial_angle = 284.4
+texture_under = SubResource("AtlasTexture_rautn")
+texture_progress = SubResource("AtlasTexture_466m6")
+tint_progress = Color(0.862745, 0.996078, 0.811765, 1)
+
 [connection signal="body_entered" from="PuckBody" to="PuckBody" method="_on_body_entered"]
+[connection signal="timeout" from="PuckBody/Timer" to="PuckBody" method="_on_timer_timeout"]

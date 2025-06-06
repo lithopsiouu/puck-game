@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b05r3g6gtpwl7"]
+[gd_scene load_steps=54 format=3 uid="uid://b05r3g6gtpwl7"]
 
 [ext_resource type="Script" path="res://UI/main_menu_controller.gd" id="1_bjb01"]
 [ext_resource type="Theme" uid="uid://cdkboomx4ymhk" path="res://UI/UI_theme.tres" id="1_et1l7"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://chaift5nncm46" path="res://assets/mask_soft_round.jpg" id="5_m1weh"]
 [ext_resource type="Texture2D" uid="uid://lt57bqx04di0" path="res://assets/UI/button_focused.tres" id="5_rqwy0"]
 [ext_resource type="FontFile" uid="uid://f75puuy2qjvv" path="res://assets/font/8-bit Arcade In.ttf" id="6_01b48"]
-[ext_resource type="Script" path="res://scenes/transform.gd" id="10_mnfyu"]
+[ext_resource type="Script" path="res://scripts/transform.gd" id="10_mnfyu"]
 [ext_resource type="FontFile" uid="uid://bofphgn35gvtt" path="res://assets/font/upheavtt.ttf" id="11_5k55i"]
 [ext_resource type="Texture2D" uid="uid://cefb3wpf2e1lc" path="res://assets/UI/UI_atlas.tres" id="11_x4gm2"]
 [ext_resource type="Texture2D" uid="uid://eejprjm8whs6" path="res://assets/palette/didi4/didi4-32x.png" id="12_15ixj"]
@@ -25,6 +25,7 @@
 [ext_resource type="StyleBox" uid="uid://mdm0pu3k20ob" path="res://UI/arrow_left.tres" id="15_8q0ju"]
 [ext_resource type="StyleBox" uid="uid://jncyauk55uj" path="res://UI/arrow_right_pressed.tres" id="16_o0fb6"]
 [ext_resource type="StyleBox" uid="uid://gvkivb0fnmcd" path="res://UI/arrow_right_hover.tres" id="17_xk2ev"]
+[ext_resource type="Texture2D" uid="uid://pxbidx5jf3v6" path="res://assets/UI/IconsFlat-16.png" id="19_ovxwc"]
 
 [sub_resource type="Animation" id="Animation_vlobi"]
 length = 0.001
@@ -514,6 +515,10 @@ font_size = 26
 font_color = Color(0.129412, 0.0431373, 0.180392, 1)
 outline_size = 4
 outline_color = Color(0.227451, 0.396078, 0.352941, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eibq4"]
+atlas = ExtResource("19_ovxwc")
+region = Rect2(48, 144, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vjsji"]
 atlas = ExtResource("2_sy16x")
@@ -1297,6 +1302,126 @@ text = "01 - 12"
 label_settings = SubResource("LabelSettings_1e78h")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Star1" type="TextureRect" parent="LevelSelect/LevelSelectPanel/NumericalLevelPanel"]
+self_modulate = Color(0.129412, 0.0431373, 0.180392, 1)
+z_index = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 175.0
+offset_top = -20.0
+offset_right = 215.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_eibq4")
+script = ExtResource("10_mnfyu")
+transformType = "Pulse"
+frequency = 3.0
+pulseSize = 0.05
+
+[node name="Outer" type="TextureRect" parent="LevelSelect/LevelSelectPanel/NumericalLevelPanel/Star1"]
+self_modulate = Color(0.227451, 0.396078, 0.352941, 1)
+z_index = 2
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_eibq4")
+
+[node name="Star2" type="TextureRect" parent="LevelSelect/LevelSelectPanel/NumericalLevelPanel"]
+self_modulate = Color(0.129412, 0.0431373, 0.180392, 1)
+z_index = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 230.0
+offset_top = -20.0
+offset_right = 270.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_eibq4")
+script = ExtResource("10_mnfyu")
+transformType = "Pulse"
+frequency = 3.0
+pulseSize = 0.05
+
+[node name="Outer" type="TextureRect" parent="LevelSelect/LevelSelectPanel/NumericalLevelPanel/Star2"]
+self_modulate = Color(0.227451, 0.396078, 0.352941, 1)
+z_index = 2
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_eibq4")
+
+[node name="Star3" type="TextureRect" parent="LevelSelect/LevelSelectPanel/NumericalLevelPanel"]
+self_modulate = Color(0.129412, 0.0431373, 0.180392, 1)
+z_index = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 285.0
+offset_top = -20.0
+offset_right = 325.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_eibq4")
+script = ExtResource("10_mnfyu")
+transformType = "Pulse"
+frequency = 3.0
+pulseSize = 0.05
+
+[node name="Outer" type="TextureRect" parent="LevelSelect/LevelSelectPanel/NumericalLevelPanel/Star3"]
+self_modulate = Color(0.227451, 0.396078, 0.352941, 1)
+z_index = 2
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_eibq4")
 
 [node name="LeftScroll" type="Button" parent="LevelSelect/LevelSelectPanel"]
 layout_mode = 1

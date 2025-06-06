@@ -5,6 +5,10 @@ created by connie anderson
 february 2025
 """
 
+@onready var restartTimer := $Timer
+@onready var resetBar := $ResetProgress
+var tween
+
 # visually show maximum shot strength with arrow indicator
 
 const speedMult = 2
@@ -70,8 +74,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		_add_puck_velocity(get_dist_btwn_grabs())
 		arrow.resetArrow()
 		#print("Puck released, pos: " + str(mouseReleasePos))
+	elif Input.is_action_just_released("Cancel"): 
+		resetBar.visible = false
+		if tween: tween.kill()
+		restartTimer.stop()
+	elif Input.is_action_just_pressed("Cancel"): 
+		resetBar.visible = true
+		resetBar.max_value = restartTimer.wait_time
+		restartTimer.start()
 
 func _physics_process(delta: float) -> void:
+	if !restartTimer.is_stopped():
+		resetBar.value = restartTimer.wait_time - restartTimer.time_left
+		resetBar.modulate.a = 0
+		tween = create_tween()
+		tween.tween_property(resetBar, "modulate:a", 1, restartTimer.wait_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)#.set_delay(1)
+	
 	if grabbingPuck == true:
 		arrow.updateArrow(get_mouse_pos_relative_to_puckbody())
 	
@@ -206,3 +224,6 @@ func on_game_win() -> void:
 	tweenShockwave2.tween_property(shockwave.material, "shader_parameter/strength", 0, 0.7)
 	tween.tween_property(cam, "zoom", Vector2(0.6, 0.7), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	tween.tween_property(cam, "zoom", Vector2(2.4, 2), 0.8).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+
+func _on_timer_timeout() -> void:
+	EventController.emit_signal("restart_level")

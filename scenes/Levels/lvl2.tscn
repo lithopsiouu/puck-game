@@ -24,6 +24,7 @@ texture_filter = 1
 script = ExtResource("1_mmqkn")
 time = 70
 coinHolder = NodePath("CoinHolder")
+metadata/TimeScore = 1.1
 
 [node name="Hint" type="Label" parent="."]
 offset_left = 448.0
@@ -58,30 +59,31 @@ script = ExtResource("4_0bpom")
 script = ExtResource("5_lxqpi")
 
 [node name="PlayerPuck" parent="." instance=ExtResource("6_6ewcq")]
-position = Vector2(592, -352)
+position = Vector2(588, -364)
 
 [node name="CoinHolder" type="Node2D" parent="."]
+position = Vector2(-4, 4)
 
 [node name="Coin" parent="CoinHolder" instance=ExtResource("7_wm5gj")]
 position = Vector2(928, -368)
 
 [node name="Coin2" parent="CoinHolder" instance=ExtResource("7_wm5gj")]
-position = Vector2(1008, -368)
+position = Vector2(1012, -368)
 
 [node name="Coin3" parent="CoinHolder" instance=ExtResource("7_wm5gj")]
-position = Vector2(1088, -368)
+position = Vector2(1096, -368)
 
 [node name="Coin4" parent="CoinHolder" instance=ExtResource("7_wm5gj")]
-position = Vector2(1280, -368)
+position = Vector2(1264, -368)
 
 [node name="Coin5" parent="CoinHolder" instance=ExtResource("7_wm5gj")]
-position = Vector2(1360, -368)
+position = Vector2(1340, -368)
 
 [node name="Coin6" parent="CoinHolder" instance=ExtResource("7_wm5gj")]
-position = Vector2(1440, -368)
+position = Vector2(1416, -368)
 
 [node name="Coin7" parent="CoinHolder" instance=ExtResource("7_wm5gj")]
-position = Vector2(1520, -368)
+position = Vector2(1492, -368)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
