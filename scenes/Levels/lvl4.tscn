@@ -24,7 +24,7 @@ script = ExtResource("1_2ikff")
 winCondition = 1
 time = 70
 coinHolder = NodePath("CoinHolder")
-metadata/TimeScore = 1.0
+metadata/TimeScore = 8.1
 
 [node name="Hint" type="Label" parent="."]
 offset_left = 448.0

@@ -28,6 +28,7 @@ var starColorIncomplete = Color(0.129, 0.043, 0.18)
 func _ready() -> void:
 	_initialize_level_names()
 	_change_level(1)
+	MusicController.start_main_menu_tracks()
 
 func _initialize_level_names():
 	if not FileAccess.file_exists(level_data_path):
@@ -78,14 +79,17 @@ func _on_play_button_pressed() -> void:
 	levelTitleLabel.text = _get_level_name(levelInt)
 	levelNumberLabel.text = str(levelInt)
 	uiAnims.play("levelSelect_enter")
+	MusicController.fade_track("levels", 0, 1)
 
 func _on_settings_button_pressed() -> void:
-	uiAnims.play("disk_enter")
 	mainButtons.visible = false
+	uiAnims.play("disk_enter")
+	MusicController.fade_track("Settings", 0, 1)
 
 func _on_credits_button_pressed() -> void:
 	credits.visible = true
 	uiAnims.play("credits_enter")
+	MusicController.fade_track("Settings", 0, 1)
 
 func _on_exit_button_pressed() -> void:
 	#get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
@@ -111,19 +115,23 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func _on_settings_exit_button_pressed() -> void:
 	settingsButtons.visible = false
 	uiAnims.play("disk_exit")
+	MusicController.fade_track("settings", -80, 0.5)
 
 func _on_level_exit_button_pressed() -> void:
 	uiAnims.play("levelSelect_exit")
+	MusicController.fade_track("levels", -80, 0.5)
 
 func _on_credits_exit_button_pressed() -> void:
 	#mainButtons.visible = true
 	uiAnims.play("credits_exit")
+	MusicController.fade_track("Settings", -80, 0.5)
 
 func _on_quick_play_button_pressed() -> void:
 	uiAnims.play("all_disappear")
 
 func _on_level_select_button_pressed() -> void:
 	uiAnims.play("all_disappear")
+	MusicController.fade_all_tracks(-80, 0.8)
 
 func _on_test_pressed() -> void:
 	var tween = get_tree().create_tween()

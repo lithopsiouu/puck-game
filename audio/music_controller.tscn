@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbakq7xlyqoqy"]
+
+[ext_resource type="Script" path="res://scripts/master/music_controller.gd" id="1_3jqi5"]
+[ext_resource type="AudioStream" uid="uid://de3tusvdc256y" path="res://audio/menuLayer1.mp3" id="2_6cojk"]
+[ext_resource type="AudioStream" uid="uid://duf48npo5bbbx" path="res://audio/padssss.mp3" id="3_aicig"]
+[ext_resource type="AudioStream" uid="uid://cigna1nmkd7wm" path="res://audio/menuLayer2.mp3" id="4_a88ni"]
+[ext_resource type="AudioStream" uid="uid://blovqshjh1vtp" path="res://audio/menuLayerSettings.mp3" id="5_dccbw"]
+
+[node name="MusicController" type="Node"]
+script = ExtResource("1_3jqi5")
+
+[node name="Bass" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_6cojk")
+
+[node name="Pads" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_aicig")
+
+[node name="Levels" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_a88ni")
+volume_db = -80.0
+
+[node name="Settings" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_dccbw")
+volume_db = -80.0
