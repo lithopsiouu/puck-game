@@ -645,6 +645,7 @@ label_settings = SubResource("LabelSettings_b2xtf")
 horizontal_alignment = 1
 
 [node name="Stars" type="Panel" parent="WinScreen"]
+visible = false
 z_index = 1
 texture_filter = 1
 layout_mode = 1

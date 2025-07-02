@@ -24,7 +24,7 @@ texture_filter = 1
 script = ExtResource("1_mmqkn")
 time = 70
 coinHolder = NodePath("CoinHolder")
-metadata/TimeScore = 1.1
+metadata/TimeScore = 1.4
 
 [node name="Hint" type="Label" parent="."]
 offset_left = 448.0
